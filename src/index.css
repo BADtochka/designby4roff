@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Onest", "sans-serif";
+}
+
+html,
+body {
+  @apply bg-black text-white font-medium text-base scheme-dark font-display z-10 relative;
+}
+
+a,
+button {
+  @apply transition-colors;
+}
+
+/* body * { */
+/* @apply transition-colors; */
+/* } */
