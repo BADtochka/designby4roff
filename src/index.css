@@ -2,6 +2,8 @@
 
 @theme {
   --font-display: "Onest", "sans-serif";
+  --breakpoint-md: 64.0625rem;
+  --breakpoint-sm: 38.25rem;
 }
 
 html,

@@ -1,18 +1,18 @@
 import { useSafeLocalization } from '@/hooks/useSafeLocalization';
 import TypesafeI18n from '@/i18n/i18n-react';
-import BlobityProvider from './providers/BlobityProvider';
+import ReactLenis from 'lenis/react';
 import Router from './Router';
 
 export const App = () => {
-  const { locale, localesLoaded } = useSafeLocalization();
+  const { clientLang, localesLoaded } = useSafeLocalization();
 
   if (!localesLoaded) return;
 
   return (
-    <TypesafeI18n locale={locale}>
-      <BlobityProvider>
+    <TypesafeI18n locale={clientLang}>
+      <ReactLenis root options={{ duration: 0.8 }}>
         <Router />
-      </BlobityProvider>
+      </ReactLenis>
     </TypesafeI18n>
   );
 };

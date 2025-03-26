@@ -11,24 +11,30 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.0.12
         version: 4.0.12(vite@6.2.1(jiti@2.4.2)(lightningcss@1.29.2))
-      blobity:
-        specifier: ^0.2.3
-        version: 0.2.3(react@19.0.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       date-fns-tz:
         specifier: ^3.2.0
         version: 3.2.0(date-fns@4.1.0)
       framer-motion:
         specifier: ^12.4.10
         version: 12.4.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      lenis:
+        specifier: ^1.2.3
+        version: 1.2.3(react@19.0.0)
       react:
         specifier: ^19.0.0
         version: 19.0.0
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      react-intersection-observer:
+        specifier: ^9.16.0
+        version: 9.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-router:
         specifier: ^7.3.0
         version: 7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -44,6 +50,12 @@ importers:
       typesafe-i18n:
         specifier: ^5.26.2
         version: 5.26.2(typescript@5.7.3)
+      use-sync-external-store:
+        specifier: ^1.4.0
+        version: 1.4.0(react@19.0.0)
+      zustand:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/react@19.0.10)(react@19.0.0)(use-sync-external-store@1.4.0(react@19.0.0))
     devDependencies:
       '@types/react':
         specifier: ^19.0.10
@@ -492,12 +504,6 @@ packages:
     peerDependencies:
       vite: ^4 || ^5 || ^6
 
-  blobity@0.2.3:
-    resolution: {integrity: sha512-ooIyE44R+Gc+DbGCkMAcyAPln30nvQnZIsjmCDO9PUUoRkv2fNliHhsunL+GFp5JmAzbinO4iCeBwjjO6JeEcg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      vue: next
-
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -560,8 +566,19 @@ packages:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
     hasBin: true
 
-  kinet@2.2.1:
-    resolution: {integrity: sha512-UmnTPmnEokjxBeB3gPkOnTwRlIUaAeB+t21E+HJGzRKCGdJTUF3CTztK5yzzEuBQ1BZ0I0ovrY73+ctpPWFIOg==}
+  lenis@1.2.3:
+    resolution: {integrity: sha512-H3VUn62jvQPfyxGW2F0STJPhP1VzX5r05KtiZ0uxHYD9xtbfTvj2eX/Km26+x13zlaKfHacEe1DTC3ouFrxw+g==}
+    peerDependencies:
+      '@nuxt/kit': '>=3.0.0'
+      react: '>=17.0.0'
+      vue: '>=3.0.0'
+    peerDependenciesMeta:
+      '@nuxt/kit':
+        optional: true
+      react:
+        optional: true
+      vue:
+        optional: true
 
   lightningcss-darwin-arm64@1.29.2:
     resolution: {integrity: sha512-cK/eMabSViKn/PG8U/a7aCorpeKLMlK0bQeNHmdb7qUnBkNPnL+oV5DjJUo0kqWsJUapZsM4jCfYItbqBDvlcA==}
@@ -626,9 +643,6 @@ packages:
   lightningcss@1.29.2:
     resolution: {integrity: sha512-6b6gd/RUXKaw5keVdSEtqFVdzWnU5jMxTUjA2bVcMNPLwSQ08Sv/UodBVtETLCn7k4S1Ibxwh7k68IwLZPgKaA==}
     engines: {node: '>= 12.0.0'}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   motion-dom@12.4.10:
     resolution: {integrity: sha512-ISP5u6FTceoD6qKdLupIPU/LyXBrxGox+P2e3mBbm1+pLdlBbwv01YENJr7+1WZnW5ucVKzFScYsV1eXTCG4Xg==}
@@ -732,6 +746,15 @@ packages:
     peerDependencies:
       react: ^19.0.0
 
+  react-intersection-observer@9.16.0:
+    resolution: {integrity: sha512-w9nJSEp+DrW9KmQmeWHQyfaP6b03v+TdXynaoA964Wxt7mdR3An11z4NNCQgL4gKSK7y1ver2Fq+JKH6CWEzUA==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
   react-router-dom@7.3.0:
     resolution: {integrity: sha512-z7Q5FTiHGgQfEurX/FBinkOXhWREJIAB2RiU24lvcBa82PxUpwqvs/PAXb9lJyPjTs2jrl6UkLvCZVGJPeNuuQ==}
     engines: {node: '>=20.0.0'}
@@ -801,6 +824,11 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  use-sync-external-store@1.4.0:
+    resolution: {integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   vite@6.2.1:
     resolution: {integrity: sha512-n2GnqDb6XPhlt9B8olZPrgMD/es/Nd1RdChF6CBD/fHW6pUyUTt2sQW2fPRX5GiD9XEa6+8A6A4f2vT6pSsE7Q==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -839,6 +867,24 @@ packages:
       tsx:
         optional: true
       yaml:
+        optional: true
+
+  zustand@5.0.3:
+    resolution: {integrity: sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
         optional: true
 
 snapshots:
@@ -1107,12 +1153,6 @@ snapshots:
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  blobity@0.2.3(react@19.0.0):
-    dependencies:
-      kinet: 2.2.1
-      lodash: 4.17.21
-      react: 19.0.0
-
   clsx@2.1.1: {}
 
   cookie@1.0.2: {}
@@ -1178,7 +1218,9 @@ snapshots:
 
   jiti@2.4.2: {}
 
-  kinet@2.2.1: {}
+  lenis@1.2.3(react@19.0.0):
+    optionalDependencies:
+      react: 19.0.0
 
   lightningcss-darwin-arm64@1.29.2:
     optional: true
@@ -1225,8 +1267,6 @@ snapshots:
       lightningcss-win32-arm64-msvc: 1.29.2
       lightningcss-win32-x64-msvc: 1.29.2
 
-  lodash@4.17.21: {}
-
   motion-dom@12.4.10:
     dependencies:
       motion-utils: 12.4.10
@@ -1262,6 +1302,12 @@ snapshots:
     dependencies:
       react: 19.0.0
       scheduler: 0.25.0
+
+  react-intersection-observer@9.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+    optionalDependencies:
+      react-dom: 19.0.0(react@19.0.0)
 
   react-router-dom@7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
@@ -1333,6 +1379,10 @@ snapshots:
 
   typescript@5.7.3: {}
 
+  use-sync-external-store@1.4.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+
   vite@6.2.1(jiti@2.4.2)(lightningcss@1.29.2):
     dependencies:
       esbuild: 0.25.0
@@ -1342,3 +1392,9 @@ snapshots:
       fsevents: 2.3.3
       jiti: 2.4.2
       lightningcss: 1.29.2
+
+  zustand@5.0.3(@types/react@19.0.10)(react@19.0.0)(use-sync-external-store@1.4.0(react@19.0.0)):
+    optionalDependencies:
+      '@types/react': 19.0.10
+      react: 19.0.0
+      use-sync-external-store: 1.4.0(react@19.0.0)

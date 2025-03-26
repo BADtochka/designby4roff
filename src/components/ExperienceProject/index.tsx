@@ -1,5 +1,6 @@
 import { useI18nContext } from '@/i18n/i18n-react';
 import { ExpericenceKeys, ExperienceData } from '@/types/Cases';
+import Image from '../Image';
 
 interface ExperienceProjectProps extends ExperienceData {
   keyName: ExpericenceKeys;
@@ -9,18 +10,18 @@ export default function ExperienceProject({ keyName, post, image, startDate, end
   const { LL } = useI18nContext();
 
   return (
-    <div className='flex justify-between border-b border-[#ffffff28] px-16 py-[50px]'>
-      <div className='flex gap-8'>
-        <img src={`experiences/${image}`} alt='' className='size-20 rounded-full object-cover' />
+    <div className='flex justify-between border-b border-[#ffffff28] px-16 py-[50px] max-md:flex-col max-md:gap-10 max-md:p-8'>
+      <div className='flex gap-8 max-md:flex-col'>
+        <Image src={`experiences/${image}`} alt='' className='size-20 rounded-full object-cover' loading='lazy' />
         <div className='flex flex-col gap-3'>
           <h1 className='text-xl font-bold'>{LL.blocks.experienceList[keyName].name()}</h1>
           <div className='flex flex-col gap-2.5'>
             <p className='font-semibold'>{post}</p>
-            <p className='text-sm text-white/65'>{`${startDate.toString()} - ${endDate?.toString()}`}</p>
+            <p className='text-sm text-white/30'>{`${startDate.toString()} - ${endDate?.toString()}`}</p>
           </div>
         </div>
       </div>
-      <p className='max-w-[936px] text-white/70'>{LL.blocks.experienceList[keyName].description()}</p>
+      <p className='w-full max-w-[936px] text-white/70'>{LL.blocks.experienceList[keyName].description()}</p>
     </div>
   );
 }

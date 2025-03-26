@@ -3,36 +3,36 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Children, HTMLAttributes, PropsWithChildren, ReactElement } from 'react';
 
 type TabsProps = HTMLAttributes<HTMLDivElement>;
+interface TabsContentProps extends HTMLAttributes<HTMLDivElement> {
+  customId: string;
+}
 
 interface TabsTabProps extends HTMLAttributes<HTMLDivElement> {
+  'data-size'?: string;
   active?: boolean;
 }
 
 export const Tabs = ({ children, className, ...props }: TabsProps) => {
   return (
-    <div
-      className={cn('inline-flex items-center rounded-full border border-[#ffffff]/[.16] bg-black p-1.5', className)}
-      {...props}
-    >
+    <div className={cn('flex items-center', className)} {...props}>
       {children}
     </div>
   );
 };
 
-export const TabsContent = ({ children }: PropsWithChildren) => {
+export const TabsContent = ({ customId, children, className }: PropsWithChildren<TabsContentProps>) => {
   return Children.map(children, (child, index) => {
     const isActiveChild = (child as ReactElement<TabsTabProps>).props.active;
+    const childSize = (child as ReactElement<TabsTabProps>).props['data-size'];
 
     return (
-      <div className='relative'>
+      <div className={cn('relative flex h-[60px] items-center justify-between', className)}>
         <AnimatePresence>
           {isActiveChild && (
             <motion.div
-              layoutId='active-tab'
-              className='absolute inset-0 rounded-4xl bg-white'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              layoutId={`active-tab-${customId}`}
+              className='absolute inset-0 rounded-full bg-white'
+              style={{ width: childSize, height: childSize }}
               transition={{ duration: 0.5, ease: 'easeInOut', type: 'spring' }}
             ></motion.div>
           )}
@@ -48,7 +48,8 @@ export const TabsTab = ({ active, children, className, ...props }: TabsTabProps)
     <div
       data-active={active}
       className={cn(
-        'flex h-[43px] items-center justify-center rounded-4xl px-12 text-center text-white mix-blend-exclusion',
+        `z-10 overflow-hidden rounded-4xl text-center text-ellipsis whitespace-nowrap text-white mix-blend-exclusion max-md:px-2
+        md:flex md:items-center md:justify-center`,
         className,
       )}
       {...props}
