@@ -4,6 +4,7 @@ const ru = {
   cases: 'Кейсы',
   about: 'О себе',
   experiense: 'Опыт',
+  now: 'н.в.',
   buttons: {
     contact: 'Связаться',
     copyTooltip: 'Скопировано',

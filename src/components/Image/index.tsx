@@ -17,13 +17,8 @@ export default function Image({ src, maxWidth, minHeight, className, parentClass
     },
     loaded: {
       opacity: 1,
-      // transitionEnd: {
-      //   opacity: 'revert-layer',
-      // },
     },
   };
-
-  src?.includes('card') && console.log(src, isLoaded);
 
   return (
     <div
@@ -36,9 +31,12 @@ export default function Image({ src, maxWidth, minHeight, className, parentClass
         initial='loading'
         animate={isLoaded ? 'loaded' : 'loading'}
         variants={imageVariants}
+        fetchPriority='high'
+        decoding='async'
         loading='lazy'
         onLoad={() => setIsLoaded(true)}
         alt={`${src!.slice(0, 6)}... image`}
+        transition={{ bounce: false }}
         {...props}
       />
     </div>

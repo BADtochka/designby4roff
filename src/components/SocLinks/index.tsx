@@ -24,7 +24,7 @@ export default function SocLinks() {
         ? socLinks.map((link, index) => (
             <Fragment key={link.name}>
               {index > 0 && index < socLinks.length && <span>•</span>}
-              <Link to={link.url} target='_blank' className='hover:text-white'>
+              <Link to={link.url} target='_blank' className='hover:text-white' cursor-invert='true'>
                 {link.name}
               </Link>
             </Fragment>
@@ -33,7 +33,6 @@ export default function SocLinks() {
             <Button
               key={link.name}
               link={link.url}
-              // iconSize='1'
               className='text-[#F7F7F7]'
               iconLeft={link.name.toLowerCase() as IconName}
             />

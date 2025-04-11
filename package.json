@@ -11,7 +11,11 @@
     "i18n": "typesafe-i18n"
   },
   "dependencies": {
+    "@react-three/drei": "^10.0.5",
+    "@react-three/fiber": "^9.1.1",
     "@tailwindcss/vite": "^4.0.12",
+    "@vitejs/plugin-react": "^4.3.4",
+    "babel-plugin-react-compiler": "19.0.0-beta-aeaed83-20250323",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
@@ -24,6 +28,7 @@
     "react-scroll-restoration": "^1.0.10",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.12",
+    "three": "^0.175.0",
     "typesafe-i18n": "^5.26.2",
     "use-sync-external-store": "^1.4.0",
     "zustand": "^5.0.3"
@@ -31,6 +36,7 @@
   "devDependencies": {
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.175.0",
     "@vitejs/plugin-react-swc": "^3.8.0",
     "prettier": "^3.5.3",
     "prettier-plugin-classnames": "^0.7.6",

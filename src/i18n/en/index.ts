@@ -4,6 +4,7 @@ const en = {
   cases: 'Cases',
   about: 'About',
   experiense: 'Experience',
+  now: 'now',
   buttons: {
     contact: 'Contact',
     copyTooltip: 'Скопировано',

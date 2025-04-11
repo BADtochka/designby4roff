@@ -23,7 +23,7 @@ export default function About() {
             <Image src='portrait.jpg' className='aspect-square rounded-[20px] object-cover max-lg:w-full md:max-w-64' />
           </div>
         </div>
-        <div className='grid grid-cols-2 grid-rows-[1fr_1fr_72px] place-items-start gap-x-10 gap-y-3 max-xl:gap-5'>
+        <div className='grid grid-cols-2 grid-rows-[1fr_1fr_72px] place-items-start gap-x-10 gap-y-3 max-xl:flex max-xl:flex-col max-xl:gap-5'>
           <Image
             src='portrait2.png'
             className='object-cover'

@@ -3,14 +3,14 @@ import Icon from '@/components/Icons';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { delay } from '@/utils/delay';
 import { motion, useAnimation, Variants } from 'framer-motion';
-import { useState } from 'react';
 
-type CopyButtonProps = ButtonProps;
+interface CopyButtonProps extends ButtonProps {
+  content?: string;
+}
 
-export default function CopyButton({ children, ...props }: CopyButtonProps) {
+export default function CopyButton({ content, children, ...props }: CopyButtonProps) {
   const { LL } = useI18nContext();
   const controls = useAnimation();
-  const [isCopied, setIsCopied] = useState(false);
 
   const tooltipVariants: Variants = {
     hidden: {
@@ -22,12 +22,11 @@ export default function CopyButton({ children, ...props }: CopyButtonProps) {
   };
 
   const onCopyClick = async () => {
-    if (typeof children !== 'string') return;
-    // setIsCopied(true)
+    if (!children) return;
+    navigator.clipboard.writeText(content ?? String(children));
     controls.start('visible');
     await delay(1000);
     controls.start('hidden');
-    navigator.clipboard.writeText(children);
   };
 
   return (

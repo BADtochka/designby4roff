@@ -1,5 +1,6 @@
 import { useI18nContext } from '@/i18n/i18n-react';
 import { ExpericenceKeys, ExperienceData } from '@/types/Cases';
+import DateRange from '../DateRange';
 import Image from '../Image';
 
 interface ExperienceProjectProps extends ExperienceData {
@@ -17,7 +18,7 @@ export default function ExperienceProject({ keyName, post, image, startDate, end
           <h1 className='text-xl font-bold'>{LL.blocks.experienceList[keyName].name()}</h1>
           <div className='flex flex-col gap-2.5'>
             <p className='font-semibold'>{post}</p>
-            <p className='text-sm text-white/30'>{`${startDate.toString()} - ${endDate?.toString()}`}</p>
+            <DateRange startDate={startDate} endDate={endDate} />
           </div>
         </div>
       </div>

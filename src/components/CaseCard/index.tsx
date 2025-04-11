@@ -4,6 +4,7 @@ import { CaseData, CaseKeys, CasesCategory, GameKeys, ProductKeys } from '@/type
 import { cn } from '@/utils/cn';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { useState } from 'react';
+import DateRange from '../DateRange';
 import Image from '../Image';
 
 type CaseCardProps = HTMLMotionProps<'div'> &
@@ -51,15 +52,17 @@ export default function CaseCard({ keyName, category, image, startDate, endDate,
       className={cn('relative flex overflow-hidden rounded-[20px] border border-white/15 max-md:flex-col', className)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      // initial={false}
-      // animate='visible'
-      // exit='hidden'
-      variants={caseCardVariants}
-      transition={{ bounce: false, ease: 'easeInOut' }}
       {...props}
+      variants={caseCardVariants}
+      initial='hidden'
+      animate='visible'
+      exit='hidden'
+      transition={{ bounce: false }}
+      cursor-content={LL.blocks.cases.open()}
     >
       <Image
-        className='h-full w-full object-cover transition-all duration-500 ease-out md:hover:scale-110 md:hover:opacity-40'
+        className='h-full w-full object-cover'
+        animate={{ scale: isHovered && isDesktop ? 1.1 : 1, opacity: isHovered && isDesktop ? 0.4 : 1 }}
         src={`/cases/${image}`}
         maxWidth='100%'
         minHeight={isDesktop ? '37vh' : '67vw'}
@@ -72,9 +75,9 @@ export default function CaseCard({ keyName, category, image, startDate, endDate,
         animate={isHovered || !isDesktop ? 'hovered' : 'default'}
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
-        <div className='flex flex-col gap-2 max-md:gap-2.5'>
+        <div className='flex flex-col max-md:gap-2.5'>
           <h1 className='text-[40px] font-bold max-md:text-2xl'>{caseGame}</h1>
-          <p className='text-sm text-white/65 max-md:text-xs'>{`${startDate.toString()} - ${endDate?.toString()}`}</p>
+          <DateRange className='text-white/65' startDate={startDate} endDate={endDate} />
         </div>
         <p className='text-xl text-white/65 max-md:text-base'>{caseDescription}</p>
       </motion.div>

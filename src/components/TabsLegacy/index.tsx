@@ -3,17 +3,16 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Children, HTMLAttributes, PropsWithChildren, ReactElement } from 'react';
 
 type TabsProps = HTMLAttributes<HTMLDivElement>;
-
 interface TabsContentProps extends HTMLAttributes<HTMLDivElement> {
   customId: string;
 }
 
-interface TabsTabProps extends HTMLAttributes<HTMLDivElement> {
-  ['data-size']?: string;
+export interface TabsTabProps extends HTMLAttributes<HTMLDivElement> {
+  'data-size'?: string;
   active?: boolean;
 }
 
-export const Tabs = ({ className, children, ...props }: TabsProps) => {
+export const TabsLegacy = ({ children, className, ...props }: TabsProps) => {
   return (
     <div className={cn('flex items-center', className)} {...props}>
       {children}
@@ -21,21 +20,21 @@ export const Tabs = ({ className, children, ...props }: TabsProps) => {
   );
 };
 
-export const TabsContent = ({ customId, children, className }: PropsWithChildren<TabsContentProps>) => {
-  return Children.map(children, (child) => {
+export const TabsContentLegacy = ({ customId, children, className }: PropsWithChildren<TabsContentProps>) => {
+  return Children.map(children, (child, index) => {
     const isActiveChild = (child as ReactElement<TabsTabProps>).props.active;
     const childSize = (child as ReactElement<TabsTabProps>).props['data-size'];
 
     return (
-      <div className={cn('relative flex h-[60px] items-center', className)}>
+      <div className={cn('relative flex h-[60px] items-center justify-between', className)}>
         <AnimatePresence>
           {isActiveChild && (
             <motion.div
               layoutId={`active-tab-${customId}`}
-              className='black absolute inset-1.5 rounded-full bg-white'
+              className='absolute inset-0 rounded-full bg-white'
               style={{ width: childSize, height: childSize }}
-              transition={{ duration: 0.2, ease: 'circOut' }}
-            />
+              transition={{ duration: 0.5, ease: 'easeInOut', type: 'spring' }}
+            ></motion.div>
           )}
         </AnimatePresence>
         {child}
@@ -43,18 +42,19 @@ export const TabsContent = ({ customId, children, className }: PropsWithChildren
     );
   });
 };
-export const TabsTab = ({ active, children, className, ...props }: TabsTabProps) => {
+
+export const TabsTabLegacy = ({ active, children, className, ...props }: TabsTabProps) => {
   return (
     <div
       data-active={active}
       className={cn(
-        `flex w-full min-w-10 shrink cursor-pointer items-center justify-center p-8 py-3.5 mix-blend-difference max-md:px-3
-        max-md:text-ellipsis`,
+        `z-10 overflow-hidden rounded-4xl text-center text-ellipsis whitespace-nowrap text-white max-md:px-2 md:flex
+        md:items-center md:justify-center`,
         className,
       )}
       {...props}
     >
-      <p className='text-white max-md:overflow-hidden max-md:text-ellipsis max-md:whitespace-nowrap'>{children}</p>
+      {children}
     </div>
   );
 };

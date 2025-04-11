@@ -8,7 +8,7 @@
 
 html,
 body {
-  @apply bg-black text-white font-medium text-base scheme-dark font-display z-10 relative;
+  @apply bg-black text-white font-medium text-base font-display relative;
 }
 
 a,
@@ -16,6 +16,6 @@ button {
   @apply transition-colors;
 }
 
-/* body * { */
-/* @apply transition-colors; */
-/* } */
+* {
+  @apply md:cursor-none;
+}

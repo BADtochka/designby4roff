@@ -7,16 +7,16 @@ type UseHashSetter = {
 };
 
 export const useHashSetter = ({ hash }: UseHashSetter) => {
-  const setCurrentBlock = useSystemStore((state) => state.setCurrentBlock);
+  const setCurrentBlock = useSystemStore((state) => state.setCurrentHash);
   const { ref, inView } = useInView({
-    rootMargin: '50% 0px 0px 0px',
+    // rootMargin: '50% 0px 0px 0px',
     delay: 0,
-    threshold: 0.5,
+    threshold: 0.2,
   });
 
   useEffect(() => {
     if (!inView) return;
-    location.hash = hash;
+    // location.hash = hash;
     setCurrentBlock(hash);
   }, [inView]);
 

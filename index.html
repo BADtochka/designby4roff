@@ -7,15 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Onest:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&display=swap"
       rel="stylesheet"
-      as="font"
-      crossorigin
     />
+    <style>
+      html,
+      body {
+        color-scheme: dark;
+        background: black;
+        transition: opacity 0.5s;
+      }
+
+      body[data-hidden='true'] {
+        opacity: 0;
+        overflow: hidden;
+      }
+    </style>
     <title>Vite + React + TS</title>
   </head>
 
-  <body>
+  <body data-hidden="true">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

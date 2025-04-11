@@ -1,5 +1,7 @@
 import { useI18nContext } from '@/i18n/i18n-react';
 import { Translation } from '@/i18n/i18n-types';
+import { StringDate } from '@/types/StringDate';
+import DateRange from '../DateRange';
 import Image from '../Image';
 
 type CardKeys = keyof Translation['blocks']['oneMoreThing']['cards'];
@@ -7,9 +9,11 @@ type CardKeys = keyof Translation['blocks']['oneMoreThing']['cards'];
 type ThingCardProps = {
   type: CardKeys;
   meta?: boolean;
+  startDate: StringDate;
+  endDate?: StringDate;
 };
 
-export default function ThingCard({ meta, type }: ThingCardProps) {
+export default function ThingCard({ meta, type, startDate, endDate }: ThingCardProps) {
   const { LL } = useI18nContext();
 
   return (
@@ -17,10 +21,9 @@ export default function ThingCard({ meta, type }: ThingCardProps) {
       <div className='flex justify-between'>
         <div className='flex flex-col gap-6'>
           <h1 className='text-[28px] font-bold whitespace-pre-wrap'>{LL.blocks.oneMoreThing.cards[type].title()}</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-2.5'>
             <p className='text'>{LL.blocks.oneMoreThing.cards[type].category()}</p>
-            {'TODO: add DateRange'}
-            <p></p>
+            <DateRange startDate={startDate} endDate={endDate} />
           </div>
         </div>
         <div className='relative size-[100px]'>

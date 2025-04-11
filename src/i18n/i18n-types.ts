@@ -26,6 +26,10 @@ type RootTranslation = {
 	 * О​п​ы​т
 	 */
 	experiense: string
+	/**
+	 * н​.​в​.
+	 */
+	now: string
 	buttons: {
 		/**
 		 * С​в​я​з​а​т​ь​с​я
@@ -302,6 +306,10 @@ export type TranslationFunctions = {
 	 * Опыт
 	 */
 	experiense: () => LocalizedString
+	/**
+	 * н.в.
+	 */
+	now: () => LocalizedString
 	buttons: {
 		/**
 		 * Связаться
