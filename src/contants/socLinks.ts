@@ -10,7 +10,7 @@ export const socLinks: SocLink[] = [
     url: 'https://dprofile.ru/4roff',
   },
   {
-    name: 'Dribble',
+    name: 'Dribbble',
     url: 'https://dribbble.com/designby4roff',
   },
 ];

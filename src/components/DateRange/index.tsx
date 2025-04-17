@@ -1,7 +1,7 @@
 import { useI18nContext } from '@/i18n/i18n-react';
 import { StringDate } from '@/types/StringDate';
 import { cn } from '@/utils/cn';
-import { format, parse } from 'date-fns';
+import { formatDate } from '@/utils/formatDate';
 
 type DateRange = {
   startDate: StringDate;
@@ -10,7 +10,6 @@ type DateRange = {
 };
 
 export default function DateRange({ startDate, endDate, className }: DateRange) {
-  const formatDate = (date: StringDate) => format(parse(date, 'MM.yyyy', new Date()), 'MMMM yyyy');
   const { LL } = useI18nContext();
 
   const formatedStartDate = formatDate(startDate);

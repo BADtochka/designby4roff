@@ -25,6 +25,7 @@ const en = {
         case1: {
           name: 'Кейс1',
           description: 'Описание кейса насколько он крут.',
+          header1: 'English language',
         },
         case2: {
           name: 'Кейс2',

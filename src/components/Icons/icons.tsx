@@ -181,4 +181,26 @@ export const icons = (props: SVGProps<SVGSVGElement>) => ({
       />
     </svg>
   ),
+  close: (
+    <svg height='20' width='20' fill='none' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' {...props}>
+      <path
+        d='M16 4L4 16M4 4L16 16'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.5'
+      />
+    </svg>
+  ),
+  url: (
+    <svg height='18' width='19' fill='none' viewBox='0 0 19 18' xmlns='http://www.w3.org/2000/svg' {...props}>
+      <path
+        d='M16.25 6.75001V2.25001M16.25 2.25001H11.75M16.25 2.25001L9.5 9M8 2.25H6.35C5.08988 2.25 4.45982 2.25 3.97852 2.49524C3.55516 2.71095 3.21095 3.05516 2.99524 3.47852C2.75 3.95982 2.75 4.58988 2.75 5.85V12.15C2.75 13.4102 2.75 14.0401 2.99524 14.5215C3.21095 14.9449 3.55516 15.2891 3.97852 15.5048C4.45982 15.75 5.08988 15.75 6.35 15.75H12.65C13.9102 15.75 14.5401 15.75 15.0215 15.5048C15.4449 15.2891 15.7891 14.9449 16.0048 14.5215C16.25 14.0401 16.25 13.4102 16.25 12.15V10.5'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='2'
+      />
+    </svg>
+  ),
 });

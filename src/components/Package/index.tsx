@@ -20,7 +20,8 @@ function Eyes({ eyes }: { eyes: Object3D[] }) {
   const { isDesktop } = useResolution();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const maxOffset = 0.1;
-  const initialOffset = new Vector3(-0.09, -0.02, 0);
+  // Перенесём initialOffset в useRef, чтобы он не изменялся при ререндерах
+  const initialOffset = useRef(new Vector3(-0.09, -0.02, 0));
 
   useEffect(() => {
     if (!isDesktop) return;
@@ -40,8 +41,9 @@ function Eyes({ eyes }: { eyes: Object3D[] }) {
     const normalizedY = Math.max(-1, Math.min(1, mousePos.y));
 
     eyes.forEach((eye) => {
-      eye.position.x = eye.userData.initialPos.x + initialOffset.x + normalizedX * maxOffset;
-      eye.position.y = eye.userData.initialPos.y + initialOffset.y + normalizedY * maxOffset;
+      // Всегда используем изначальную позицию + начальное смещение + текущее смещение
+      eye.position.x = eye.userData.initialPos.x + initialOffset.current.x + normalizedX * maxOffset;
+      eye.position.y = eye.userData.initialPos.y + initialOffset.current.y + normalizedY * maxOffset;
     });
   });
 
@@ -53,10 +55,21 @@ export const Model = ({ onReady }: ModelProps) => {
   const rotateX = useSpring(0);
   const rotateY = useSpring(0);
   const meshRef = useRef<Mesh>(null);
-
   const { isMobile, isTablet } = useResolution();
   const { viewport } = useThree();
   const [eyes, setEyes] = useState<Object3D[]>([]);
+
+  // Добавим reset позиций глаз при монтировании
+  useEffect(() => {
+    return () => {
+      // При размонтировании сбрасываем позиции глаз
+      eyes.forEach((eye) => {
+        if (eye.userData.initialPos) {
+          eye.position.copy(eye.userData.initialPos);
+        }
+      });
+    };
+  }, [eyes]);
 
   const onMouseMove = (event: MouseEvent) => {
     const mouseX = event.clientX - window.innerWidth / 2;
@@ -77,7 +90,10 @@ export const Model = ({ onReady }: ModelProps) => {
       const eyesArray: Object3D[] = [];
       fbx.traverse((child) => {
         if (child.name.match(/eye/gi)) {
-          child.userData.initialPos = new Vector3().copy(child.position);
+          // Сохраняем начальную позицию только если её ещё нет
+          if (!child.userData.initialPos) {
+            child.userData.initialPos = new Vector3().copy(child.position);
+          }
           eyesArray.push(child);
         }
       });
@@ -85,12 +101,11 @@ export const Model = ({ onReady }: ModelProps) => {
     }
   }, [fbx]);
 
-  const meshScale = viewport.width / (isMobile ? 8 : isTablet ? viewport.left / 1.3 : 10);
-  const meshPosY = isMobile ? 0.3 : 1;
+  const meshScale = viewport.width / (isMobile ? 8 : isTablet ? viewport.left / 1.3 : 8.5);
+  const meshPosY = isMobile ? 0.3 : 0.6;
 
   useFrame(() => {
     if (!meshRef.current) return;
-    // For some reason y / x mixed up on ref side
     meshRef.current.rotation.x = rotateY.get();
     meshRef.current.rotation.y = rotateX.get();
   });

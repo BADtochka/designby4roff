@@ -20,13 +20,17 @@
 
       body[data-hidden='true'] {
         opacity: 0;
+      }
+
+      body[data-no-scroll='true'] {
         overflow: hidden;
+        padding-right: 8px;
       }
     </style>
     <title>Vite + React + TS</title>
   </head>
 
-  <body data-hidden="true">
+  <body data-hidden="true" data-no-scroll="true">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

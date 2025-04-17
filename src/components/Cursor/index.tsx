@@ -1,10 +1,12 @@
 import { useMouse } from '@/hooks/useMouse';
 import { useResolution } from '@/hooks/useResolution';
+import { useCursorStore } from '@/stores/cursor';
 import { cn } from '@/utils/cn';
 import { motion, Variants } from 'framer-motion';
 
 export default function Cursor() {
-  const { state, ref, cursorOptions } = useMouse();
+  const cursorOptions = useCursorStore((state) => state.options);
+  const { state, ref } = useMouse();
   const { isDesktop } = useResolution();
 
   const cursorVariants: Variants = {
@@ -41,11 +43,7 @@ export default function Cursor() {
   if (!isDesktop) return;
 
   return (
-    <div
-      className={cn('pointer-events-none fixed inset-0 z-20 overflow-hidden', {
-        'mix-blend-difference': cursorOptions.invert,
-      })}
-    >
+    <div className='pointer-events-none fixed inset-0 z-20 overflow-hidden mix-blend-difference'>
       <motion.div
         ref={ref}
         animate={currentCursorVariant}

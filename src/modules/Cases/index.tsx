@@ -5,6 +5,7 @@ import { casesList } from '@/contants/casesList';
 import { useHashSetter } from '@/hooks/useHashSetter';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { useCasesStore } from '@/stores/cases';
+import { useCursorStore } from '@/stores/cursor';
 import { getObjectKeys } from '@/utils/getObjectKeys';
 import { isOdd } from '@/utils/isOdd';
 
@@ -13,6 +14,9 @@ export default function Cases() {
   const { LL } = useI18nContext();
   const selectedCategory = useCasesStore((state) => state.selectedCategory);
   const setSelectedCategory = useCasesStore((state) => state.setSelectedCategory);
+  const setCaseOptions = useCasesStore((state) => state.setCaseOptions);
+  const setCursorOptions = useCursorStore((state) => state.setOptions);
+
   const casesKeys = () => {
     if (selectedCategory === 'game') return getObjectKeys(casesList.game);
     return getObjectKeys(casesList.product);
@@ -23,6 +27,18 @@ export default function Cases() {
   const firstGridCases = casesKeys().filter((_, index) => index < secondGroupIndex);
   const secondGridCases = casesKeys().filter((_, index) => index >= secondGroupIndex);
   type SelectedCategoryKeys = keyof (typeof casesList)[typeof selectedCategory];
+
+  const onOpenCase = (key: SelectedCategoryKeys) => {
+    const selectedCase = casesList[selectedCategory][key];
+    setCaseOptions({
+      key: key,
+      open: true,
+      link: `cases/${selectedCategory}/${key}`,
+      background: selectedCase.background ?? 'black',
+      scheme: selectedCase.scheme ?? 'dark',
+    });
+    setCursorOptions({ expanded: false });
+  };
 
   return (
     <div ref={ref} id='cases' className='flex flex-col gap-[50px] max-md:gap-5'>
@@ -58,6 +74,7 @@ export default function Cases() {
                 key={key}
                 keyName={key}
                 category={selectedCategory}
+                onClick={() => onOpenCase(key as SelectedCategoryKeys)}
                 className={`${!isCountOdd && index + 1 === secondGroupIndex && 'col-span-2 h-[500px] max-md:h-fit'}`}
                 {...casesList[selectedCategory][key as SelectedCategoryKeys]}
               />
@@ -68,11 +85,12 @@ export default function Cases() {
           className='grid grid-cols-3 gap-10 *:col-start-1 *:col-end-2 *:last:col-start-2 *:last:col-end-4 *:last:row-span-2
             *:last:row-start-1 max-md:flex max-md:flex-col max-md:gap-6'
         >
-          {secondGridCases.map((key, index) => (
+          {secondGridCases.map((key) => (
             <CaseCard
               key={key}
               category={selectedCategory}
               keyName={key}
+              onClick={() => onOpenCase(key as SelectedCategoryKeys)}
               {...casesList[selectedCategory][key as SelectedCategoryKeys]}
             />
           ))}

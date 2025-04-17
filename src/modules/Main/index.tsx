@@ -3,6 +3,7 @@ import { useHashSetter } from '@/hooks/useHashSetter';
 import { useResolution } from '@/hooks/useResolution';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { lazy, useState } from 'react';
+import { useLocation } from 'react-router';
 
 const CopyButton = lazy(() => import('@/components/CopyButton'));
 const Block = lazy(() => import('@/components/Block'));
@@ -19,6 +20,7 @@ export type TempLightSource = {
 };
 
 export default function Main() {
+  const location = useLocation();
   const { LL } = useI18nContext();
   const { isDesktop } = useResolution();
   const { ref } = useHashSetter({ hash: 'main' });
@@ -64,7 +66,7 @@ export default function Main() {
         <p className='absolute bottom-24 font-extrabold uppercase max-md:bottom-44'>{LL.blocks.main.description()}</p>
         <DesignBy />
         <GridBackground />
-        <Package lightSources={lightSources} />
+        {location.pathname === '/' && <Package lightSources={lightSources} />}
       </div>
       <div className='fixed bottom-10 left-10 z-10 flex flex-col items-center gap-2 bg-gray-900 p-3 max-md:top-10 max-md:bottom-auto'>
         {lightSources.map((light, index) => (

@@ -18,7 +18,6 @@ export const useStickyScroll = () => {
       if (!currentHash) return;
       const targetFromHash = document.querySelector<HTMLElement>(`#${currentHash}`);
       if (!targetFromHash) return;
-      // scroll.scrollTo(targetFromHash);
       targetFromHash.scrollIntoView({ block: 'start', inline: 'end', behavior: 'instant' });
     };
 

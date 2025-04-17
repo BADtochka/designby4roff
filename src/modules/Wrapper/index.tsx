@@ -1,6 +1,8 @@
-import Cursor from '@/components/Cursor';
-import { useHtmlLoader } from '@/hooks/useBodyLoader';
-import { lazy } from 'react';
+import { cn } from '@/utils/cn';
+import { AnimatePresence } from 'framer-motion';
+import { cloneElement, lazy } from 'react';
+import { useLocation, useOutlet } from 'react-router';
+import { AnimatedTranslation } from '../AnimatedTranslation';
 
 const Menu = lazy(() => import('@/components/Menu'));
 const Main = lazy(() => import('@/modules/Main'));
@@ -11,10 +13,11 @@ const Footer = lazy(() => import('@/modules/Footer'));
 const OneMoreThing = lazy(() => import('@/modules/OneMoreThing'));
 
 export default function Wrapper() {
-  useHtmlLoader();
+  const { pathname } = useLocation();
+  const element = useOutlet();
 
   return (
-    <div id='page-wrapper' className='flex w-full flex-col gap-20 p-[30px] max-md:gap-5 max-md:p-4'>
+    <div id='page-wrapper' className={cn('flex w-full flex-col gap-20 p-[30px] max-md:gap-5 max-md:p-4')}>
       <Main />
       <Cases />
       <About />
@@ -22,7 +25,10 @@ export default function Wrapper() {
       <OneMoreThing />
       <Footer />
       <Menu />
-      <Cursor />
+      <AnimatePresence mode='wait' initial={true}>
+        {element && cloneElement(element, { key: pathname })}
+      </AnimatePresence>
+      <AnimatedTranslation />
     </div>
   );
 }

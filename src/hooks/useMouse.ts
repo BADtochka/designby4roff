@@ -1,4 +1,5 @@
-import { CursorOptions } from '@/types/CursorOptions';
+import { useCursorStore } from '@/stores/cursor';
+import { cancelFrame, frame } from 'framer-motion';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useResolution } from './useResolution';
 
@@ -13,9 +14,8 @@ interface MouseState {
 
 export const useMouse = () => {
   const { isDesktop } = useResolution();
-  const DEFAULT_CURSOR_OPTIONS: CursorOptions = { expanded: false, invert: false, hide: false };
-  const [cursorOptions, setOptions] = useState<CursorOptions>({ ...DEFAULT_CURSOR_OPTIONS, content: '' });
-  const setCursorOptions = (options: CursorOptions) => setOptions((prev) => ({ ...prev, ...options }));
+  const options = useCursorStore((state) => state.options);
+  const setCursorOptions = useCursorStore((state) => state.setOptions);
   const lastHoveredElement = useRef<HTMLElement>(null);
   const [state, setState] = useState<MouseState>({
     x: -100,
@@ -40,14 +40,14 @@ export const useMouse = () => {
 
       if (elementAttributes.includes('cursor-content')) {
         const attrContent = hoveredElement.getAttribute('cursor-content') as string;
-        console.log(attrContent);
-
         setCursorOptions({ expanded: true, content: attrContent });
       } else if (elementAttributes.includes('cursor-invert')) {
         const attrValue = hoveredElement.getAttribute('cursor-invert') as string;
         if (attrValue !== 'true') return;
         setCursorOptions({ invert: true });
       }
+
+      // setCursorOptions({ expanded: false });
 
       lastHoveredElement.current = hoveredElement;
     };
@@ -76,44 +76,56 @@ export const useMouse = () => {
 
   useLayoutEffect(() => {
     if (!isDesktop) return;
+
+    let frameId: ReturnType<(typeof frame)['update']>;
     const onMouseMove = (event: MouseEvent) => {
-      const threshold = 4;
-      const nearLeft = event.clientX <= 0 + threshold;
-      const nearTop = event.clientY <= 0 + threshold;
-      const nearRight = event.clientX >= window.innerWidth - threshold;
-      const nearBottom = event.clientY >= window.innerHeight - threshold;
-      setCursorOptions({ hide: nearLeft || nearTop || nearRight || nearBottom });
+      cancelFrame(frameId);
 
-      const newState: Partial<MouseState> = {
-        x: event.clientX,
-        y: event.clientY,
-      };
+      frameId = frame.update(() => {
+        const threshold = 4;
+        const nearLeft = event.clientX <= 0 + threshold;
+        const nearTop = event.clientY <= 0 + threshold;
+        const nearRight = event.clientX >= window.innerWidth - threshold;
+        const nearBottom = event.clientY >= window.innerHeight - threshold;
 
-      if (ref.current instanceof Element) {
-        const { left, top } = ref.current.getBoundingClientRect();
-        const elementPositionX = left;
-        const elementPositionY = top;
-        const elementX = event.clientX - elementPositionX;
-        const elementY = event.clientY - elementPositionY;
+        if (nearLeft || nearTop || nearRight || nearBottom) {
+          setCursorOptions({ hide: true });
+        } else if (options.hide) {
+          setCursorOptions({ hide: false });
+        }
 
-        newState.elementX = elementX;
-        newState.elementY = elementY;
-        newState.elementPositionX = elementPositionX;
-        newState.elementPositionY = elementPositionY;
-      }
+        const newState: Partial<MouseState> = {
+          x: event.clientX,
+          y: event.clientY,
+        };
 
-      setState((s) => ({
-        ...s,
-        ...newState,
-      }));
+        if (ref.current instanceof Element) {
+          const { left, top } = ref.current.getBoundingClientRect();
+          const elementPositionX = left;
+          const elementPositionY = top;
+          const elementX = event.clientX - elementPositionX;
+          const elementY = event.clientY - elementPositionY;
+
+          newState.elementX = elementX;
+          newState.elementY = elementY;
+          newState.elementPositionX = elementPositionX;
+          newState.elementPositionY = elementPositionY;
+        }
+
+        setState((s) => ({
+          ...s,
+          ...newState,
+        }));
+      }, true); // 'true' for immediate execution
     };
 
     document.addEventListener('mousemove', onMouseMove);
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
+      cancelFrame(frameId);
     };
-  }, [isDesktop]);
+  }, [isDesktop, options.hide]);
 
-  return { state, ref, cursorOptions, isFocused: false };
+  return { state, ref, isFocused: false };
 };

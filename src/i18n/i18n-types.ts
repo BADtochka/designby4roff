@@ -80,6 +80,10 @@ type RootTranslation = {
 					 * О​п​и​с​а​н​и​е​ ​к​е​й​с​а​ ​н​а​с​к​о​л​ь​к​о​ ​о​н​ ​к​р​у​т​.
 					 */
 					description: string
+					/**
+					 * Р​у​с​с​к​и​й​ ​я​з​ы​к
+					 */
+					header1: string
 				}
 				case2: {
 					/**
@@ -360,6 +364,10 @@ export type TranslationFunctions = {
 					 * Описание кейса насколько он крут.
 					 */
 					description: () => LocalizedString
+					/**
+					 * Русский язык
+					 */
+					header1: () => LocalizedString
 				}
 				case2: {
 					/**

@@ -15,7 +15,7 @@ interface TabsTabProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Tabs = ({ className, children, ...props }: TabsProps) => {
   return (
-    <div className={cn('flex items-center', className)} {...props}>
+    <div className={cn('flex items-center select-none', className)} {...props}>
       {children}
     </div>
   );

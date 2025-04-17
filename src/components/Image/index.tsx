@@ -2,7 +2,7 @@ import { cn } from '@/utils/cn';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { CSSProperties, useState } from 'react';
 
-interface ImageProps extends HTMLMotionProps<'img'> {
+export interface ImageProps extends HTMLMotionProps<'img'> {
   maxWidth?: CSSProperties['maxWidth'];
   minHeight?: CSSProperties['maxHeight'];
   parentClassName?: string;
@@ -35,7 +35,7 @@ export default function Image({ src, maxWidth, minHeight, className, parentClass
         decoding='async'
         loading='lazy'
         onLoad={() => setIsLoaded(true)}
-        alt={`${src!.slice(0, 6)}... image`}
+        alt={`${src?.slice(0, 6)}... image`}
         transition={{ bounce: false }}
         {...props}
       />

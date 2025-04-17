@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, HTMLAttributeAnchorTarget } from 'react';
 import { Link } from 'react-router';
 import { cn } from '../../utils/cn';
 import Icon, { IconName } from '../Icons';
@@ -9,6 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconSize?: string;
   active?: boolean;
   link?: string;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export default function Button({
@@ -18,13 +19,14 @@ export default function Button({
   className,
   children,
   iconSize,
+  target,
   link,
   ...props
 }: ButtonProps) {
   return (
     <>
       {link ? (
-        <Link to={link} target='_blank'>
+        <Link to={link} target={target} viewTransition>
           <button
             data-active={active}
             className={cn(
