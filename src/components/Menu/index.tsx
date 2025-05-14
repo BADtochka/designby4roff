@@ -38,7 +38,7 @@ export default function Menu() {
     setLocale(newLang);
   };
 
-  // TODO: add blur or remove opacity
+  // TODO!: add blur or remove opacity
   return (
     <Tabs className='fixed bottom-[65px] left-[calc(50%-4px)] mx-1 h-[60px] w-[calc(100%-8px)] max-w-[504px] -translate-x-1/2 gap-2'>
       <TabsContent customId='menu' className='nth-[2]:w-full'>
