@@ -39,7 +39,7 @@ export default function About() {
             <div className='flex items-center gap-2.5'>
               <Button className='shrink-0' iconLeft='behance' />
               <Button className='shrink-0' iconLeft='dprofile' />
-              <Button className='shrink-0' iconLeft='dribble' />
+              <Button className='shrink-0' iconLeft='dribbble' />
             </div>
           </div>
         </div>

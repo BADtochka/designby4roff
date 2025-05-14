@@ -6,8 +6,8 @@ export type CaseImageProps = Pick<ImageProps, 'src' | 'parentClassName' | 'class
 export default function CaseImage({ parentClassName, className, ...props }: CaseImageProps) {
   return (
     <Image
-      className={cn('max-h-[800px] rounded-[20px] object-cover', className)}
-      parentClassName={parentClassName}
+      className={cn('rounded-[20px] object-cover', className)}
+      parentClassName={cn(parentClassName, 'max-h-[900px]')}
       {...props}
     />
   );

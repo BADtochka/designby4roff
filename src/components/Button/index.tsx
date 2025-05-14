@@ -30,7 +30,7 @@ export default function Button({
           <button
             data-active={active}
             className={cn(
-              `flex h-[72px] cursor-pointer items-center justify-center gap-1.5 rounded-full border border-[#ffffff]/[.16] bg-black px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
+              `flex h-[72px] cursor-pointer items-center justify-center gap-1.5 rounded-full border border-[#ffffff]/[.16] px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
               { 'w-[72px] p-0': !children },
               className,
             )}
@@ -57,7 +57,7 @@ export default function Button({
         <button
           data-active={active}
           className={cn(
-            `flex h-[72px] cursor-pointer items-center justify-center gap-1.5 rounded-full border border-[#ffffff]/[.16] bg-black px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
+            `flex h-[72px] cursor-pointer items-center justify-center gap-1.5 rounded-full border border-[#ffffff]/[.16] px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
             { 'w-[72px] p-0': !children },
             className,
           )}

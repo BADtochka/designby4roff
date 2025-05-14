@@ -1,25 +1,22 @@
 import { socLinks } from '@/contants/socLinks';
 import { useResolution } from '@/hooks/useResolution';
 // import { BlobityContext } from '@/providers/BlobityProvider';
+import { CaseOptions } from '@/stores/cases';
+import { cn } from '@/utils/cn';
 import { Fragment } from 'react';
 import { Link } from 'react-router';
 import Button from '../Button';
 import { IconName } from '../Icons';
 
-export default function SocLinks() {
-  // const blobity = useContext(BlobityContext);
+type SocLinksProps = {
+  mode?: CaseOptions['scheme'];
+};
+
+export default function SocLinks({ mode = 'dark' }: SocLinksProps) {
   const { isDesktop } = useResolution();
 
-  const onHover = (hover: boolean) => {
-    // blobity.current?.updateOptions({ invert: hover, dotSize: hover ? 1 : 8 });
-  };
-
   return (
-    <div
-      className='flex items-center gap-2.5 text-white/30 max-md:-order-1'
-      onMouseEnter={() => onHover(true)}
-      onMouseLeave={() => onHover(false)}
-    >
+    <div className='flex items-center gap-2.5 text-white/30 max-md:-order-1'>
       {isDesktop
         ? socLinks.map((link, index) => (
             <Fragment key={link.name}>
@@ -33,7 +30,9 @@ export default function SocLinks() {
             <Button
               key={link.name}
               link={link.url}
-              className='text-[#F7F7F7]'
+              className={cn('text-[#F7F7F7]', {
+                'border-[#00000029] text-black hover:border-[#00000029]': mode === 'light',
+              })}
               iconLeft={link.name.toLowerCase() as IconName}
             />
           ))}

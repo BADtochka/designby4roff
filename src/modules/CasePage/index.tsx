@@ -4,14 +4,19 @@ import { casesList } from '@/contants/casesList';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { useCasesStore } from '@/stores/cases';
 import { CasesCategory } from '@/types/Cases';
-import { motion, Variants } from 'framer-motion';
+import { cn } from '@/utils/cn';
+import { delay } from '@/utils/delay';
+import { AnimationDefinition, motion, Variants } from 'framer-motion';
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router';
+import Footer from '../Footer';
+import OtherCases from './components/OtherCases';
 
 export default function CaseOutlet() {
-  const caseOption = useCasesStore((state) => state.caseOption);
+  const caseOptions = useCasesStore((state) => state.caseOptions);
   const selectedCategory = useCasesStore((state) => state.selectedCategory);
   const setCaseOptions = useCasesStore((state) => state.setCaseOptions);
+  const setNewCaseOptions = useCasesStore((state) => state.setNewCaseOptions);
   const setSelectedCategory = useCasesStore((state) => state.setSelectedCategory);
   const { LL } = useI18nContext();
   const { pathname } = useLocation();
@@ -56,28 +61,50 @@ export default function CaseOutlet() {
     });
   }, [categoryName, caseKey]);
 
+  const onAnimationStart = async (def: AnimationDefinition) => {
+    if (def === 'opened') {
+      await delay(200);
+      setNewCaseOptions({ open: false });
+    }
+  };
+
   return (
     <motion.div
       variants={casePageVariants}
-      initial={caseOption.open ? 'closed' : false}
+      initial={caseOptions.open ? 'closed' : false}
       animate='opened'
       exit='toClose'
-      style={{ background: caseOption.background ?? 'black', color: caseOption.scheme === 'dark' ? 'white' : 'black' }}
+      style={{
+        background: caseOptions.background ?? 'black',
+        color: caseOptions.scheme === 'dark' ? 'white' : 'black',
+      }}
       className='fixed top-0 left-0 z-20 h-full w-full overflow-auto px-20 pb-10 max-md:px-4'
-      transition={{ bounce: false, duration: 0.8, ease: 'easeInOut' }}
+      transition={{ bounce: false, duration: 0.5, ease: 'easeInOut' }}
+      onAnimationStart={onAnimationStart}
       data-lenis-prevent
     >
-      <div className='flex items-center justify-between py-5'>
-        <Icon name='logo' className='size-10' />
-        {caseOption.key && (
+      <div className='mb-10 flex items-center justify-between py-5 max-md:mb-5'>
+        <Icon name='logo' className='size-10 max-md:size-8' />
+        {caseOptions.key && (
           <h1 className='font-extrabold uppercase'>
-            {LL.blocks.casesList[selectedCategory][caseOption.key as SelectedCategoryKeys].name()}
+            {LL.blocks.casesList[selectedCategory][caseOptions.key as SelectedCategoryKeys].name()}
           </h1>
         )}
-        <Button iconLeft='close' className={'size-[60px] p-[18px] text-white'} link='/' />
+        <Button
+          iconLeft='close'
+          className={cn(
+            'size-[60px] bg-transparent p-[18px] text-white max-md:size-10 max-md:p-2 max-sm:size-8 max-sm:p-1',
+            {
+              'bg-[#29292951]': caseOptions.scheme === 'light',
+            },
+          )}
+          link='/'
+        />
       </div>
-      <div className='flex flex-col gap-[120px]'>
+      <div className='flex flex-col gap-[120px] max-md:gap-[70px] max-sm:gap-10'>
         <Outlet />
+        <OtherCases />
+        <Footer mode={caseOptions.scheme} />
       </div>
     </motion.div>
   );

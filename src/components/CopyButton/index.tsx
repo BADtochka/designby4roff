@@ -1,14 +1,17 @@
 import Button, { ButtonProps } from '@/components/Button';
 import Icon from '@/components/Icons';
 import { useI18nContext } from '@/i18n/i18n-react';
+import { CaseOptions } from '@/stores/cases';
+import { cn } from '@/utils/cn';
 import { delay } from '@/utils/delay';
 import { motion, useAnimation, Variants } from 'framer-motion';
 
 interface CopyButtonProps extends ButtonProps {
   content?: string;
+  mode?: CaseOptions['scheme'];
 }
 
-export default function CopyButton({ content, children, ...props }: CopyButtonProps) {
+export default function CopyButton({ content, children, className, mode = 'dark', ...props }: CopyButtonProps) {
   const { LL } = useI18nContext();
   const controls = useAnimation();
 
@@ -31,15 +34,26 @@ export default function CopyButton({ content, children, ...props }: CopyButtonPr
 
   return (
     <div className='relative'>
-      <Button {...props} onClick={onCopyClick}>
+      <Button
+        className={cn(className, {
+          'border-[#00000029] hover:border-[#00000029]': mode === 'light',
+        })}
+        {...props}
+        onClick={onCopyClick}
+      >
         {children}
       </Button>
       <motion.div
         initial='hidden'
         variants={tooltipVariants}
         animate={controls}
-        className='pointer-events-none absolute left-1/2 flex -translate-x-1/2 translate-y-2 items-center gap-1.5 rounded-[8px]
-          bg-[#525252] px-3.5 py-1.5'
+        className={cn(
+          `pointer-events-none absolute left-1/2 flex -translate-x-1/2 translate-y-2 items-center gap-1.5 rounded-[8px]
+          bg-[#525252] px-3.5 py-1.5`,
+          {
+            'bg-[#9c9c9c] text-white': mode === 'light',
+          },
+        )}
       >
         <Icon name='check' />
         <p>{LL.buttons.copyTooltip()}</p>

@@ -157,7 +157,7 @@ export const icons = (props: SVGProps<SVGSVGElement>) => ({
       />
     </svg>
   ),
-  dribble: (
+  dribbble: (
     <svg height='21' width='20' fill='none' viewBox='0 0 20 21' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#clip0_3_924)'>
         <path
@@ -201,6 +201,22 @@ export const icons = (props: SVGProps<SVGSVGElement>) => ({
         strokeLinejoin='round'
         strokeWidth='2'
       />
+    </svg>
+  ),
+  play: (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      {...props}
+    >
+      <polygon points='6 3 20 12 6 21 6 3' />
     </svg>
   ),
 });

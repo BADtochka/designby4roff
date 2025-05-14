@@ -1,7 +1,7 @@
 import { CaseKeys, CasesCategory } from '@/types/Cases';
 import { createCustomStore } from '@/utils/createStore';
 
-type PageOptions = {
+export type CaseOptions = {
   key?: CaseKeys;
   open: boolean;
   link: string;
@@ -11,13 +11,17 @@ type PageOptions = {
 
 type CasesStates = {
   selectedCategory: CasesCategory;
-  caseOption: PageOptions;
+  caseOptions: CaseOptions;
+  newCaseOptions: CaseOptions;
 };
 
 type CasesActions = {
   setSelectedCategory: (category: CasesCategory) => void;
-  setCaseOptions: (options: Partial<PageOptions>) => void;
+  setCaseOptions: (options: Partial<CaseOptions>) => void;
+  setNewCaseOptions: (options: Partial<CaseOptions>) => void;
 };
+
+const initialCaseOptions: CaseOptions = { open: false, background: '#000', link: '', scheme: 'dark' };
 
 export const useCasesStore = createCustomStore({
   name: 'cases',
@@ -25,7 +29,10 @@ export const useCasesStore = createCustomStore({
 })<CasesStates & CasesActions>((set) => ({
   selectedCategory: 'product',
   openCasePage: false,
-  caseOption: { open: false, background: '#000', link: '', scheme: 'dark' },
+  caseOptions: initialCaseOptions,
+  newCaseOptions: initialCaseOptions,
   setSelectedCategory: (selectedCategory) => set({ selectedCategory }),
-  setCaseOptions: (options) => set(({ caseOption }) => ({ caseOption: { ...caseOption, ...options } })),
+  setCaseOptions: (options) => set(({ caseOptions: caseOption }) => ({ caseOptions: { ...caseOption, ...options } })),
+  setNewCaseOptions: (options) =>
+    set(({ caseOptions: caseOption }) => ({ newCaseOptions: { ...caseOption, ...options } })),
 }));

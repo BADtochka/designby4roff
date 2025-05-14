@@ -4,34 +4,63 @@ import CopyButton from '@/components/CopyButton';
 import LongLogo from '@/components/LongLogo';
 import SocLinks from '@/components/SocLinks';
 import { useI18nContext } from '@/i18n/i18n-react';
+import { CaseOptions } from '@/stores/cases';
+import { cn } from '@/utils/cn';
 import { format } from 'date-fns';
 
-export default function Footer() {
+type FooterProps = {
+  mode?: CaseOptions['scheme'];
+};
+
+export default function Footer({ mode = 'dark' }: FooterProps) {
   const { LL } = useI18nContext();
 
   return (
-    <Block className='flex flex-col gap-[50px] max-md:p-8'>
+    <Block
+      className={cn('flex flex-col gap-[50px] max-md:p-8', {
+        'border-black/10': mode === 'light',
+      })}
+    >
       <div className='flex justify-between gap-8 max-md:flex-col'>
         <div>
           <h1 className='text-[85px] font-extrabold uppercase max-md:text-center max-md:text-[32px]'>
             {LL.blocks.footer.title()}
           </h1>
-          <p className='text-white/65 max-md:text-center'>{LL.blocks.footer.description()}</p>
+          <p
+            className={cn('text-white/65 max-md:text-center', {
+              'text-black/30': mode === 'light',
+            })}
+          >
+            {LL.blocks.footer.description()}
+          </p>
         </div>
         <div className='flex flex-col gap-5'>
-          <Button className='h-[54px] border-0 bg-[#08C] hover:bg-[#006DA3]' iconRight='telegram'>
+          <Button
+            className={cn('h-[54px] border-0 bg-[#08C] hover:bg-[#006DA3]', {
+              'text-white': mode === 'light',
+            })}
+            iconRight='telegram'
+          >
             {LL.buttons.contact()}
           </Button>
-          <CopyButton className='h-[54px] w-full' iconRight='copy'>
+          <CopyButton mode={mode} className='h-[54px] w-full' iconRight='copy'>
             4roffdesign@gmail.com
           </CopyButton>
         </div>
       </div>
-      <div className='h-[1px] w-full bg-white/15' />
+      <div
+        className={cn('h-[1px] w-full bg-white/15', {
+          'bg-black/10': mode === 'light',
+        })}
+      />
       <div className='flex items-center justify-between gap-[50px] pb-27 max-md:flex-col max-md:p-0'>
         <LongLogo />
-        <SocLinks />
-        <p className='text-white/15'>
+        <SocLinks mode={mode} />
+        <p
+          className={cn('text-white/15', {
+            'text-black/30': mode === 'light',
+          })}
+        >
           ©{format(new Date(), 'yyyy')} {LL.blocks.footer.copyRight()}
         </p>
       </div>

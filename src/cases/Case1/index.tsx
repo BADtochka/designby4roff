@@ -1,8 +1,10 @@
-import AboutCase from '@/components/AboutCase';
-import AboutCaseInfo from '@/components/AboutCaseInfo';
-import CaseText from '@/components/CaseText';
-import CaseTextImage from '@/components/CaseTextImage';
-import CaseImage from '@/modules/CaseImage';
+import AboutCase from '@/modules/CasePage/components/AboutCase';
+import AboutCaseInfo from '@/modules/CasePage/components/AboutCaseInfo';
+import CaseImage from '@/modules/CasePage/components/CaseImage';
+import CaseImages from '@/modules/CasePage/components/CaseImages';
+import CaseText from '@/modules/CasePage/components/CaseText';
+import CaseTextImage from '@/modules/CasePage/components/CaseTextImage';
+import CaseVideo from '@/modules/CasePage/components/CaseVideo';
 
 export default function Case1() {
   return (
@@ -30,8 +32,13 @@ export default function Case1() {
         description='On the other hand, consulting with a broad asset requires defining and clarifying a development model. Thus, the strengthening and development of the structure provides a wide range of (specialists) to participate in shaping the directions of progressive development. '
         direction='column'
         src='/cases/placeholder.png'
-        reverse
       />
+      <CaseImages layout='row'>
+        <CaseImage src='/cases/placeholder.png' />
+        <CaseImage src='/cases/placeholder.png' />
+        <CaseImage src='/cases/placeholder.png' />
+      </CaseImages>
+      <CaseVideo src='https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_2mb.mp4' />
     </>
   );
 }

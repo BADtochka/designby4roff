@@ -19,6 +19,8 @@ export type CaseData = {
   scheme?: 'dark' | 'light';
 };
 
+export type SelectedCategoryKeys = keyof Cases[CasesCategory];
+
 export type Experiences = Record<string, ExperienceData>;
 export type ExpericenceKeys = keyof Translation['blocks']['experienceList'];
 

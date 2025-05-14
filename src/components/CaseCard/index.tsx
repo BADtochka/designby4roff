@@ -1,6 +1,9 @@
+import { casesList } from '@/contants/casesList';
 import { useResolution } from '@/hooks/useResolution';
 import { useI18nContext } from '@/i18n/i18n-react';
-import { CaseData, CaseKeys, CasesCategory, GameKeys, ProductKeys } from '@/types/Cases';
+import { useCasesStore } from '@/stores/cases';
+import { useCursorStore } from '@/stores/cursor';
+import { CaseData, CasesCategory, GameKeys, ProductKeys, SelectedCategoryKeys } from '@/types/Cases';
 import { cn } from '@/utils/cn';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { useState } from 'react';
@@ -9,7 +12,7 @@ import Image from '../Image';
 
 type CaseCardProps = HTMLMotionProps<'div'> &
   CaseData & {
-    keyName: CaseKeys;
+    keyName: SelectedCategoryKeys;
     category: CasesCategory;
   };
 
@@ -17,6 +20,10 @@ export default function CaseCard({ keyName, category, image, startDate, endDate,
   const { LL } = useI18nContext();
   const [isHovered, setIsHovered] = useState(false);
   const { isDesktop } = useResolution();
+  const selectedCategory = useCasesStore((state) => state.selectedCategory);
+  const setNewCaseOptions = useCasesStore((state) => state.setNewCaseOptions);
+  const setCursorOptions = useCursorStore((state) => state.setOptions);
+
   const caseGame =
     category === 'game'
       ? LL.blocks.casesList.game[keyName as GameKeys].name()
@@ -47,6 +54,18 @@ export default function CaseCard({ keyName, category, image, startDate, endDate,
     },
   };
 
+  const onOpenCase = async () => {
+    const selectedCase = casesList[selectedCategory][keyName];
+    setNewCaseOptions({
+      key: keyName,
+      open: true,
+      link: `cases/${selectedCategory}/${keyName}`,
+      background: selectedCase.background ?? 'black',
+      scheme: selectedCase.scheme ?? 'dark',
+    });
+    setCursorOptions({ expanded: false });
+  };
+
   return (
     <motion.div
       className={cn('relative flex overflow-hidden rounded-[20px] border border-white/15 max-md:flex-col', className)}
@@ -59,6 +78,7 @@ export default function CaseCard({ keyName, category, image, startDate, endDate,
       exit='hidden'
       transition={{ bounce: false }}
       cursor-content={LL.blocks.cases.open()}
+      onClick={onOpenCase}
     >
       <Image
         className='h-full w-full object-cover'

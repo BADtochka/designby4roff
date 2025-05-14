@@ -14,6 +14,8 @@ export const casesList: Cases = {
       image: 'card.png',
       startDate: '11.2025',
       page: <Case1 />,
+      scheme: 'light',
+      background: '#FFF',
     },
     case3: {
       image: 'card.png',

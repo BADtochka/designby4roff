@@ -6,6 +6,7 @@ import { useHashSetter } from '@/hooks/useHashSetter';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { useCasesStore } from '@/stores/cases';
 import { useCursorStore } from '@/stores/cursor';
+import { SelectedCategoryKeys } from '@/types/Cases';
 import { getObjectKeys } from '@/utils/getObjectKeys';
 import { isOdd } from '@/utils/isOdd';
 
@@ -26,7 +27,6 @@ export default function Cases() {
 
   const firstGridCases = casesKeys().filter((_, index) => index < secondGroupIndex);
   const secondGridCases = casesKeys().filter((_, index) => index >= secondGroupIndex);
-  type SelectedCategoryKeys = keyof (typeof casesList)[typeof selectedCategory];
 
   const onOpenCase = (key: SelectedCategoryKeys) => {
     const selectedCase = casesList[selectedCategory][key];
@@ -72,9 +72,8 @@ export default function Cases() {
             {firstGridCases.map((key, index) => (
               <CaseCard
                 key={key}
-                keyName={key}
+                keyName={key as SelectedCategoryKeys}
                 category={selectedCategory}
-                onClick={() => onOpenCase(key as SelectedCategoryKeys)}
                 className={`${!isCountOdd && index + 1 === secondGroupIndex && 'col-span-2 h-[500px] max-md:h-fit'}`}
                 {...casesList[selectedCategory][key as SelectedCategoryKeys]}
               />
@@ -89,8 +88,7 @@ export default function Cases() {
             <CaseCard
               key={key}
               category={selectedCategory}
-              keyName={key}
-              onClick={() => onOpenCase(key as SelectedCategoryKeys)}
+              keyName={key as SelectedCategoryKeys}
               {...casesList[selectedCategory][key as SelectedCategoryKeys]}
             />
           ))}
