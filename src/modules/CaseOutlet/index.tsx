@@ -1,5 +1,3 @@
-import Button from '@/components/Button';
-import Icon from '@/components/Icons';
 import { casesList } from '@/contants/casesList';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { useCasesStore } from '@/stores/cases';
@@ -7,10 +5,14 @@ import { CasesCategory } from '@/types/Cases';
 import { cn } from '@/utils/cn';
 import { delay } from '@/utils/delay';
 import { AnimationDefinition, motion, Variants } from 'framer-motion';
-import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router';
-import Footer from '../Footer';
-import OtherCases from './components/OtherCases';
+import { useLenis } from 'lenis/react';
+import { lazy, useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router';
+
+const Button = lazy(() => import('@/components/Button'));
+const Icon = lazy(() => import('@/components/Icons'));
+const OtherCases = lazy(() => import('./components/OtherCases'));
+const Footer = lazy(() => import('@/modules/Footer'));
 
 export default function CaseOutlet() {
   const caseOptions = useCasesStore((state) => state.caseOptions);
@@ -18,6 +20,8 @@ export default function CaseOutlet() {
   const setCaseOptions = useCasesStore((state) => state.setCaseOptions);
   const setNewCaseOptions = useCasesStore((state) => state.setNewCaseOptions);
   const setSelectedCategory = useCasesStore((state) => state.setSelectedCategory);
+  const navigate = useNavigate();
+  const lenis = useLenis();
   const { LL } = useI18nContext();
   const { pathname } = useLocation();
   const caseKey = pathname.split('/').findLast((item) => item) as SelectedCategoryKeys;
@@ -48,6 +52,10 @@ export default function CaseOutlet() {
 
   useEffect(() => {
     pathname === '/' && setCaseOptions({ open: false });
+
+    return () => {
+      pathname === '/' && lenis?.start();
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -58,8 +66,9 @@ export default function CaseOutlet() {
       key: caseKey,
       background: selectedCase.background ?? 'black',
       scheme: selectedCase.scheme ?? 'dark',
+      borderColor: selectedCase.borderColor,
     });
-  }, [categoryName, caseKey]);
+  }, [categoryName, caseKey, selectedCase]);
 
   const onAnimationStart = async (def: AnimationDefinition) => {
     if (def === 'opened') {
@@ -84,7 +93,11 @@ export default function CaseOutlet() {
       data-lenis-prevent
     >
       <div className='mb-10 flex items-center justify-between py-5 max-md:mb-5'>
-        <Icon name='logo' className='size-10 max-md:size-8' />
+        <Icon
+          onClick={() => navigate('/')}
+          name='logo'
+          className='size-10 transition-transform hover:scale-110 max-md:size-8'
+        />
         {caseOptions.key && (
           <h1 className='font-extrabold uppercase'>
             {LL.blocks.casesList[selectedCategory][caseOptions.key as SelectedCategoryKeys].name()}
@@ -92,19 +105,19 @@ export default function CaseOutlet() {
         )}
         <Button
           iconLeft='close'
+          link='/'
           className={cn(
             'size-[60px] bg-transparent p-[18px] text-white max-md:size-10 max-md:p-2 max-sm:size-8 max-sm:p-1',
             {
-              'bg-[#29292951]': caseOptions.scheme === 'light',
+              'bg-[#29292951] hover:border-black/20': caseOptions.scheme === 'light',
             },
           )}
-          link='/'
         />
       </div>
       <div className='flex flex-col gap-[120px] max-md:gap-[70px] max-sm:gap-10'>
         <Outlet />
         <OtherCases />
-        <Footer mode={caseOptions.scheme} />
+        <Footer borderColor={caseOptions.borderColor} mode={caseOptions.scheme} inCase />
       </div>
     </motion.div>
   );

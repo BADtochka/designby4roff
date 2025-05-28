@@ -5,13 +5,14 @@ import { CaseOptions } from '@/stores/cases';
 import { cn } from '@/utils/cn';
 import { delay } from '@/utils/delay';
 import { motion, useAnimation, Variants } from 'framer-motion';
+import { memo } from 'react';
 
 interface CopyButtonProps extends ButtonProps {
   content?: string;
   mode?: CaseOptions['scheme'];
 }
 
-export default function CopyButton({ content, children, className, mode = 'dark', ...props }: CopyButtonProps) {
+export const CopyButton = ({ content, children, className, mode = 'dark', ...props }: CopyButtonProps) => {
   const { LL } = useI18nContext();
   const controls = useAnimation();
 
@@ -36,7 +37,7 @@ export default function CopyButton({ content, children, className, mode = 'dark'
     <div className='relative'>
       <Button
         className={cn(className, {
-          'border-[#00000029] hover:border-[#00000029]': mode === 'light',
+          'border-[#00000029] hover:border-black/50': mode === 'light',
         })}
         {...props}
         onClick={onCopyClick}
@@ -60,4 +61,6 @@ export default function CopyButton({ content, children, className, mode = 'dark'
       </motion.div>
     </div>
   );
-}
+};
+
+export default memo(CopyButton);

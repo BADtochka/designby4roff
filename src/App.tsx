@@ -3,9 +3,10 @@ import TypesafeI18n from '@/i18n/i18n-react';
 import { setDefaultOptions } from 'date-fns';
 import { enUS, ru } from 'date-fns/locale';
 import ReactLenis from 'lenis/react';
-import Cursor from './components/Cursor';
+import { lazy } from 'react';
 import { useHtmlLoader } from './hooks/useBodyLoader';
-import Router from './Router';
+const Cursor = lazy(() => import('@/components/Cursor'));
+const Router = lazy(() => import('./Router'));
 
 export const App = () => {
   const { clientLang, localesLoaded } = useSafeLocalization();

@@ -10,15 +10,19 @@ import { format } from 'date-fns';
 
 type FooterProps = {
   mode?: CaseOptions['scheme'];
+  inCase?: boolean;
+  borderColor?: CaseOptions['borderColor'];
 };
 
-export default function Footer({ mode = 'dark' }: FooterProps) {
+export default function Footer({ mode = 'dark', inCase = false, borderColor }: FooterProps) {
   const { LL } = useI18nContext();
 
   return (
     <Block
+      borderColor={borderColor}
       className={cn('flex flex-col gap-[50px] max-md:p-8', {
         'border-black/10': mode === 'light',
+        'max-md:mb-22': !inCase,
       })}
     >
       <div className='flex justify-between gap-8 max-md:flex-col'>
@@ -49,15 +53,20 @@ export default function Footer({ mode = 'dark' }: FooterProps) {
         </div>
       </div>
       <div
+        style={{ background: borderColor }}
         className={cn('h-[1px] w-full bg-white/15', {
           'bg-black/10': mode === 'light',
         })}
       />
-      <div className='flex items-center justify-between gap-[50px] pb-27 max-md:flex-col max-md:p-0'>
+      <div
+        className={cn('flex items-center justify-between gap-[50px] max-md:flex-col max-md:p-0', {
+          'pb-27': !inCase,
+        })}
+      >
         <LongLogo />
         <SocLinks mode={mode} />
         <p
-          className={cn('text-white/15', {
+          className={cn('text-white/30', {
             'text-black/30': mode === 'light',
           })}
         >

@@ -1,8 +1,10 @@
-import Block from '@/components/Block';
-import Button from '@/components/Button';
-import Image from '@/components/Image';
 import { useHashSetter } from '@/hooks/useHashSetter';
 import { useI18nContext } from '@/i18n/i18n-react';
+import { lazy } from 'react';
+
+const Block = lazy(() => import('@/components/Block'));
+const Image = lazy(() => import('@/components/Image'));
+const Button = lazy(() => import('@/components/Button'));
 
 export default function About() {
   const { LL } = useI18nContext();
@@ -33,7 +35,7 @@ export default function About() {
             {LL.blocks.about.personalInfo2()}
           </Block>
           <div className='col-start-2 row-start-3 flex w-full items-center gap-2.5 max-xl:flex-col'>
-            <Button className='w-full gap-4 border-0 bg-[#08C] hover:bg-[#006DA3]' iconLeft='telegram'>
+            <Button className='w-full gap-4 border-0 bg-[#08C] hover:bg-[#006DA3]' iconLeft='telegram' animation>
               {LL.blocks.about.blogButton()}
             </Button>
             <div className='flex items-center gap-2.5'>

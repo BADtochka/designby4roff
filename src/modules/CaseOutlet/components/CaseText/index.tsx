@@ -1,6 +1,7 @@
 import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
-import Block from '../../../../components/Block';
+import { lazy } from 'react';
+const Block = lazy(() => import('@/components/Block'));
 
 export type CaseTextProps = {
   title: string;
@@ -15,8 +16,9 @@ export default function CaseText({ title, description, className, uppercase, dir
 
   return (
     <Block
+      borderColor={caseOption.borderColor}
       className={cn(
-        'flex flex-wrap gap-4 py-[100px] max-md:p-8',
+        'flex flex-wrap gap-4 max-md:p-8',
         {
           'border-black/10': caseOption.scheme === 'light',
           'justify-center text-center': !description,

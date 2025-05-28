@@ -1,9 +1,10 @@
-import Block from '@/components/Block';
 import { casesList } from '@/contants/casesList';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
-import { PropsWithChildren } from 'react';
+import { lazy, PropsWithChildren } from 'react';
+
+const Block = lazy(() => import('@/components/Block'));
 
 export default function AboutCase({ children }: PropsWithChildren) {
   const { LL } = useI18nContext();
@@ -13,9 +14,8 @@ export default function AboutCase({ children }: PropsWithChildren) {
 
   return (
     <Block
-      className={cn('flex flex-col items-center gap-16 px-16 py-[120px] text-center max-md:p-8', {
-        'border-black/10': caseOption.scheme === 'light',
-      })}
+      borderColor={caseOption.borderColor}
+      className={cn('flex flex-col items-center gap-16 px-16 py-[120px] text-center max-md:p-8')}
     >
       <div className='flex flex-col gap-5'>
         <h1 className='text-[132px] font-extrabold uppercase max-md:text-[32px]'>

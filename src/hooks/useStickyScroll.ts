@@ -18,7 +18,13 @@ export const useStickyScroll = () => {
       if (!currentHash) return;
       const targetFromHash = document.querySelector<HTMLElement>(`#${currentHash}`);
       if (!targetFromHash) return;
-      targetFromHash.scrollIntoView({ block: 'start', inline: 'end', behavior: 'instant' });
+      const elementPosition = targetFromHash.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - 30;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'instant',
+      });
     };
 
     onContentLoaded();

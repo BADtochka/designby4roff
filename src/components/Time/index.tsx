@@ -1,8 +1,8 @@
 import { useI18nContext } from '@/i18n/i18n-react';
 import { formatInTimeZone } from 'date-fns-tz';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
-export default function Time() {
+const Time = () => {
   const { LL } = useI18nContext();
   const [tzTime, setTZTime] = useState('');
   const updateTime = () => setTZTime(formatInTimeZone(new Date(), 'Europe/Moscow', 'HH:mm:ss'));
@@ -22,4 +22,6 @@ export default function Time() {
       <p>{tzTime}</p>
     </div>
   );
-}
+};
+
+export default memo(Time);

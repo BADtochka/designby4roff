@@ -1,7 +1,9 @@
 import { useCasesStore } from '@/stores/cases';
 import { CaseInfo } from '@/types/CaseInfo';
 import { cn } from '@/utils/cn';
-import Icon from '../../../../components/Icons';
+import { lazy } from 'react';
+
+const Icon = lazy(() => import('@/components/Icons'));
 
 export type AboutCaseInfoProps = CaseInfo;
 

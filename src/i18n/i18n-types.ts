@@ -69,96 +69,6 @@ type RootTranslation = {
 			 */
 			open: string
 		}
-		casesList: {
-			product: {
-				case1: {
-					/**
-					 * К​е​й​с​1
-					 */
-					name: string
-					/**
-					 * О​п​и​с​а​н​и​е​ ​к​е​й​с​а​ ​н​а​с​к​о​л​ь​к​о​ ​о​н​ ​к​р​у​т​.
-					 */
-					description: string
-					/**
-					 * Р​у​с​с​к​и​й​ ​я​з​ы​к
-					 */
-					header1: string
-				}
-				case2: {
-					/**
-					 * К​е​й​с​2
-					 */
-					name: string
-					/**
-					 * О​п​и​с​а​н​и​е​ ​к​е​й​с​а​ ​н​а​с​к​о​л​ь​к​о​ ​о​н​ ​к​р​у​т​.
-					 */
-					description: string
-				}
-				case3: {
-					/**
-					 * К​е​й​с​3
-					 */
-					name: string
-					/**
-					 * О​п​и​с​а​н​и​е​ ​к​е​й​с​а​ ​н​а​с​к​о​л​ь​к​о​ ​о​н​ ​к​р​у​т​.
-					 */
-					description: string
-				}
-			}
-			game: {
-				case1: {
-					/**
-					 * К​е​й​с​1
-					 */
-					name: string
-					/**
-					 * О​п​и​с​а​н​и​е​ ​к​е​й​с​а​ ​н​а​с​к​о​л​ь​к​о​ ​о​н​ ​к​р​у​т​.
-					 */
-					description: string
-				}
-				case2: {
-					/**
-					 * К​е​й​с​2
-					 */
-					name: string
-					/**
-					 * О​п​и​с​а​н​и​е​ ​к​е​й​с​а​ ​н​а​с​к​о​л​ь​к​о​ ​о​н​ ​к​р​у​т​.
-					 */
-					description: string
-				}
-				test: {
-					/**
-					 * Т​е​с​т​о​в​ы​й​ ​к​е​й​с
-					 */
-					name: string
-					/**
-					 * Т​е​с​т​о​в​о​е​ ​о​п​и​с​а​н​и​е
-					 */
-					description: string
-				}
-				test2: {
-					/**
-					 * Т​е​с​т​о​в​ы​й​ ​к​е​й​с
-					 */
-					name: string
-					/**
-					 * Т​е​с​т​о​в​о​е​ ​о​п​и​с​а​н​и​е
-					 */
-					description: string
-				}
-				case4: {
-					/**
-					 * К​е​й​с​4
-					 */
-					name: string
-					/**
-					 * О​п​и​с​а​н​и​е​ ​к​е​й​с​а​ ​н​а​с​к​о​л​ь​к​о​ ​о​н​ ​к​р​у​т​.
-					 */
-					description: string
-				}
-			}
-		}
 		about: {
 			/**
 			 * Ж​и​в​у​ ​д​и​з​а​й​н​о​м​ ​с​ ​2​0​1​8​.
@@ -183,7 +93,7 @@ type RootTranslation = {
 			 */
 			description: string
 			/**
-			 * И​ ​б​о​л​ь​ш​е
+			 * И​ ​д​р​у​г​о​е
 			 */
 			andMore: string
 		}
@@ -294,6 +204,12 @@ type RootTranslation = {
 			 */
 			copyRight: string
 		}
+		casesList: {
+			product: {
+			}
+			game: {
+			}
+		}
 	}
 }
 
@@ -353,96 +269,6 @@ export type TranslationFunctions = {
 			 */
 			open: () => LocalizedString
 		}
-		casesList: {
-			product: {
-				case1: {
-					/**
-					 * Кейс1
-					 */
-					name: () => LocalizedString
-					/**
-					 * Описание кейса насколько он крут.
-					 */
-					description: () => LocalizedString
-					/**
-					 * Русский язык
-					 */
-					header1: () => LocalizedString
-				}
-				case2: {
-					/**
-					 * Кейс2
-					 */
-					name: () => LocalizedString
-					/**
-					 * Описание кейса насколько он крут.
-					 */
-					description: () => LocalizedString
-				}
-				case3: {
-					/**
-					 * Кейс3
-					 */
-					name: () => LocalizedString
-					/**
-					 * Описание кейса насколько он крут.
-					 */
-					description: () => LocalizedString
-				}
-			}
-			game: {
-				case1: {
-					/**
-					 * Кейс1
-					 */
-					name: () => LocalizedString
-					/**
-					 * Описание кейса насколько он крут.
-					 */
-					description: () => LocalizedString
-				}
-				case2: {
-					/**
-					 * Кейс2
-					 */
-					name: () => LocalizedString
-					/**
-					 * Описание кейса насколько он крут.
-					 */
-					description: () => LocalizedString
-				}
-				test: {
-					/**
-					 * Тестовый кейс
-					 */
-					name: () => LocalizedString
-					/**
-					 * Тестовое описание
-					 */
-					description: () => LocalizedString
-				}
-				test2: {
-					/**
-					 * Тестовый кейс
-					 */
-					name: () => LocalizedString
-					/**
-					 * Тестовое описание
-					 */
-					description: () => LocalizedString
-				}
-				case4: {
-					/**
-					 * Кейс4
-					 */
-					name: () => LocalizedString
-					/**
-					 * Описание кейса насколько он крут.
-					 */
-					description: () => LocalizedString
-				}
-			}
-		}
 		about: {
 			/**
 			 * Живу дизайном с 2018.
@@ -467,7 +293,7 @@ export type TranslationFunctions = {
 			 */
 			description: () => LocalizedString
 			/**
-			 * И больше
+			 * И другое
 			 */
 			andMore: () => LocalizedString
 		}
@@ -577,6 +403,12 @@ export type TranslationFunctions = {
 			 * Все права защищены.
 			 */
 			copyRight: () => LocalizedString
+		}
+		casesList: {
+			product: {
+			}
+			game: {
+			}
 		}
 	}
 }

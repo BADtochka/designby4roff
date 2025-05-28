@@ -4,7 +4,7 @@ import { AnimationDefinition, motion, Variants } from 'framer-motion';
 import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router';
 
-export const AnimatedTranslation = ({ children }: PropsWithChildren) => {
+export default function AnimatedTranslation({ children }: PropsWithChildren) {
   const newCaseOptions = useCasesStore((state) => state.newCaseOptions);
   const setCaseOptions = useCasesStore((state) => state.setCaseOptions);
   const navigate = useNavigate();
@@ -42,4 +42,4 @@ export const AnimatedTranslation = ({ children }: PropsWithChildren) => {
       {children}
     </motion.div>
   );
-};
+}

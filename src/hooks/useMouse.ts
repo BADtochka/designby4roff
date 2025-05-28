@@ -116,7 +116,7 @@ export const useMouse = () => {
           ...s,
           ...newState,
         }));
-      }, true); // 'true' for immediate execution
+      });
     };
 
     document.addEventListener('mousemove', onMouseMove);

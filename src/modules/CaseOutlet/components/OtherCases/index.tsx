@@ -1,7 +1,8 @@
-import CaseCard from '@/components/CaseCard';
 import { casesList } from '@/contants/casesList';
 import { useCasesStore } from '@/stores/cases';
 import { getObjectKeys } from '@/utils/getObjectKeys';
+import { lazy } from 'react';
+const CaseCard = lazy(() => import('@/components/CaseCard'));
 
 export default function OtherCases() {
   const selectedCategory = useCasesStore((state) => state.selectedCategory);
@@ -15,7 +16,14 @@ export default function OtherCases() {
       <h1 className='px-2.5 text-center text-[32px] font-extrabold'>ДРУГИЕ РАБОТЫ</h1>
       <div className='grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-[30px] max-md:grid-cols-1'>
         {casesKeys.map((key) => (
-          <CaseCard key={key} keyName={key} category={selectedCategory} {...casesList[selectedCategory][key]} />
+          <CaseCard
+            key={key}
+            keyName={key}
+            mode={caseOption.scheme}
+            category={selectedCategory}
+            style={{ borderColor: caseOption.borderColor }}
+            {...casesList[selectedCategory][key]}
+          />
         ))}
       </div>
     </div>

@@ -3,7 +3,7 @@ import { useResolution } from '@/hooks/useResolution';
 // import { BlobityContext } from '@/providers/BlobityProvider';
 import { CaseOptions } from '@/stores/cases';
 import { cn } from '@/utils/cn';
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { Link } from 'react-router';
 import Button from '../Button';
 import { IconName } from '../Icons';
@@ -12,7 +12,7 @@ type SocLinksProps = {
   mode?: CaseOptions['scheme'];
 };
 
-export default function SocLinks({ mode = 'dark' }: SocLinksProps) {
+const SocLinks = ({ mode = 'dark' }: SocLinksProps) => {
   const { isDesktop } = useResolution();
 
   return (
@@ -34,8 +34,11 @@ export default function SocLinks({ mode = 'dark' }: SocLinksProps) {
                 'border-[#00000029] text-black hover:border-[#00000029]': mode === 'light',
               })}
               iconLeft={link.name.toLowerCase() as IconName}
+              // animation={true}
             />
           ))}
     </div>
   );
-}
+};
+
+export default memo(SocLinks);

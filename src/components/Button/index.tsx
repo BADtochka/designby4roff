@@ -1,4 +1,14 @@
-import { ButtonHTMLAttributes, HTMLAttributeAnchorTarget } from 'react';
+import { motion } from 'framer-motion';
+import {
+  ButtonHTMLAttributes,
+  HTMLAttributeAnchorTarget,
+  memo,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
 import { Link } from 'react-router';
 import { cn } from '../../utils/cn';
 import Icon, { IconName } from '../Icons';
@@ -10,9 +20,53 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
   link?: string;
   target?: HTMLAttributeAnchorTarget;
+  animation?: boolean;
 }
 
-export default function Button({
+interface ButtonContentProps {
+  isHovered: boolean;
+  animation: boolean;
+  onChangeWidth: (width: number) => void;
+}
+
+function ButtonContent({ children, isHovered, animation, onChangeWidth }: PropsWithChildren<ButtonContentProps>) {
+  const childRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!childRef.current) return;
+    onChangeWidth(childRef.current.clientWidth);
+  });
+
+  return (
+    <>
+      <motion.div
+        initial={false}
+        transition={{ duration: 0.3 }}
+        // style={{ transform: 'translateX(-50%)' }}
+        ref={childRef}
+        className={cn('flex items-center gap-1.5', {
+          'absolute left-1/2 -translate-x-1/2': animation,
+        })}
+        animate={{ y: isHovered ? -100 : 0 }}
+      >
+        {children}
+      </motion.div>
+      <motion.div
+        initial={false}
+        transition={{ duration: 0.3 }}
+        style={{ transform: 'translateX(-50%)' }}
+        className={cn('hidden items-center gap-1.5', {
+          'left-1/2 flex': animation,
+        })}
+        animate={{ y: isHovered ? 0 : 100 }}
+      >
+        {children}
+      </motion.div>
+    </>
+  );
+}
+
+const Button = ({
   iconLeft,
   iconRight,
   active,
@@ -21,21 +75,84 @@ export default function Button({
   iconSize,
   target,
   link,
+  animation = true,
   ...props
-}: ButtonProps) {
+}: ButtonProps) => {
+  const [hovered, setHovered] = useState(false);
+  const [width, setWidth] = useState(100);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const getHorizontalPadding = () => {
+    const computedPadding = buttonRef.current?.computedStyleMap().get('padding')?.toString();
+    const computedGap = buttonRef.current?.computedStyleMap().get('gap')?.toString().replace('px', '');
+    if (!buttonRef.current || !computedPadding || !computedGap) return 0;
+    const paddingArray = computedPadding.split(' ');
+    const numberGap = Number.isNaN(Number(computedGap)) ? 0 : Number(computedGap);
+    // console.log(computedGap.toString(), numberGap, Number.isNaN(Number(computedGap)));
+    return Number(paddingArray[paddingArray.length > 1 ? 1 : 0].replace('px', '')) * 2 + numberGap;
+  };
+
+  const changeWidth = (width: number) => {
+    if (!buttonRef.current) return;
+    const xPadding = getHorizontalPadding();
+    setWidth(width + xPadding);
+  };
+
   return (
     <>
       {link ? (
-        <Link to={link} target={target} viewTransition>
+        <Link
+          to={link}
+          target={target}
+          viewTransition
+          onPointerEnter={() => setHovered(true)}
+          onPointerLeave={() => setHovered(false)}
+        >
           <button
+            ref={buttonRef}
             data-active={active}
+            style={{ minWidth: animation ? width : 'unset' }}
             className={cn(
-              `flex h-[72px] cursor-pointer items-center justify-center gap-1.5 rounded-full border border-[#ffffff]/[.16] px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
+              `relative flex h-[72px] cursor-pointer items-center justify-center gap-1.5 overflow-hidden rounded-full border border-[#ffffff]/[.16] px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
               { 'w-[72px] p-0': !children },
               className,
             )}
             {...props}
           >
+            <ButtonContent animation={!!animation} isHovered={hovered} onChangeWidth={changeWidth}>
+              {iconLeft && (
+                <Icon
+                  name={iconLeft}
+                  style={{ width: iconSize, height: iconSize }}
+                  className={cn({ 'size-8': !children })}
+                />
+              )}
+              {children}
+              {iconRight && (
+                <Icon
+                  name={iconRight}
+                  style={{ width: iconSize, height: iconSize }}
+                  className={cn({ 'size-8': !children })}
+                />
+              )}
+            </ButtonContent>
+          </button>
+        </Link>
+      ) : (
+        <button
+          ref={buttonRef}
+          onPointerEnter={() => setHovered(true)}
+          onPointerLeave={() => setHovered(false)}
+          style={{ minWidth: animation ? width : 'unset' }}
+          data-active={active}
+          className={cn(
+            `relative flex h-[72px] cursor-pointer items-center justify-center gap-1.5 overflow-hidden rounded-full border border-[#ffffff]/[.16] px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
+            { 'w-[72px] p-0': !children },
+            className,
+          )}
+          {...props}
+        >
+          <ButtonContent animation={!!animation} isHovered={!!animation && hovered} onChangeWidth={changeWidth}>
             {iconLeft && (
               <Icon
                 name={iconLeft}
@@ -51,35 +168,11 @@ export default function Button({
                 className={cn({ 'size-8': !children })}
               />
             )}
-          </button>
-        </Link>
-      ) : (
-        <button
-          data-active={active}
-          className={cn(
-            `flex h-[72px] cursor-pointer items-center justify-center gap-1.5 rounded-full border border-[#ffffff]/[.16] px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white data-[active="true"]:text-black`,
-            { 'w-[72px] p-0': !children },
-            className,
-          )}
-          {...props}
-        >
-          {iconLeft && (
-            <Icon
-              name={iconLeft}
-              style={{ width: iconSize, height: iconSize }}
-              className={cn({ 'size-8': !children })}
-            />
-          )}
-          {children}
-          {iconRight && (
-            <Icon
-              name={iconRight}
-              style={{ width: iconSize, height: iconSize }}
-              className={cn({ 'size-8': !children })}
-            />
-          )}
+          </ButtonContent>
         </button>
       )}
     </>
   );
-}
+};
+
+export default memo(Button);

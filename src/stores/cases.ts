@@ -1,13 +1,11 @@
-import { CaseKeys, CasesCategory } from '@/types/Cases';
+import { CaseData, CaseKeys, CasesCategory } from '@/types/Cases';
 import { createCustomStore } from '@/utils/createStore';
 
-export type CaseOptions = {
+export interface CaseOptions extends Pick<CaseData, 'background' | 'borderColor' | 'scheme'> {
   key?: CaseKeys;
   open: boolean;
   link: string;
-  background: string;
-  scheme: 'dark' | 'light';
-};
+}
 
 type CasesStates = {
   selectedCategory: CasesCategory;

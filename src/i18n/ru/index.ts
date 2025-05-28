@@ -20,45 +20,6 @@ const ru = {
       worksUpdate: 'Обновил работы',
       open: 'Открыть',
     },
-    casesList: {
-      product: {
-        case1: {
-          name: 'Кейс1',
-          description: 'Описание кейса насколько он крут.',
-          header1: 'Русский язык',
-        },
-        case2: {
-          name: 'Кейс2',
-          description: 'Описание кейса насколько он крут.',
-        },
-        case3: {
-          name: 'Кейс3',
-          description: 'Описание кейса насколько он крут.',
-        },
-      },
-      game: {
-        case1: {
-          name: 'Кейс1',
-          description: 'Описание кейса насколько он крут.',
-        },
-        case2: {
-          name: 'Кейс2',
-          description: 'Описание кейса насколько он крут.',
-        },
-        test: {
-          name: 'Тестовый кейс',
-          description: 'Тестовое описание',
-        },
-        test2: {
-          name: 'Тестовый кейс',
-          description: 'Тестовое описание',
-        },
-        case4: {
-          name: 'Кейс4',
-          description: 'Описание кейса насколько он крут.',
-        },
-      },
-    },
     about: {
       description: 'Живу дизайном с 2018.',
       personalInfo:
@@ -69,7 +30,7 @@ const ru = {
     },
     experience: {
       description: 'Или для кого создавались продукты.',
-      andMore: 'И больше',
+      andMore: 'И другое',
     },
     experienceList: {
       project1: {
@@ -117,6 +78,10 @@ const ru = {
       title: 'Есть идея?',
       description: 'Давайте создавать красоту вместе ^_^',
       copyRight: 'Все права защищены.',
+    },
+    casesList: {
+      product: {},
+      game: {},
     },
   },
 } satisfies BaseTranslation;

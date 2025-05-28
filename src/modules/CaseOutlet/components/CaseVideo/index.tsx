@@ -1,44 +1,56 @@
-import Icon from '@/components/Icons';
 import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
-import { motion } from 'framer-motion';
-import { useRef, useState, VideoHTMLAttributes } from 'react';
+import { tryCatch } from '@/utils/tryCatch';
+import { HTMLMotionProps, motion } from 'framer-motion';
+import { lazy, useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+const Icon = lazy(() => import('@/components/Icons'));
 
-interface CaseVideoProps extends VideoHTMLAttributes<HTMLVideoElement> {}
+interface CaseVideoProps extends HTMLMotionProps<'video'> {}
 
 export default function CaseVideo({ src, className, ...props }: CaseVideoProps) {
   const [paused, setPaused] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const caseOption = useCasesStore((state) => state.caseOptions);
+  const { ref, inView } = useInView({ threshold: 0.5 });
 
   const onPlay = () => {
     if (!videoRef.current || !paused) return;
-    videoRef.current.play();
+    tryCatch(videoRef.current.play());
   };
+
+  useEffect(() => {
+    if (!inView) return;
+    onPlay();
+  }, [inView]);
 
   const onPlaying = () => setPaused(false);
   const onLoaded = () => setLoaded(true);
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: loaded ? 1 : 0 }}
-      className={cn(className, 'relative max-h-[900px] overflow-hidden rounded-[20px] object-cover')}
+      ref={ref}
+      className={cn(
+        className,
+        'relative max-h-[900px] overflow-hidden rounded-[20px] border border-[#383838]/25 object-cover',
+      )}
     >
-      <video
+      <motion.video
         ref={videoRef}
         className='w-full bg-black'
-        autoPlay
         muted
         loop
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        playsInline
         preload='auto'
         onPlaying={onPlaying}
         onLoadedData={onLoaded}
         {...props}
       >
         <source className='bg-black' src={src} />
-      </video>
+      </motion.video>
       <motion.div
         animate={{ opacity: paused ? 1 : 0 }}
         onClick={onPlay}

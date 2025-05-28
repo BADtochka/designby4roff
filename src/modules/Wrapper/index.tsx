@@ -2,7 +2,6 @@ import { cn } from '@/utils/cn';
 import { AnimatePresence } from 'framer-motion';
 import { cloneElement, lazy } from 'react';
 import { useLocation, useOutlet } from 'react-router';
-import { AnimatedTranslation } from '../AnimatedTranslation';
 
 const Menu = lazy(() => import('@/components/Menu'));
 const Main = lazy(() => import('@/modules/Main'));
@@ -11,6 +10,7 @@ const Cases = lazy(() => import('@/modules/Cases'));
 const Experience = lazy(() => import('@/modules/Experience'));
 const Footer = lazy(() => import('@/modules/Footer'));
 const OneMoreThing = lazy(() => import('@/modules/OneMoreThing'));
+const AnimatedTranslation = lazy(() => import('@/modules/AnimatedTranslation'));
 
 export default function Wrapper() {
   const { pathname } = useLocation();

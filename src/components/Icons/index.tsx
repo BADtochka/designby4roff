@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import { memo, SVGProps } from 'react';
 import { cn } from '../../utils/cn';
 import { icons } from './icons';
 
@@ -10,6 +10,8 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 
 const IconRender = ({ name, ...props }: IconProps) => icons(props)[name];
 
-export default function Icon({ name, className, ...props }: IconProps) {
+const Icon = ({ name, className, ...props }: IconProps) => {
   return <IconRender name={name} className={cn('size-5', className)} {...props} />;
-}
+};
+
+export default memo(Icon);

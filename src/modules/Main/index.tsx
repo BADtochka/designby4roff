@@ -1,4 +1,5 @@
-import Package from '@/components/Package';
+import DesignBy from '@/components/DesignBy';
+import GridBackground from '@/components/GridBackground';
 import { useHashSetter } from '@/hooks/useHashSetter';
 import { useResolution } from '@/hooks/useResolution';
 import { useI18nContext } from '@/i18n/i18n-react';
@@ -8,11 +9,10 @@ import { useLocation } from 'react-router';
 const CopyButton = lazy(() => import('@/components/CopyButton'));
 const Block = lazy(() => import('@/components/Block'));
 const Button = lazy(() => import('@/components/Button'));
-const DesignBy = lazy(() => import('@/components/DesignBy'));
-const GridBackground = lazy(() => import('@/components/GridBackground'));
 const Icon = lazy(() => import('@/components/Icons'));
 const SocLinks = lazy(() => import('@/components/SocLinks'));
 const Time = lazy(() => import('@/components/Time'));
+const Package = lazy(() => import('@/components/Package'));
 
 export type TempLightSource = {
   color?: string;

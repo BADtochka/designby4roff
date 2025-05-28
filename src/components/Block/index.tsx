@@ -1,18 +1,22 @@
 import { cn } from '@/utils/cn';
-import { HTMLAttributes, Ref } from 'react';
+import { HTMLAttributes, memo, Ref } from 'react';
 
 interface BlockProps extends HTMLAttributes<HTMLDivElement> {
   ref?: Ref<HTMLDivElement>;
+  borderColor?: string;
 }
 
-export default function Block({ className, children, ref, ...props }: BlockProps) {
+export const Block = ({ className, children, ref, borderColor, style, ...props }: BlockProps) => {
   return (
     <div
       ref={ref}
-      className={cn('w-full rounded-[20px] border border-[#ffffff28] p-[50px] max-md:p-5', className)}
+      style={{ borderColor: borderColor ?? '#ffffff28', ...style }}
+      className={cn('w-full rounded-[20px] border p-[50px] max-md:p-5', className)}
       {...props}
     >
       {children}
     </div>
   );
-}
+};
+
+export default memo(Block);

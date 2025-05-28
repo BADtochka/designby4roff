@@ -16,6 +16,7 @@ export type CaseData = {
   endDate?: StringDate;
   page: JSX.Element;
   background?: string;
+  borderColor?: string;
   scheme?: 'dark' | 'light';
 };
 

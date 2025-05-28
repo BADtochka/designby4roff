@@ -20,6 +20,10 @@ button {
   @apply md:cursor-none;
 }
 
+*::selection {
+  @apply bg-white text-black;
+}
+
 *::-webkit-scrollbar {
   width: 8px;
 }

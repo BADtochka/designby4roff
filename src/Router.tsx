@@ -1,7 +1,9 @@
+import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import CaseOutlet from './modules/CasePage';
-import Wrapper from './modules/Wrapper';
+import Button from './components/Button';
 import { createCaseRoutes } from './utils/createCaseRoutes';
+const Wrapper = lazy(() => import('@/modules/Wrapper'));
+const CaseOutlet = lazy(() => import('@/modules/CaseOutlet'));
 
 export default function Router() {
   const caseRoutes = createCaseRoutes();
@@ -16,6 +18,14 @@ export default function Router() {
             ))}
           </Route>
         </Route>
+        <Route
+          path='yuy'
+          element={
+            <Button animation iconLeft='behance' iconRight='en'>
+              Testik
+            </Button>
+          }
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
