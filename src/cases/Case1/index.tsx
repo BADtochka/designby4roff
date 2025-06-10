@@ -6,26 +6,24 @@ import CaseImages from '@/modules/CaseOutlet/components/CaseImages';
 import CaseText from '@/modules/CaseOutlet/components/CaseText';
 import CaseTextImage from '@/modules/CaseOutlet/components/CaseTextImage';
 import CaseVideo from '@/modules/CaseOutlet/components/CaseVideo';
+import { useCasesStore } from '@/stores/cases';
 
 export default () => {
   const { LL } = useI18nContext();
+  const selectedCategory = useCasesStore((state) => state.selectedCategory);
+  const T = LL.blocks.casesList[selectedCategory];
 
   return (
     <>
       <AboutCase>
-        <AboutCaseInfo title={LL.blocks.casesList.game.case1.localizedString()} description='123' />
+        <AboutCaseInfo title={T.case1.localizedString()} description='123' />
         <AboutCaseInfo title='test' description='123' />
         <AboutCaseInfo title='test' description='123' url='https://google.com' />
       </AboutCase>
       <CaseImage src='/cases/card.png' />
-      <CaseText title='HEADING' description={LL.blocks.casesList.game.case1.localizedString()} />
+      <CaseText title='HEADING' description={T.case1.localizedString()} />
       <CaseText title="It's a great big headline." uppercase />
-      <CaseTextImage
-        title='HEADING'
-        description={LL.blocks.casesList.game.case1.localizedString()}
-        direction='column'
-        src='/cases/card.png'
-      />
+      <CaseTextImage title='HEADING' description={T.case1.localizedString()} direction='column' src='/cases/card.png' />
       <CaseTextImage
         title='HEADING'
         description='On the other hand, consulting with a broad asset requires defining and clarifying a development model. Thus, the strengthening and development of the structure provides a wide range of (specialists) to participate in shaping the directions of progressive development. '
