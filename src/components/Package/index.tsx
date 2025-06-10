@@ -1,15 +1,10 @@
 import { useResolution } from '@/hooks/useResolution';
-import { TempLightSource } from '@/modules/Main';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { motion, useSpring } from 'framer-motion';
 import { memo, useEffect, useRef, useState } from 'react';
 import { Group, Mesh, Object3D, Vector3 } from 'three';
 // @ts-ignore
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
-
-type TempPackageProps = {
-  lightSources: TempLightSource[];
-};
 
 type ModelProps = {
   fbx: Group;
@@ -112,7 +107,7 @@ export const Model = memo(({ fbx, onReady }: ModelProps) => {
   );
 });
 
-const Package = ({ lightSources }: TempPackageProps) => {
+const Package = () => {
   const { isDesktop } = useResolution();
   const [isModelReady, setIsModelReady] = useState(false);
   const fbx = useLoader(FBXLoader, '3d/paketik_without_eyes.fbx') as Group;
@@ -124,9 +119,7 @@ const Package = ({ lightSources }: TempPackageProps) => {
       style={{ height: isDesktop ? '90%' : '50%' }}
     >
       <Canvas resize={{ scroll: false }}>
-        {lightSources.map((light, index) => (
-          <ambientLight key={index} intensity={light.intensity} color={light.color} />
-        ))}
+        <ambientLight intensity={5} color='#FFFFFF' />
         <Model fbx={fbx} onReady={() => setIsModelReady(true)} />
       </Canvas>
     </motion.div>
