@@ -20,22 +20,6 @@ const en = {
       worksUpdate: 'Updated the work',
       open: 'Open',
     },
-    casesList: {
-      product: {
-        case1: {
-          name: 'Кейс1',
-          description: 'Описание кейса насколько он крут.',
-          localizedString: 'Строка на русском, можно использовать любое название',
-        },
-      },
-      game: {
-        case1: {
-          name: 'Кейс1',
-          description: 'Описание кейса насколько он крут.',
-          localizedString: 'Строка на русском, можно использовать любое название',
-        },
-      },
-    },
     about: {
       description: 'I live by design in 2018.',
       personalInfo:
@@ -47,23 +31,6 @@ const en = {
     experience: {
       description: 'Or who the products were created for.',
       andMore: 'And more',
-    },
-    experienceList: {
-      project1: {
-        name: 'Freelance',
-        description:
-          'He conducted research, designed interfaces, websites, and mobile applications. He handled their packaging and accompanied them during the development phase.',
-      },
-      project2: {
-        name: 'Freelance',
-        description:
-          'He conducted research, designed interfaces, websites, and mobile applications. He handled their packaging and accompanied them during the development phase.',
-      },
-      project3: {
-        name: 'Freelance',
-        description:
-          'He conducted research, designed interfaces, websites, and mobile applications. He handled their packaging and accompanied them during the development phase.',
-      },
     },
     oneMoreThing: {
       title: 'One more thing',
@@ -94,6 +61,39 @@ const en = {
       title: 'Have an idea?',
       description: "Let's create beauty together ^_^",
       copyRight: 'All rights reserved.',
+    },
+    experienceList: {
+      project1: {
+        name: 'Freelance',
+        description:
+          'He conducted research, designed interfaces, websites, and mobile applications. He handled their packaging and accompanied them during the development phase.',
+      },
+      project2: {
+        name: 'Freelance',
+        description:
+          'He conducted research, designed interfaces, websites, and mobile applications. He handled their packaging and accompanied them during the development phase.',
+      },
+      project3: {
+        name: 'Freelance',
+        description:
+          'He conducted research, designed interfaces, websites, and mobile applications. He handled their packaging and accompanied them during the development phase.',
+      },
+    },
+    casesList: {
+      product: {
+        case1: {
+          name: 'Кейс1',
+          description: 'Описание кейса насколько он крут.',
+          localizedString: 'Строка на русском, можно использовать любое название',
+        },
+      },
+      game: {
+        case1: {
+          name: 'Кейс1',
+          description: 'Описание кейса насколько он крут.',
+          localizedString: 'Строка на русском, можно использовать любое название',
+        },
+      },
     },
   },
 } satisfies Translation;
