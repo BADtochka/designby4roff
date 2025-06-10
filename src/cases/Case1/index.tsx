@@ -7,7 +7,7 @@ import CaseText from '@/modules/CaseOutlet/components/CaseText';
 import CaseTextImage from '@/modules/CaseOutlet/components/CaseTextImage';
 import CaseVideo from '@/modules/CaseOutlet/components/CaseVideo';
 
-export default function Case1() {
+export default () => {
   const { LL } = useI18nContext();
 
   return (
@@ -40,4 +40,4 @@ export default function Case1() {
       <CaseVideo src='https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_2mb.mp4' />
     </>
   );
-}
+};
