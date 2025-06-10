@@ -1,4 +1,4 @@
-import { casesList } from '@/contants/casesList';
+import { casesList } from '@/constants/casesList';
 import { useCasesStore } from '@/stores/cases';
 import { getObjectKeys } from '@/utils/getObjectKeys';
 import { lazy } from 'react';

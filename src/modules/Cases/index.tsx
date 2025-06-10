@@ -1,7 +1,7 @@
 import Block from '@/components/Block';
 import CaseCard from '@/components/CaseCard';
 import { Tabs, TabsContent, TabsTab } from '@/components/Tabs';
-import { casesList } from '@/contants/casesList';
+import { casesList } from '@/constants/casesList';
 import { useHashSetter } from '@/hooks/useHashSetter';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { useCasesStore } from '@/stores/cases';
@@ -19,11 +19,12 @@ export default function Cases() {
     if (selectedCategory === 'game') return getObjectKeys(casesList.game);
     return getObjectKeys(casesList.product);
   };
-  const secondGroupIndex = casesKeys().length - 3;
+  const secondGroupIndex = casesKeys().length < 2 ? 1 : casesKeys().length - 3;
   const isCountOdd = isOdd(casesKeys().length);
 
   const firstGridCases = casesKeys().filter((_, index) => index < secondGroupIndex);
   const secondGridCases = casesKeys().filter((_, index) => index >= secondGroupIndex);
+  console.log(firstGridCases, secondGridCases);
 
   return (
     <div ref={ref} id='cases' className='flex flex-col gap-[50px] max-md:gap-5'>
@@ -65,19 +66,21 @@ export default function Cases() {
             ))}
           </div>
         )}
-        <div
-          className='grid grid-cols-3 gap-10 *:col-start-1 *:col-end-2 *:last:col-start-2 *:last:col-end-4 *:last:row-span-2
-            *:last:row-start-1 max-md:flex max-md:flex-col max-md:gap-6'
-        >
-          {secondGridCases.map((key) => (
-            <CaseCard
-              key={key}
-              category={selectedCategory}
-              keyName={key as SelectedCategoryKeys}
-              {...casesList[selectedCategory][key as SelectedCategoryKeys]}
-            />
-          ))}
-        </div>
+        {secondGridCases.length > 0 && (
+          <div
+            className='grid grid-cols-3 gap-10 *:col-start-1 *:col-end-2 *:last:col-start-2 *:last:col-end-4 *:last:row-span-2
+              *:last:row-start-1 max-md:flex max-md:flex-col max-md:gap-6'
+          >
+            {secondGridCases.map((key) => (
+              <CaseCard
+                key={key}
+                category={selectedCategory}
+                keyName={key as SelectedCategoryKeys}
+                {...casesList[selectedCategory][key as SelectedCategoryKeys]}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

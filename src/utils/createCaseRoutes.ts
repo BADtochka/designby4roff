@@ -1,4 +1,4 @@
-import { casesList } from '@/contants/casesList';
+import { casesList } from '@/constants/casesList';
 import { getObjectKeys } from './getObjectKeys';
 
 export const createCaseRoutes = () => {

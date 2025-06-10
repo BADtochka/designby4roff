@@ -1,4 +1,4 @@
-import { casesList } from '@/contants/casesList';
+import { casesList } from '@/constants/casesList';
 import { useResolution } from '@/hooks/useResolution';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { CaseOptions, useCasesStore } from '@/stores/cases';

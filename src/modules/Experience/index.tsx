@@ -1,6 +1,6 @@
 import Block from '@/components/Block';
 import ExperienceProject from '@/components/ExperienceProject';
-import { experienceList } from '@/contants/experienceList';
+import { experienceList } from '@/constants/experienceList';
 import { useHashSetter } from '@/hooks/useHashSetter';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { ExpericenceKeys } from '@/types/Cases';

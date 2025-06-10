@@ -1,4 +1,4 @@
-import { socLinks } from '@/contants/socLinks';
+import { socLinks } from '@/constants/socLinks';
 import { useResolution } from '@/hooks/useResolution';
 // import { BlobityContext } from '@/providers/BlobityProvider';
 import { CaseOptions } from '@/stores/cases';

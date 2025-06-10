@@ -1,4 +1,4 @@
-import { casesList } from '@/contants/casesList';
+import { casesList } from '@/constants/casesList';
 import { useI18nContext } from '@/i18n/i18n-react';
 import { useCasesStore } from '@/stores/cases';
 import { CasesCategory } from '@/types/Cases';
