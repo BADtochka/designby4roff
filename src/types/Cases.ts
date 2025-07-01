@@ -1,5 +1,4 @@
 import { Translation } from '@/i18n/i18n-types';
-import { JSX } from 'react';
 import { StringDate } from './StringDate';
 
 export type CasesCategory = 'product' | 'game';
@@ -14,7 +13,6 @@ export type CaseData = {
   image: string;
   startDate: StringDate;
   endDate?: StringDate;
-  page: JSX.Element;
   background?: string;
   borderColor?: string;
   scheme?: 'dark' | 'light';
@@ -25,6 +23,6 @@ export type SelectedCategoryKeys = keyof Cases[CasesCategory];
 export type Experiences = Record<string, ExperienceData>;
 export type ExpericenceKeys = keyof Translation['blocks']['experienceList'];
 
-export interface ExperienceData extends Omit<CaseData, 'page'> {
+export interface ExperienceData extends Pick<CaseData, 'image' | 'startDate' | 'endDate'> {
   post: string;
 }

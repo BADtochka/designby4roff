@@ -1,7 +1,5 @@
 import Button from '@/components/Button';
 import { TabsContentLegacy, TabsLegacy, TabsTabLegacy } from '@/components/TabsLegacy';
-import { useStickyScroll } from '@/hooks/useStickyScroll';
-import { useI18nContext } from '@/i18n/i18n-react';
 import { useSystemStore } from '@/stores/system';
 import { getObjectKeys } from '@/utils/getObjectKeys';
 
@@ -9,7 +7,7 @@ type TabName = 'cases' | 'about' | 'experience';
 type Tabs = Record<TabName, string>;
 
 export default function MenuLegacy() {
-  const { currentHash, scrollToBlock } = useStickyScroll();
+  // const { currentHash, scrollToBlock } = useStickyScroll();
   const clientLang = useSystemStore((state) => state.language);
   const setClientLang = useSystemStore((state) => state.setLanguage);
   const { LL, setLocale } = useI18nContext();
@@ -31,11 +29,11 @@ export default function MenuLegacy() {
       <TabsLegacy className='gap-1.5'>
         <TabsContentLegacy customId='menu'>
           <Button
-            active={currentHash === 'main'}
+            // active={currentHash === 'main'}
             data-size='60px'
             iconLeft='logo'
             className='z-10 size-[60px] p-[18px] mix-blend-exclusion data-[active="true"]:bg-black data-[active="true"]:text-white'
-            onClick={() => scrollToBlock('main')}
+            // onClick={() => scrollToBlock('main')}
           />
           {tabsKeys.map((tab, index) => {
             const lastSide = index === 2 && 'rounded-r-4xl';
@@ -45,8 +43,8 @@ export default function MenuLegacy() {
               <TabsTabLegacy
                 key={index}
                 className={`h-[60px] rounded-none bg-black px-8 max-md:max-w-[80px] ${firstSide} ${lastSide}`}
-                active={tab === currentHash}
-                onClick={() => scrollToBlock(tab)}
+                // active={tab === currentHash}
+                // onClick={() => scrollToBlock(tab)}
               >
                 {tabs[tab]}
               </TabsTabLegacy>

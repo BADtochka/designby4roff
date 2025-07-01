@@ -1,7 +1,7 @@
 import { useCursorStore } from '@/stores/cursor';
 import { cancelFrame, frame } from 'framer-motion';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useResolution } from './useResolution';
+import { useDevice } from './useDevice';
 
 interface MouseState {
   x: number;
@@ -13,7 +13,7 @@ interface MouseState {
 }
 
 export const useMouse = () => {
-  const { isDesktop } = useResolution();
+  const { isDesktop } = useDevice();
   const options = useCursorStore((state) => state.options);
   const setCursorOptions = useCursorStore((state) => state.setOptions);
   const lastHoveredElement = useRef<HTMLElement>(null);

@@ -1,28 +1,36 @@
+import Block from '@/components/Block';
+import Button from '@/components/Button';
+import CopyButton from '@/components/CopyButton';
 import DesignBy from '@/components/DesignBy';
 import GridBackground from '@/components/GridBackground';
+import Icon from '@/components/Icon';
+import Package from '@/components/Package';
+import SocLinks from '@/components/SocLinks';
+import Time from '@/components/Time';
+import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
+import { useLocalization } from '@/hooks/useCaseLocalization';
+import { useDevice } from '@/hooks/useDevice';
 import { useHashSetter } from '@/hooks/useHashSetter';
-import { useResolution } from '@/hooks/useResolution';
-import { useI18nContext } from '@/i18n/i18n-react';
-import { lazy } from 'react';
-import { useLocation } from 'react-router';
-
-const CopyButton = lazy(() => import('@/components/CopyButton'));
-const Block = lazy(() => import('@/components/Block'));
-const Button = lazy(() => import('@/components/Button'));
-const Icon = lazy(() => import('@/components/Icons'));
-const SocLinks = lazy(() => import('@/components/SocLinks'));
-const Time = lazy(() => import('@/components/Time'));
-const Package = lazy(() => import('@/components/Package'));
+import { T } from '@/utils/defineLocalization';
 
 export type TempLightSource = {
   color?: string;
   intensity: number;
 };
 
-export default function Main() {
-  const location = useLocation();
-  const { LL } = useI18nContext();
-  const { isDesktop } = useResolution();
+const localization = T({
+  ru: {
+    description: 'Продуктовый & игровой дизайн',
+  },
+  en: {
+    description: 'Product & Game Design',
+  },
+});
+
+export function Main() {
+  const { L } = useLocalization(localization);
+  const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
+  const { isDesktop } = useDevice();
   const { ref } = useHashSetter({ hash: 'main' });
 
   return (
@@ -38,7 +46,7 @@ export default function Main() {
             className='h-[54px] border-0 bg-[#08C] hover:bg-[#006DA3] max-md:h-[50px] max-md:w-[50px]'
             iconRight='telegram'
           >
-            {isDesktop && LL.buttons.contact()}
+            {isDesktop && GL.buttons.contact}
           </Button>
         </div>
       </div>
@@ -50,10 +58,10 @@ export default function Main() {
         className='pointer-events-none absolute top-1/2 left-1/2 flex size-full max-h-[800px] max-w-[1000px] -translate-1/2 items-center
           justify-center'
       >
-        <p className='absolute bottom-24 font-extrabold uppercase max-md:bottom-44'>{LL.blocks.main.description()}</p>
+        <p className='absolute bottom-24 font-extrabold uppercase max-md:bottom-44'>{L.description}</p>
         <DesignBy />
         <GridBackground />
-        {location.pathname === '/' && <Package />}
+        <Package />
       </div>
     </Block>
   );

@@ -3,9 +3,11 @@ import Button from '@/components/Button';
 import CopyButton from '@/components/CopyButton';
 import LongLogo from '@/components/LongLogo';
 import SocLinks from '@/components/SocLinks';
-import { useI18nContext } from '@/i18n/i18n-react';
+import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
+import { useLocalization } from '@/hooks/useCaseLocalization';
 import { CaseOptions } from '@/stores/cases';
 import { cn } from '@/utils/cn';
+import { T } from '@/utils/defineLocalization';
 import { format } from 'date-fns';
 
 type FooterProps = {
@@ -14,8 +16,22 @@ type FooterProps = {
   borderColor?: CaseOptions['borderColor'];
 };
 
+const localization = T({
+  en: {
+    title: 'Have an idea?',
+    description: "Let's create beauty together ^_^",
+    copyRight: 'All rights reserved.',
+  },
+  ru: {
+    title: 'Есть идея?',
+    description: 'Давайте создавать красоту вместе ^_^',
+    copyRight: 'Все права защищены.',
+  },
+});
+
 export default function Footer({ mode = 'dark', inCase = false, borderColor }: FooterProps) {
-  const { LL } = useI18nContext();
+  const { L } = useLocalization(localization);
+  const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
 
   return (
     <Block
@@ -27,15 +43,13 @@ export default function Footer({ mode = 'dark', inCase = false, borderColor }: F
     >
       <div className='flex justify-between gap-8 max-md:flex-col'>
         <div>
-          <h1 className='text-[85px] font-extrabold uppercase max-md:text-center max-md:text-[32px]'>
-            {LL.blocks.footer.title()}
-          </h1>
+          <h1 className='text-[85px] font-extrabold uppercase max-md:text-center max-md:text-[32px]'>{L.title}</h1>
           <p
             className={cn('text-white/65 max-md:text-center', {
               'text-black/30': mode === 'light',
             })}
           >
-            {LL.blocks.footer.description()}
+            {L.description}
           </p>
         </div>
         <div className='flex flex-col gap-5'>
@@ -45,7 +59,7 @@ export default function Footer({ mode = 'dark', inCase = false, borderColor }: F
             })}
             iconRight='telegram'
           >
-            {LL.buttons.contact()}
+            {GL.buttons.contact}
           </Button>
           <CopyButton mode={mode} className='h-[54px] w-full' iconRight='copy'>
             4roffdesign@gmail.com
@@ -70,7 +84,7 @@ export default function Footer({ mode = 'dark', inCase = false, borderColor }: F
             'text-black/30': mode === 'light',
           })}
         >
-          ©{format(new Date(), 'yyyy')} {LL.blocks.footer.copyRight()}
+          ©{format(new Date(), 'yyyy')} {L.copyRight}
         </p>
       </div>
     </Block>
