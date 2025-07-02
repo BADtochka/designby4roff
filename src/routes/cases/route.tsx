@@ -6,11 +6,12 @@ import Footer from '@/modules/Footer';
 import OtherCases from '@/modules/OtherCases';
 import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
-import { Outlet, useLocation, useNavigate } from '@tanstack/react-router';
+import { Navigate, Outlet, useLocation, useNavigate } from '@tanstack/react-router';
 import { useEffect } from 'react';
 
 export const Route = createFileRoute({
   component: RouteComponent,
+  errorComponent: () => <Navigate to='/' />,
 });
 
 function RouteComponent() {
