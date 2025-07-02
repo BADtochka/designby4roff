@@ -1,7 +1,7 @@
 import Block from '@/components/Block';
 import ExperienceProject from '@/components/ExperienceProject';
-import { useLocalization } from '@/hooks/useCaseLocalization';
 import { useHashSetter } from '@/hooks/useHashSetter';
+import { useLocalization } from '@/hooks/useLocalization';
 import { Experiences } from '@/types/Cases';
 import { T } from '@/utils/defineLocalization';
 import { getObjectKeys } from '@/utils/getObjectKeys';

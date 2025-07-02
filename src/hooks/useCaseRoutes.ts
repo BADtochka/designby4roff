@@ -8,18 +8,17 @@ export const useCaseRoutes = () => {
   const { pathname } = useLocation();
   const [cases, setCases] = useState<GlobModule | Record<string, RouteData>>({});
   const [currentCase, setCurrentCase] = useState<RouteData>();
+  const currentCaseKey = pathname.replace('/src/routes', '').replace('.tsx', '');
 
   const reloadRoutes = async () => {
     const newRoutes = await createCaseRoutes();
     setCases(newRoutes);
-    // setCases(Object.values(newRoutes));
-    // console.log(newRoutes, `/src/routes${pathname}`);
-    setCurrentCase(newRoutes[`${pathname}`]);
+    setCurrentCase(newRoutes[currentCaseKey]);
   };
 
   useEffect(() => {
     reloadRoutes();
   }, []);
 
-  return { cases, currentCase };
+  return { cases, currentCase, currentCaseKey };
 };

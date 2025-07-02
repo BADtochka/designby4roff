@@ -1,5 +1,5 @@
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
-import { useLocalization } from '@/hooks/useCaseLocalization';
+import { useLocalization } from '@/hooks/useLocalization';
 import { formatInTimeZone } from 'date-fns-tz';
 import { memo, useEffect, useState } from 'react';
 

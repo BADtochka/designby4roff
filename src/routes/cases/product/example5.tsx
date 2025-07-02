@@ -17,25 +17,25 @@ export const routeData = {
   config: {
     image: 'card.png',
     startDate: '11.2011',
-    background: '#424242',
+    background: '#232c3d',
   } as CaseData,
   localization: T({
     ru: {
-      caseTitle: 'Название продуктового кейса',
+      caseTitle: 'Названи ещё одного продуктового кейса',
       caseDescription: 'Описание кейса',
       hello: 'Привет',
       name: 'Никита',
       info1Title: 'Пункт 1',
       info1Description: 'Описание пункта 1',
-      info2Title: 'Пункт 1',
-      info2Description: 'Описание пункта 1',
+      info2Title: 'Пункт 2',
+      info2Description: 'Описание пункта 2',
       heading: 'ЗАГОЛОВОК',
       bigHeading: 'Это отличный крупный заголовок.',
       textDescription:
         'С другой стороны, консультации с широким кругом специалистов требуют определения и уточнения модели развития. Таким образом, укрепление и развитие структуры позволяет широкому кругу (специалистов) участвовать в формировании направлений прогрессивного развития.',
     },
     en: {
-      caseTitle: 'Product case title',
+      caseTitle: 'Game case title',
       caseDescription: 'Case description',
       hello: 'Hello',
       name: 'Nikita',

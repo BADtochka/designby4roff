@@ -136,7 +136,7 @@ const Button = ({
   return (
     <>
       {link ? (
-        <Link to={link} onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}>
+        <Link to={link} from='/' onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}>
           <button
             ref={buttonRef}
             data-active={active}

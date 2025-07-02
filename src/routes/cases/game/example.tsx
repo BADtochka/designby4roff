@@ -21,7 +21,7 @@ export const routeData = {
   } as CaseData,
   localization: T({
     ru: {
-      caseTitle: 'Название продуктового кейса',
+      caseTitle: 'Название игрового кейса',
       caseDescription: 'Описание кейса',
       hello: 'Привет',
       name: 'Никита',

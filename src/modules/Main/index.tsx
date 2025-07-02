@@ -8,9 +8,9 @@ import Package from '@/components/Package';
 import SocLinks from '@/components/SocLinks';
 import Time from '@/components/Time';
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
-import { useLocalization } from '@/hooks/useCaseLocalization';
 import { useDevice } from '@/hooks/useDevice';
 import { useHashSetter } from '@/hooks/useHashSetter';
+import { useLocalization } from '@/hooks/useLocalization';
 import { T } from '@/utils/defineLocalization';
 
 export type TempLightSource = {
@@ -36,7 +36,7 @@ export function Main() {
   return (
     <Block ref={ref} id='main' className='relative flex h-[calc(100vh-60px)] flex-col justify-between max-md:pb-8'>
       <div className='flex w-full items-center justify-between'>
-        <Icon name='logo' className='size-10' />
+        <Icon name='logo' className='size-10 transition-transform hover:scale-110 max-md:size-8' />
         <div className='flex items-center gap-4'>
           <CopyButton className='h-[54px]' iconRight='copy'>
             4roffdesign@gmail.com

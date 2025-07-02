@@ -1,5 +1,5 @@
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
-import { useLocalization } from '@/hooks/useCaseLocalization';
+import { useLocalization } from '@/hooks/useLocalization';
 import { StringDate } from '@/types/StringDate';
 import { cn } from '@/utils/cn';
 import { formatDate } from '@/utils/formatDate';

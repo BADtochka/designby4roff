@@ -2,11 +2,14 @@ import Icon from '@/components/Icon';
 import { useCasesStore } from '@/stores/cases';
 import { CaseInfo } from '@/types/CaseInfo';
 import { cn } from '@/utils/cn';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export type AboutCaseInfoProps = CaseInfo;
 
 export default function AboutCaseInfo({ title, description, url }: AboutCaseInfoProps) {
   const caseOption = useCasesStore((state) => state.caseOptions);
+  const [hovered, setHovered] = useState(false);
 
   const onOpenUrl = () => {
     if (!url) return;
@@ -22,9 +25,25 @@ export default function AboutCaseInfo({ title, description, url }: AboutCaseInfo
       >
         {title}
       </p>
-      <div className='flex items-center gap-2' onClick={onOpenUrl}>
+      <div
+        className='relative flex items-center gap-2'
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
+        onClick={onOpenUrl}
+      >
         <p className='text-xl max-md:text-base'>{description}</p>
-        {url && <Icon name='url' />}
+        {url && (
+          <>
+            <motion.div
+              animate={{ width: hovered ? '100%' : 0 }}
+              transition={{ duration: 0.3 }}
+              className={cn('absolute bottom-0 left-0 h-px bg-white', {
+                'bg-black': caseOption.scheme === 'light',
+              })}
+            />
+            <Icon name='url' />
+          </>
+        )}
       </div>
     </div>
   );

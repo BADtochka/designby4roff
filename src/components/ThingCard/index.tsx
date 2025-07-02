@@ -1,17 +1,14 @@
-import { useLocalization } from '@/hooks/useCaseLocalization';
-import { Translation } from '@/i18n/i18n-types';
+import { useLocalization } from '@/hooks/useLocalization';
 import { StringDate } from '@/types/StringDate';
 import { T } from '@/utils/defineLocalization';
 import DateRange from '../DateRange';
 import Image from '../Image';
 
-type CardKeys = keyof Translation['blocks']['oneMoreThing']['cards'];
-
 type ThingCardProps = {
   title: string;
   description: string;
   category: string;
-  type: CardKeys;
+  type: 'photoshop' | 'premiere' | 'afterEffects';
   meta?: boolean;
   startDate: StringDate;
   endDate?: StringDate;
@@ -40,9 +37,9 @@ export default function ThingCard({ title, description, category, meta, type, st
           </div>
         </div>
         <div className='relative size-[100px]'>
-          <Image src={`${type}.png`} className='rounded-full' />
+          <Image src={`/${type}.png`} className='rounded-full' />
           <Image
-            src={`${type}.png`}
+            src={`/${type}.png`}
             className='absolute -top-2/3 -right-2/3 -z-10 min-h-60 min-w-60 opacity-50 blur-3xl'
           />
         </div>

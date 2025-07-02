@@ -18,9 +18,11 @@
         background: black;
       }
 
-      body[data-no-scroll='true'] {
-        overflow: hidden;
-        padding-right: 8px;
+      @media (width > 800px) {
+        body[data-no-scroll='true'] {
+          overflow: hidden;
+          padding-right: 8px;
+        }
       }
 
       #loader {

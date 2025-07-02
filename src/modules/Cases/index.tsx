@@ -2,11 +2,13 @@ import Block from '@/components/Block';
 import CaseCard from '@/components/CaseCard';
 import { Tabs, TabsContent, TabsTab } from '@/components/Tabs';
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
-import { useLocalization } from '@/hooks/useCaseLocalization';
 import { useCaseRoutes } from '@/hooks/useCaseRoutes';
 import { useHashSetter } from '@/hooks/useHashSetter';
+import { useLocalization } from '@/hooks/useLocalization';
 import { useCasesStore } from '@/stores/cases';
+import { cn } from '@/utils/cn';
 import { T } from '@/utils/defineLocalization';
+import { isOdd } from '@/utils/isOdd';
 
 const localization = T({
   ru: {
@@ -30,17 +32,10 @@ export default function Cases() {
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
 
   const categoryCases = Object.entries(cases).filter(([key]) => key.includes(`/cases/${selectedCategory}/`));
-  // .flatMap(([_, value]) => value);
-
-  // const casesKeys = () => {
-  //   if (selectedCategory === 'game') return getObjectKeys(casesList.game);
-  //   return getObjectKeys(casesList.product);
-  // };
-  // const secondGroupIndex = casesKeys().length < 2 ? 1 : casesKeys().length - 3;
-  // const isCountOdd = isOdd(casesKeys().length);
-
-  // const firstGridCases = casesKeys().filter((_, index) => index < secondGroupIndex);
-  // const secondGridCases = casesKeys().filter((_, index) => index >= secondGroupIndex);
+  const secondGroupIndex = categoryCases.length < 2 ? 1 : categoryCases.length - 3;
+  const isCountOdd = isOdd(categoryCases.length);
+  const firstGridCases = categoryCases.filter((_, index) => index < secondGroupIndex);
+  const secondGridCases = categoryCases.filter((_, index) => index >= secondGroupIndex);
 
   return (
     <div ref={ref} id='cases' className='flex flex-col gap-[50px] max-md:gap-5'>
@@ -69,39 +64,32 @@ export default function Cases() {
         <p className='text-base text-white/30'>{L.worksUpdate}: 01.03.2025</p>
       </Block>
       <div className='flex flex-col gap-10 max-md:gap-6'>
-        <div className='grid grid-cols-2 gap-10 max-md:flex max-md:flex-col max-md:gap-6'>
-          {categoryCases.map(([key, { config, localization }]) => (
-            <CaseCard key={key} link={key} localization={localization} {...config} />
-          ))}
-        </div>
-        {/* {firstGridCases.length > 0 && (
+        {!!firstGridCases.length && (
           <div className='grid grid-cols-2 gap-10 max-md:flex max-md:flex-col max-md:gap-6'>
-            {firstGridCases.map((key, index) => (
+            {firstGridCases.map(([key, { config, localization }], index) => (
               <CaseCard
                 key={key}
-                keyName={key as SelectedCategoryKeys}
-                category={selectedCategory}
-                className={`${!isCountOdd && index + 1 === secondGroupIndex && 'col-span-2 h-[500px] max-md:h-fit'}`}
-                {...casesList[selectedCategory][key as SelectedCategoryKeys]}
+                link={key}
+                localization={localization}
+                className={`${!isCountOdd && index + 1 === secondGroupIndex && 'col-span-2 h-[700px] max-md:h-fit'}`}
+                {...config}
               />
             ))}
           </div>
-        )} */}
-        {/* {secondGridCases.length > 0 && (
+        )}
+        {!!secondGridCases.length && (
           <div
-            className='grid grid-cols-3 gap-10 *:col-start-1 *:col-end-2 *:last:col-start-2 *:last:col-end-4 *:last:row-span-2
-              *:last:row-start-1 max-md:flex max-md:flex-col max-md:gap-6'
+            className={cn(
+              `grid grid-cols-2 gap-10 *:col-start-1 *:col-end-2 *:last:col-start-2 *:last:col-end-4 *:last:row-start-1 max-md:flex
+              max-md:flex-col max-md:gap-6`,
+              { 'grid-cols-3 *:last:row-span-2': secondGridCases.length !== 2 },
+            )}
           >
-            {secondGridCases.map((key) => (
-              <CaseCard
-                key={key}
-                category={selectedCategory}
-                keyName={key as SelectedCategoryKeys}
-                {...casesList[selectedCategory][key as SelectedCategoryKeys]}
-              />
+            {secondGridCases.map(([key, { config, localization }], index) => (
+              <CaseCard key={key} link={key} localization={localization} {...config} />
             ))}
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );

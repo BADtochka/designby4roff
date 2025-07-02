@@ -35,11 +35,7 @@ export const Route = createRootRoute({
     return (
       <>
         <ReactLenis root options={{ duration: 0.8 }}>
-          <div
-            className={cn(
-              'flex w-full flex-col gap-20 p-[30px] [view-transition-name:main-content] max-md:gap-5 max-md:p-4',
-            )}
-          >
+          <div className={cn('flex w-full flex-col gap-20 p-[30px] max-md:gap-5 max-md:p-4')}>
             <Main />
             <Cases />
             <About />

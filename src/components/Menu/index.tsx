@@ -1,5 +1,5 @@
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
-import { useLocalization } from '@/hooks/useCaseLocalization';
+import { useLocalization } from '@/hooks/useLocalization';
 import { useStickyScroll } from '@/hooks/useStickyScroll';
 import { useSystemStore } from '@/stores/system';
 import { getObjectKeys } from '@/utils/getObjectKeys';

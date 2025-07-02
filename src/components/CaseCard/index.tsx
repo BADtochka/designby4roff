@@ -1,6 +1,6 @@
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
-import { useLocalization } from '@/hooks/useCaseLocalization';
 import { useDevice } from '@/hooks/useDevice';
+import { useLocalization } from '@/hooks/useLocalization';
 import { CaseOptions, useCasesStore } from '@/stores/cases';
 import { CaseData } from '@/types/Cases';
 import { Localization } from '@/types/Localization';
@@ -56,15 +56,15 @@ export default function CaseCard({
   };
 
   return (
-    <Link to={link}>
+    <Link
+      to={link}
+      className={cn('relative flex overflow-hidden rounded-[20px] border border-white/15 max-md:flex-col', className, {
+        'border-black/15': scheme === 'light',
+      })}
+      from='/'
+    >
       <motion.div
-        className={cn(
-          'relative flex overflow-hidden rounded-[20px] border border-white/15 max-md:flex-col',
-          className,
-          {
-            'border-black/15': scheme === 'light',
-          },
-        )}
+        className='h-full w-full'
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         transition={{ bounce: 0 }}
@@ -73,7 +73,7 @@ export default function CaseCard({
         {...props}
       >
         <Image
-          className='h-full w-full object-cover'
+          className='w-full object-cover'
           animate={{
             scale: isHovered && isDesktop ? 1.1 : 1,
             filter: isHovered && isDesktop ? 'blur(10px)' : 'blur(0px)',

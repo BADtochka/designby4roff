@@ -1,6 +1,6 @@
 import Block from '@/components/Block';
 import ThingCard from '@/components/ThingCard';
-import { useLocalization } from '@/hooks/useCaseLocalization';
+import { useLocalization } from '@/hooks/useLocalization';
 import { T } from '@/utils/defineLocalization';
 
 const localization = T({

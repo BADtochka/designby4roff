@@ -1,7 +1,7 @@
 import Button, { ButtonProps } from '@/components/Button';
 import Icon from '@/components/Icon';
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
-import { useLocalization } from '@/hooks/useCaseLocalization';
+import { useLocalization } from '@/hooks/useLocalization';
 import { CaseOptions } from '@/stores/cases';
 import { cn } from '@/utils/cn';
 import { delay } from '@/utils/delay';

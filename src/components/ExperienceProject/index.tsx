@@ -19,7 +19,7 @@ export default function ExperienceProject({
     <div className='flex justify-between gap-10 border-b border-[#ffffff28] px-16 py-[50px] max-md:flex-col max-md:gap-10 max-md:p-8'>
       <div className='flex gap-8 max-md:flex-col'>
         <Image
-          src={`experiences/${image}`}
+          src={`/experiences/${image}`}
           parentClassName='shrink-0 w-20 h-20'
           className='shrink-0 rounded-full object-cover'
           loading='lazy'

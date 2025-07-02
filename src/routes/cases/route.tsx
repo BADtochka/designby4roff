@@ -1,8 +1,9 @@
 import Button from '@/components/Button';
-import Icons from '@/components/Icon';
-import { useLocalization } from '@/hooks/useCaseLocalization';
+import Icon from '@/components/Icon';
 import { useCaseRoutes } from '@/hooks/useCaseRoutes';
+import { useLocalization } from '@/hooks/useLocalization';
 import Footer from '@/modules/Footer';
+import OtherCases from '@/modules/OtherCases';
 import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
 import { Outlet, useLocation, useNavigate } from '@tanstack/react-router';
@@ -39,21 +40,18 @@ function RouteComponent() {
         background: caseOptions.background,
         color: caseOptions.scheme === 'dark' ? 'white' : 'black',
       }}
-      className={cn(
-        'fixed top-0 left-0 z-20 h-full w-full overflow-auto px-20 pb-10 [view-transition-name:main-content] max-md:px-4',
-        {
-          'overflow-hidden': pathname === '/',
-        },
-      )}
+      className={cn('fixed top-0 left-0 z-20 h-full w-full overflow-auto px-20 pb-10 max-md:px-4', {
+        'overflow-hidden max-md:!pr-6': pathname === '/',
+      })}
       data-lenis-prevent
     >
       <div className='mb-10 flex items-center justify-between py-5 max-md:mb-5'>
-        <Icons
+        <Icon
           onClick={onCloseCase}
           name='logo'
           className='size-10 transition-transform hover:scale-110 max-md:size-8'
         />
-        <h1 className='font-extrabold uppercase'>{L.caseTitle}</h1>
+        <h1 className='font-extrabold uppercase'>{L.caseTitle as string}</h1>
         <Button
           iconLeft='close'
           animation={false}
@@ -68,7 +66,7 @@ function RouteComponent() {
       </div>
       <div className='flex flex-col gap-[120px] max-md:gap-[70px] max-sm:gap-10'>
         <Outlet />
-        {/* <OtherCases /> */}
+        <OtherCases />
         <Footer borderColor={caseOptions.borderColor} mode={caseOptions.scheme} inCase />
       </div>
     </div>

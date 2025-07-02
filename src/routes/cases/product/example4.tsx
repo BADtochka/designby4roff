@@ -1,4 +1,4 @@
-import { useLocalization } from '@/hooks/useCaseLocalization';
+import { useLocalization } from '@/hooks/useLocalization';
 import AboutCase from '@/modules/AboutCase';
 import AboutCaseInfo from '@/modules/AboutCaseInfo';
 import CaseImage from '@/modules/CaseImage';
@@ -21,7 +21,7 @@ export const routeData = {
   } as CaseData,
   localization: T({
     ru: {
-      caseTitle: 'Название нигга кейса',
+      caseTitle: 'Названи ещё одного продуктового кейса',
       caseDescription: 'Описание кейса',
       hello: 'Привет',
       name: 'Никита',
