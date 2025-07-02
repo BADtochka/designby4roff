@@ -35,7 +35,7 @@ export const routeData = {
         'С другой стороны, консультации с широким кругом специалистов требуют определения и уточнения модели развития. Таким образом, укрепление и развитие структуры позволяет широкому кругу (специалистов) участвовать в формировании направлений прогрессивного развития.',
     },
     en: {
-      caseTitle: 'Product case title',
+      caseTitle: 'Game case title',
       caseDescription: 'Case description',
       hello: 'Hello',
       name: 'Nikita',
