@@ -9,8 +9,7 @@ type UseHashSetter = {
 export const useHashSetter = ({ hash }: UseHashSetter) => {
   const setCurrentBlock = useSystemStore((state) => state.setCurrentHash);
   const { ref, inView } = useInView({
-    delay: 0,
-    threshold: 0.5,
+    threshold: 0.2,
   });
 
   useEffect(() => {

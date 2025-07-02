@@ -1,4 +1,4 @@
-import { Locales } from '@/i18n/i18n-types';
+import { Locales } from '@/types/Localization';
 import { createCustomStore } from '@/utils/createStore';
 
 type SystemStates = {

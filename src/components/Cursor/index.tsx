@@ -1,5 +1,5 @@
+import { useDevice } from '@/hooks/useDevice';
 import { useMouse } from '@/hooks/useMouse';
-import { useResolution } from '@/hooks/useResolution';
 import { useCursorStore } from '@/stores/cursor';
 import { cn } from '@/utils/cn';
 import { motion, Variants } from 'framer-motion';
@@ -7,7 +7,7 @@ import { motion, Variants } from 'framer-motion';
 export default function Cursor() {
   const cursorOptions = useCursorStore((state) => state.options);
   const { state, ref } = useMouse();
-  const { isDesktop } = useResolution();
+  const { isDesktop } = useDevice();
 
   const cursorVariants: Variants = {
     default: {

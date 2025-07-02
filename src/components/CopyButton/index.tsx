@@ -1,6 +1,7 @@
 import Button, { ButtonProps } from '@/components/Button';
-import Icon from '@/components/Icons';
-import { useI18nContext } from '@/i18n/i18n-react';
+import Icon from '@/components/Icon';
+import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
+import { useLocalization } from '@/hooks/useLocalization';
 import { CaseOptions } from '@/stores/cases';
 import { cn } from '@/utils/cn';
 import { delay } from '@/utils/delay';
@@ -13,7 +14,7 @@ interface CopyButtonProps extends ButtonProps {
 }
 
 export const CopyButton = ({ content, children, className, mode = 'dark', ...props }: CopyButtonProps) => {
-  const { LL } = useI18nContext();
+  const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
   const controls = useAnimation();
 
   const tooltipVariants: Variants = {
@@ -57,7 +58,7 @@ export const CopyButton = ({ content, children, className, mode = 'dark', ...pro
         )}
       >
         <Icon name='check' />
-        <p>{LL.buttons.copyTooltip()}</p>
+        <p>{GL.buttons.copyTooltip}</p>
       </motion.div>
     </div>
   );

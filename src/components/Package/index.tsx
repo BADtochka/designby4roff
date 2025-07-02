@@ -1,5 +1,6 @@
-import { useResolution } from '@/hooks/useResolution';
+import { useDevice } from '@/hooks/useDevice';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
+import { useLocation } from '@tanstack/react-router';
 import { motion, useSpring } from 'framer-motion';
 import { memo, useEffect, useRef, useState } from 'react';
 import { Group, Mesh, Object3D, Vector3 } from 'three';
@@ -13,7 +14,7 @@ type ModelProps = {
 
 const Eyes = memo(({ eyes }: { eyes: Object3D[] }) => {
   const { viewport } = useThree();
-  const { isDesktop } = useResolution();
+  const { isDesktop } = useDevice();
   const mousePos = useRef({ x: 0, y: 0 });
 
   const maxOffset = 0.1;
@@ -44,10 +45,12 @@ const Eyes = memo(({ eyes }: { eyes: Object3D[] }) => {
 });
 
 export const Model = memo(({ fbx, onReady }: ModelProps) => {
+  const { pathname } = useLocation();
+
   const rotateX = useSpring(0);
   const rotateY = useSpring(0);
   const meshRef = useRef<Mesh>(null);
-  const { isMobile, isTablet } = useResolution();
+  const { isMobile, isTablet } = useDevice();
   const { viewport } = useThree();
   const [eyes, setEyes] = useState<Object3D[]>([]);
 
@@ -69,10 +72,10 @@ export const Model = memo(({ fbx, onReady }: ModelProps) => {
   };
 
   useEffect(() => {
-    if (isMobile || isTablet) return;
+    if (isMobile || isTablet || pathname !== '/') return;
     document.addEventListener('mousemove', onMouseMove);
     return () => document.removeEventListener('mousemove', onMouseMove);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (fbx) {
@@ -108,9 +111,10 @@ export const Model = memo(({ fbx, onReady }: ModelProps) => {
 });
 
 const Package = () => {
-  const { isDesktop } = useResolution();
+  const { isDesktop } = useDevice();
   const [isModelReady, setIsModelReady] = useState(false);
-  const fbx = useLoader(FBXLoader, '3d/paketik_without_eyes.fbx') as Group;
+  const fbx = useLoader(FBXLoader, '/3d/paketik_without_eyes.fbx') as Group;
+  const { pathname } = useLocation();
 
   return (
     <motion.div
@@ -120,7 +124,7 @@ const Package = () => {
     >
       <Canvas resize={{ scroll: false }}>
         <ambientLight intensity={5} color='#FFFFFF' />
-        <Model fbx={fbx} onReady={() => setIsModelReady(true)} />
+        {pathname === '/' && <Model fbx={fbx} onReady={() => setIsModelReady(true)} />}
       </Canvas>
     </motion.div>
   );
