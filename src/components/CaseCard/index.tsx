@@ -28,6 +28,8 @@ export default function CaseCard({
   background,
   scheme,
   link,
+  logo,
+  gap,
   ...props
 }: CaseCardProps) {
   const { L } = useLocalization(localization);
@@ -52,15 +54,21 @@ export default function CaseCard({
       background: background ?? 'black',
       scheme: scheme ?? 'dark',
       borderColor: borderColor,
+      logo: logo ?? '/cases/exampleLogo.png',
+      gap: gap ?? 64,
     });
   };
 
   return (
     <Link
       to={link}
-      className={cn('relative flex overflow-hidden rounded-[20px] border border-white/15 max-md:flex-col', className, {
-        'border-black/15': scheme === 'light',
-      })}
+      className={cn(
+        'relative flex overflow-hidden rounded-[40px] border border-white/15 max-md:flex-col max-md:rounded-4xl',
+        className,
+        {
+          'border-black/15': scheme === 'light',
+        },
+      )}
       from='/'
     >
       <motion.div
@@ -74,6 +82,7 @@ export default function CaseCard({
       >
         <Image
           className='w-full object-cover'
+          parentClassName='bg-black'
           animate={{
             scale: isHovered && isDesktop ? 1.1 : 1,
             filter: isHovered && isDesktop ? 'blur(10px)' : 'blur(0px)',
@@ -86,8 +95,8 @@ export default function CaseCard({
         <motion.div
           initial={false}
           className={cn(
-            `flex flex-col gap-7 max-md:gap-4 max-md:bg-[#141414]/0 max-md:p-8 md:pointer-events-none md:absolute md:bottom-[50px]
-            md:left-[50px]`,
+            `flex w-full flex-col gap-7 p-[50px] max-md:gap-4 max-md:bg-[#141414]/0 max-md:p-8 md:pointer-events-none md:absolute
+            md:bottom-0`,
             {
               'max-md:bg-[#F2F2F2]/0': scheme === 'light',
             },

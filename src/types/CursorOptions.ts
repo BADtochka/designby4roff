@@ -3,4 +3,5 @@ export type CursorOptions = Partial<{
   content: string;
   invert: boolean;
   hide: boolean;
+  scale: number;
 }>;

@@ -15,13 +15,18 @@ export const Route = createFileRoute({
 
 export const routeData = {
   config: {
+    logo: '/cases/exampleLogo.png',
     image: 'card.png',
     startDate: '11.2011',
+    endDate: 'now',
+    scheme: 'dark',
     background: '#424242',
+    borderColor: '#ffffff',
+    gap: 64,
   } as CaseData,
   localization: T({
     ru: {
-      caseTitle: 'Название ещё одного игрового кейса',
+      caseTitle: 'Название игрового кейса',
       caseDescription: 'Описание кейса',
       hello: 'Привет',
       name: 'Никита',
@@ -56,16 +61,28 @@ function RouteComponent() {
 
   return (
     <>
-      <AboutCase title={L.caseTitle} description={L.caseDescription}>
+      <AboutCase title={L.caseTitle} description={L.caseDescription} noBorder>
         <AboutCaseInfo title={L.hello} description={L.name} />
         <AboutCaseInfo title={L.info1Title} description={L.info1Description} />
         <AboutCaseInfo title={L.info2Title} description={L.info2Description} url='https://google.com' />
       </AboutCase>
       <CaseImage src='/cases/card.png' />
-      <CaseText title={L.heading} description={L.textDescription} />
-      <CaseText title={L.bigHeading} uppercase />
-      <CaseTextImage title={L.heading} description={L.textDescription} direction='column' src='/cases/card.png' />
-      <CaseTextImage title={L.heading} description={L.textDescription} direction='column' src='/cases/card.png' />
+      <CaseText title={L.heading} description={L.textDescription} noBorder />
+      <CaseText title={L.bigHeading} uppercase noBorder />
+      <CaseTextImage
+        title={L.heading}
+        description={L.textDescription}
+        direction='column'
+        src='/cases/card.png'
+        noBorder
+      />
+      <CaseTextImage
+        title={L.heading}
+        description={L.textDescription}
+        direction='column'
+        src='/cases/card.png'
+        noBorder
+      />
       <CaseImages layout='gallery'>
         <CaseImage src='/cases/card.png' />
         <CaseImage src='/cases/card.png' />

@@ -3,8 +3,8 @@ import { useDevice } from '@/hooks/useDevice';
 // import { BlobityContext } from '@/providers/BlobityProvider';
 import { CaseOptions } from '@/stores/cases';
 import { cn } from '@/utils/cn';
-import { Link } from '@tanstack/react-router';
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
+import { AnimatedLink } from '../AnimatedLink';
 import Button from '../Button';
 import { IconName } from '../Icon';
 
@@ -19,12 +19,7 @@ const SocLinks = ({ mode = 'dark' }: SocLinksProps) => {
     <div className='flex items-center gap-2.5 text-white/30 max-md:-order-1'>
       {isDesktop
         ? socLinks.map((link, index) => (
-            <Fragment key={link.name}>
-              {index > 0 && index < socLinks.length && <span>•</span>}
-              <Link to={link.url} from='/' target='_blank' className='hover:text-white' cursor-invert='true'>
-                {link.name}
-              </Link>
-            </Fragment>
+            <AnimatedLink key={link.name} showDot={index > 0 && index < socLinks.length} name={link.name} />
           ))
         : socLinks.map((link) => (
             <Button

@@ -12,6 +12,7 @@ const experienceData = {
       post: 'UI/UX Designer · Product Designer',
       image: 'freelance.png',
       startDate: '10.2025',
+      endDate: 'now',
     },
   } as Experiences,
   localization: T({

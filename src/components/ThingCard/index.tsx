@@ -37,11 +37,8 @@ export default function ThingCard({ title, description, category, meta, type, st
           </div>
         </div>
         <div className='relative size-[100px]'>
-          <Image src={`/${type}.png`} className='rounded-full' />
-          <Image
-            src={`/${type}.png`}
-            className='absolute -top-2/3 -right-2/3 -z-10 min-h-60 min-w-60 opacity-50 blur-3xl'
-          />
+          <Image src={`/${type}.png`} className='z-10 rounded-full' />
+          <Image src={`/${type}.png`} className='absolute -top-2/3 -right-2/3 min-h-60 min-w-60 opacity-50 blur-3xl' />
         </div>
       </div>
       <div className='flex flex-col gap-6'>

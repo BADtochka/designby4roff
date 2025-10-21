@@ -6,7 +6,7 @@ import { formatDate } from '@/utils/formatDate';
 
 type DateRange = {
   startDate: StringDate;
-  endDate?: StringDate;
+  endDate: StringDate | 'now';
   className?: string;
 };
 
@@ -14,7 +14,7 @@ export default function DateRange({ startDate, endDate, className }: DateRange) 
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
 
   const formatedStartDate = formatDate(startDate);
-  const formatedEndDate = endDate ? formatDate(endDate) : GL.now;
+  const formatedEndDate = endDate !== 'now' ? formatDate(endDate) : GL.now;
 
   return (
     <p className={cn('text-sm text-white/35 uppercase', className)}>{`${formatedStartDate} - ${formatedEndDate}`}</p>

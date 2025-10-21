@@ -11,8 +11,8 @@ export default function Cursor() {
 
   const cursorVariants: Variants = {
     default: {
-      width: 16,
-      height: 16,
+      width: 10,
+      height: 10,
       opacity: 1,
     },
     withText: {
@@ -28,6 +28,10 @@ export default function Cursor() {
       padding: 0,
       opacity: 0,
     },
+    scale: {
+      width: 10 * Number(cursorOptions.scale),
+      height: 10 * Number(cursorOptions.scale),
+    },
   };
 
   const cursorTextVariants: Variants = {
@@ -39,7 +43,13 @@ export default function Cursor() {
     },
   };
 
-  const currentCursorVariant = cursorOptions.hide ? 'hide' : cursorOptions.expanded ? 'withText' : 'default';
+  const currentCursorVariant = cursorOptions.hide
+    ? 'hide'
+    : cursorOptions.expanded
+      ? 'withText'
+      : cursorOptions.scale !== 1
+        ? 'scale'
+        : 'default';
   if (!isDesktop) return;
 
   return (
@@ -53,7 +63,12 @@ export default function Cursor() {
           top: `${state.y}px`,
           transform: 'translate(-50%, -50%)',
         }}
-        className={cn('absolute flex items-center justify-center rounded-full bg-white p-4 text-black')}
+        transition={{
+          delayChildren: 0.5,
+        }}
+        className={cn('absolute flex items-center justify-center rounded-full bg-white text-black', {
+          'p-4': cursorOptions.expanded,
+        })}
       >
         <motion.p
           className='text-[18px]'

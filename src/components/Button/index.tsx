@@ -33,7 +33,7 @@ interface ButtonContentProps {
   onChangeWidth: (width: number) => void;
 }
 
-function ButtonContent({
+const ButtonContent = ({
   children,
   isHovered,
   animation,
@@ -41,7 +41,7 @@ function ButtonContent({
   iconRight,
   iconSize,
   onChangeWidth,
-}: PropsWithChildren<ButtonContentProps>) {
+}: PropsWithChildren<ButtonContentProps>) => {
   const childRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -96,7 +96,7 @@ function ButtonContent({
       </motion.div>
     </>
   );
-}
+};
 
 const Button = ({
   iconLeft,
@@ -117,7 +117,8 @@ const Button = ({
   const animationEnabled = browser !== 'firefox' && animation;
 
   const getHorizontalPadding = () => {
-    if (browser === 'Firefox') return 0;
+    if (!buttonRef.current) return 0;
+    if (browser === 'Firefox' || !('computedStyleMap' in buttonRef.current)) return 0;
     const computedPadding = buttonRef.current?.computedStyleMap().get('padding')?.toString();
     const computedGap = buttonRef.current?.computedStyleMap().get('gap')?.toString().replace('px', '');
     if (!buttonRef.current || !computedPadding || !computedGap) return 0;
@@ -140,6 +141,7 @@ const Button = ({
           <button
             ref={buttonRef}
             data-active={active}
+            cursor-scale={2}
             style={{ minWidth: animationEnabled ? width : 'unset' }}
             className={cn(
               `relative flex h-[72px] cursor-pointer items-center justify-center gap-1.5 overflow-hidden rounded-full border
@@ -169,6 +171,7 @@ const Button = ({
           onPointerLeave={() => setHovered(false)}
           style={{ minWidth: animationEnabled ? width : 'unset' }}
           data-active={active}
+          cursor-scale={2}
           className={cn(
             `relative flex h-[72px] cursor-pointer items-center justify-center gap-1.5 overflow-hidden rounded-full border
               border-[#ffffff]/[.16] px-8 outline-none hover:border-[#ffffff]/[.32] data-[active="true"]:bg-white

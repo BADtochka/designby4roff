@@ -14,8 +14,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as CasesRouteRouteImport } from './routes/cases/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CasesIndexRouteImport } from './routes/cases/index'
-import { Route as CasesProductExample5RouteImport } from './routes/cases/product/example5'
-import { Route as CasesProductExample4RouteImport } from './routes/cases/product/example4'
 import { Route as CasesProductExample3RouteImport } from './routes/cases/product/example3'
 import { Route as CasesProductExample2RouteImport } from './routes/cases/product/example2'
 import { Route as CasesProductExampleRouteImport } from './routes/cases/product/example'
@@ -35,16 +33,6 @@ const IndexRoute = IndexRouteImport.update({
 const CasesIndexRoute = CasesIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => CasesRouteRoute,
-} as any)
-const CasesProductExample5Route = CasesProductExample5RouteImport.update({
-  id: '/product/example5',
-  path: '/product/example5',
-  getParentRoute: () => CasesRouteRoute,
-} as any)
-const CasesProductExample4Route = CasesProductExample4RouteImport.update({
-  id: '/product/example4',
-  path: '/product/example4',
   getParentRoute: () => CasesRouteRoute,
 } as any)
 const CasesProductExample3Route = CasesProductExample3RouteImport.update({
@@ -82,8 +70,6 @@ export interface FileRoutesByFullPath {
   '/cases/product/example': typeof CasesProductExampleRoute
   '/cases/product/example2': typeof CasesProductExample2Route
   '/cases/product/example3': typeof CasesProductExample3Route
-  '/cases/product/example4': typeof CasesProductExample4Route
-  '/cases/product/example5': typeof CasesProductExample5Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,8 +79,6 @@ export interface FileRoutesByTo {
   '/cases/product/example': typeof CasesProductExampleRoute
   '/cases/product/example2': typeof CasesProductExample2Route
   '/cases/product/example3': typeof CasesProductExample3Route
-  '/cases/product/example4': typeof CasesProductExample4Route
-  '/cases/product/example5': typeof CasesProductExample5Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,8 +90,6 @@ export interface FileRoutesById {
   '/cases/product/example': typeof CasesProductExampleRoute
   '/cases/product/example2': typeof CasesProductExample2Route
   '/cases/product/example3': typeof CasesProductExample3Route
-  '/cases/product/example4': typeof CasesProductExample4Route
-  '/cases/product/example5': typeof CasesProductExample5Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,8 +102,6 @@ export interface FileRouteTypes {
     | '/cases/product/example'
     | '/cases/product/example2'
     | '/cases/product/example3'
-    | '/cases/product/example4'
-    | '/cases/product/example5'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -131,8 +111,6 @@ export interface FileRouteTypes {
     | '/cases/product/example'
     | '/cases/product/example2'
     | '/cases/product/example3'
-    | '/cases/product/example4'
-    | '/cases/product/example5'
   id:
     | '__root__'
     | '/'
@@ -143,8 +121,6 @@ export interface FileRouteTypes {
     | '/cases/product/example'
     | '/cases/product/example2'
     | '/cases/product/example3'
-    | '/cases/product/example4'
-    | '/cases/product/example5'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -208,20 +184,6 @@ declare module '@tanstack/react-router' {
       path: '/product/example3'
       fullPath: '/cases/product/example3'
       preLoaderRoute: typeof CasesProductExample3RouteImport
-      parentRoute: typeof CasesRouteRoute
-    }
-    '/cases/product/example4': {
-      id: '/cases/product/example4'
-      path: '/product/example4'
-      fullPath: '/cases/product/example4'
-      preLoaderRoute: typeof CasesProductExample4RouteImport
-      parentRoute: typeof CasesRouteRoute
-    }
-    '/cases/product/example5': {
-      id: '/cases/product/example5'
-      path: '/product/example5'
-      fullPath: '/cases/product/example5'
-      preLoaderRoute: typeof CasesProductExample5RouteImport
       parentRoute: typeof CasesRouteRoute
     }
   }
@@ -299,24 +261,6 @@ declare module './routes/cases/product/example3' {
     FileRoutesByPath['/cases/product/example3']['fullPath']
   >
 }
-declare module './routes/cases/product/example4' {
-  const createFileRoute: CreateFileRoute<
-    '/cases/product/example4',
-    FileRoutesByPath['/cases/product/example4']['parentRoute'],
-    FileRoutesByPath['/cases/product/example4']['id'],
-    FileRoutesByPath['/cases/product/example4']['path'],
-    FileRoutesByPath['/cases/product/example4']['fullPath']
-  >
-}
-declare module './routes/cases/product/example5' {
-  const createFileRoute: CreateFileRoute<
-    '/cases/product/example5',
-    FileRoutesByPath['/cases/product/example5']['parentRoute'],
-    FileRoutesByPath['/cases/product/example5']['id'],
-    FileRoutesByPath['/cases/product/example5']['path'],
-    FileRoutesByPath['/cases/product/example5']['fullPath']
-  >
-}
 
 interface CasesRouteRouteChildren {
   CasesIndexRoute: typeof CasesIndexRoute
@@ -325,8 +269,6 @@ interface CasesRouteRouteChildren {
   CasesProductExampleRoute: typeof CasesProductExampleRoute
   CasesProductExample2Route: typeof CasesProductExample2Route
   CasesProductExample3Route: typeof CasesProductExample3Route
-  CasesProductExample4Route: typeof CasesProductExample4Route
-  CasesProductExample5Route: typeof CasesProductExample5Route
 }
 
 const CasesRouteRouteChildren: CasesRouteRouteChildren = {
@@ -336,8 +278,6 @@ const CasesRouteRouteChildren: CasesRouteRouteChildren = {
   CasesProductExampleRoute: CasesProductExampleRoute,
   CasesProductExample2Route: CasesProductExample2Route,
   CasesProductExample3Route: CasesProductExample3Route,
-  CasesProductExample4Route: CasesProductExample4Route,
-  CasesProductExample5Route: CasesProductExample5Route,
 }
 
 const CasesRouteRouteWithChildren = CasesRouteRoute._addFileChildren(

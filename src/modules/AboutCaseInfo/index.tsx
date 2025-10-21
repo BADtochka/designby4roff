@@ -26,7 +26,7 @@ export default function AboutCaseInfo({ title, description, url }: AboutCaseInfo
         {title}
       </p>
       <div
-        className='relative flex items-center gap-2'
+        className='relative flex items-center gap-2 max-2xl:justify-center'
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
         onClick={onOpenUrl}

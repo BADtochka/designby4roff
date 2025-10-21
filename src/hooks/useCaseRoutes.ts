@@ -20,5 +20,10 @@ export const useCaseRoutes = () => {
     reloadRoutes();
   }, []);
 
+  useEffect(() => {
+    if (!pathname.includes('cases')) return;
+    reloadRoutes();
+  }, [pathname]);
+
   return { cases, currentCase, currentCaseKey };
 };

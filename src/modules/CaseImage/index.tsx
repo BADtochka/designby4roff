@@ -5,6 +5,10 @@ export type CaseImageProps = Pick<ImageProps, 'src' | 'parentClassName' | 'class
 
 export default function CaseImage({ parentClassName, className, ...props }: CaseImageProps) {
   return (
-    <Image className={cn('rounded-[20px] object-cover', className)} parentClassName={cn(parentClassName)} {...props} />
+    <Image
+      className={cn('rounded-[40px] object-cover max-md:rounded-4xl', className)}
+      parentClassName={cn(parentClassName)}
+      {...props}
+    />
   );
 }

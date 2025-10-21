@@ -31,7 +31,7 @@ export default function CaseVideo({ src, className, ...props }: CaseVideoProps) 
       ref={ref}
       className={cn(
         className,
-        'relative max-h-[900px] overflow-hidden rounded-[20px] border border-[#383838]/25 object-cover',
+        'relative max-h-[900px] overflow-hidden rounded-[40px] border border-[#383838]/25 object-cover max-md:rounded-4xl',
       )}
     >
       <motion.video

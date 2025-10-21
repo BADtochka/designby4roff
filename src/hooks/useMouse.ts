@@ -34,7 +34,7 @@ export const useMouse = () => {
     const onMouseOver = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
 
-      const hoveredElement = target.closest('[cursor-content], [cursor-invert]') as HTMLElement;
+      const hoveredElement = target.closest('[cursor-content], [cursor-invert], [cursor-scale]') as HTMLElement;
       if (!hoveredElement) return;
       const elementAttributes = Array.from(hoveredElement.attributes).map((attr) => attr.name);
 
@@ -45,9 +45,10 @@ export const useMouse = () => {
         const attrValue = hoveredElement.getAttribute('cursor-invert') as string;
         if (attrValue !== 'true') return;
         setCursorOptions({ invert: true });
+      } else if (elementAttributes.includes('cursor-scale')) {
+        const attrValue = hoveredElement.getAttribute('cursor-scale') as string;
+        setCursorOptions({ scale: Number(attrValue) });
       }
-
-      // setCursorOptions({ expanded: false });
 
       lastHoveredElement.current = hoveredElement;
     };
@@ -61,7 +62,8 @@ export const useMouse = () => {
         lastHoveredElement.current.contains(target) &&
         (!relatedTarget || !lastHoveredElement.current.contains(relatedTarget as HTMLElement))
       ) {
-        setCursorOptions({ expanded: false, invert: false });
+        setCursorOptions({ expanded: false, invert: false, scale: 1 });
+
         lastHoveredElement.current = null;
       }
     };

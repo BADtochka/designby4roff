@@ -38,7 +38,7 @@ export default function Image({ src, maxWidth, minHeight, className, parentClass
         className={cn('h-auto w-full', className)}
         src={src}
         initial='loading'
-        animate={isLoaded && inView ? 'loaded' : 'loading'}
+        animate={isLoaded ? 'loaded' : 'loading'}
         variants={imageVariants}
         fetchPriority='high'
         decoding='async'

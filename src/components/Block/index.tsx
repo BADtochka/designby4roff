@@ -11,7 +11,7 @@ export const Block = ({ className, children, ref, borderColor, style, ...props }
     <div
       ref={ref}
       style={{ borderColor: borderColor ?? '#ffffff28', ...style }}
-      className={cn('w-full rounded-[20px] border p-[50px] max-md:p-5', className)}
+      className={cn('w-full rounded-[40px] border p-[50px] max-md:rounded-4xl max-md:p-5', className)}
       {...props}
     >
       {children}
