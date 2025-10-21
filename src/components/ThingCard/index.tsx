@@ -11,7 +11,7 @@ type ThingCardProps = {
   type: 'photoshop' | 'premiere' | 'afterEffects';
   meta?: boolean;
   startDate: StringDate;
-  endDate?: StringDate;
+  endDate: StringDate | 'now';
 };
 
 const localization = T({
