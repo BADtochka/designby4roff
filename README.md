@@ -86,7 +86,9 @@ bun run build
 * Локализация настраивается в объекте `routeData` > `localization: T({})`
 
 > \[!CAUTION\]
-> Ключи caseTitle и caseDescription нельзя переименовывать, так как они используются для локализации в других компонентах.
+> Ключи caseTitle, caseDescription, caseShortDescription нельзя переименовывать, так как они используются для локализации в других компонентах.
+<img width="307" height="218" alt="изображение" src="https://github.com/user-attachments/assets/d3826f70-e2ba-413d-a689-6d9867b744c0" />
+
 
 ### Использовать локализацию можно следующим образом:
 
