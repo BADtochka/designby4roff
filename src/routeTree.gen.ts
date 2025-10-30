@@ -118,18 +118,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/cases': {
       id: '/cases'
       path: '/cases'
       fullPath: '/cases'
       preLoaderRoute: typeof CasesRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cases/': {
@@ -139,18 +139,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesIndexRouteImport
       parentRoute: typeof CasesRouteRoute
     }
-    '/cases/game/example': {
-      id: '/cases/game/example'
-      path: '/game/example'
-      fullPath: '/cases/game/example'
-      preLoaderRoute: typeof CasesGameExampleRouteImport
-      parentRoute: typeof CasesRouteRoute
-    }
-    '/cases/product/athayoga': {
-      id: '/cases/product/athayoga'
-      path: '/product/athayoga'
-      fullPath: '/cases/product/athayoga'
-      preLoaderRoute: typeof CasesProductAthayogaRouteImport
+    '/cases/product/walltime': {
+      id: '/cases/product/walltime'
+      path: '/product/walltime'
+      fullPath: '/cases/product/walltime'
+      preLoaderRoute: typeof CasesProductWalltimeRouteImport
       parentRoute: typeof CasesRouteRoute
     }
     '/cases/product/rics': {
@@ -160,11 +153,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesProductRicsRouteImport
       parentRoute: typeof CasesRouteRoute
     }
-    '/cases/product/walltime': {
-      id: '/cases/product/walltime'
-      path: '/product/walltime'
-      fullPath: '/cases/product/walltime'
-      preLoaderRoute: typeof CasesProductWalltimeRouteImport
+    '/cases/product/athayoga': {
+      id: '/cases/product/athayoga'
+      path: '/product/athayoga'
+      fullPath: '/cases/product/athayoga'
+      preLoaderRoute: typeof CasesProductAthayogaRouteImport
+      parentRoute: typeof CasesRouteRoute
+    }
+    '/cases/game/example': {
+      id: '/cases/game/example'
+      path: '/game/example'
+      fullPath: '/cases/game/example'
+      preLoaderRoute: typeof CasesGameExampleRouteImport
       parentRoute: typeof CasesRouteRoute
     }
   }

@@ -47,7 +47,7 @@ export const routeData = {
       headingMainPage:'ГЛАВНАЯ СТРАНИЦА',
       textDescriptionMainPage:'Все коллекции собраны в одном потоке — листайте, выбирайте и запускайте понравившиеся. Интерфейс позволяет быстро переключаться между личными наборами и готовыми подборками, чтобы находить вдохновение за секунды.',
       
-      headingMainMyCollection:'СВОИ КОЛЛЕКЦИИ. СОЗДАНИЕ И УПРАВЛЕНИЕ',
+      headingMainMyCollection:'СОЗДАНИЕ И УПРАВЛЕНИЕ СВОИМИ КОЛЛЕКЦИЯМИ',
       textDescriptionMyCollection:'Раздел создан специально для работы с личными подборками: здесь можно создавать новые коллекции, редактировать существующие и управлять уже опубликованными. Вся структура интуитивна — достаточно пары касаний, чтобы внести изменения или поделиться коллекцией с другими.',
 
       headingMainSeeCollection:'ПРОСМОТР КОЛЛЕКЦИИ',
@@ -101,7 +101,7 @@ export const routeData = {
       headingMainPage:'MAIN PAGE',
       textDescriptionMainPage:'All collections are collected in one stream — scroll through, select and launch the ones you like. The interface allows you to quickly switch between personal sets and ready-made collections to find inspiration in seconds.',
 
-      headingMainMyCollection:'YOUR COLLECTIONS. CREATION AND MANAGEMENT',
+      headingMainMyCollection:'CREATE AND MANAGE YOUR OWN COLLECTIONS',
       textDescriptionMyCollection:'This section was created specifically for working with personal collections: here you can create new collections, edit existing ones, and manage those that have already been published. The whole structure is intuitive — just a couple of taps are enough to make changes or share the collection with others.',
 
       headingMainSeeCollection:'VIEWING THE COLLECTION',
