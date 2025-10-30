@@ -6,9 +6,11 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-interface CaseVideoProps extends HTMLMotionProps<'video'> {}
+interface CaseVideoProps extends HTMLMotionProps<'video'> {
+  noBorder?: boolean;
+}
 
-export default function CaseVideo({ src, className, ...props }: CaseVideoProps) {
+export default function CaseVideo({ src, className, noBorder, ...props }: CaseVideoProps) {
   const [paused, setPaused] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const caseOption = useCasesStore((state) => state.caseOptions);
@@ -32,7 +34,11 @@ export default function CaseVideo({ src, className, ...props }: CaseVideoProps) 
       className={cn(
         className,
         'relative max-h-[900px] overflow-hidden rounded-[40px] border border-[#383838]/25 object-cover max-md:rounded-4xl',
+        {
+          '!border-transparent': noBorder,
+        },
       )}
+      style={{ borderColor: caseOption.borderColor }}
     >
       <motion.video
         ref={videoRef}

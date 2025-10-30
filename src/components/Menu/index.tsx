@@ -3,6 +3,7 @@ import { useLocalization } from '@/hooks/useLocalization';
 import { useStickyScroll } from '@/hooks/useStickyScroll';
 import { useSystemStore } from '@/stores/system';
 import { getObjectKeys } from '@/utils/getObjectKeys';
+import { useLocation } from '@tanstack/react-router';
 import Button from '../Button';
 import { Tabs, TabsContent, TabsTab } from '../Tabs';
 
@@ -14,6 +15,7 @@ export default function Menu() {
   const setClientLang = useSystemStore((state) => state.setLanguage);
   const clientLang = useSystemStore((state) => state.language);
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
+  const { pathname } = useLocation();
 
   const TABS: Tabs = {
     cases: GL.cases,
@@ -29,7 +31,8 @@ export default function Menu() {
 
   return (
     <Tabs
-      className='fixed bottom-[65px] left-[calc(50%-4px)] mx-1 h-[60px] w-[calc(100%-8px)] max-w-[504px] -translate-x-1/2 gap-2
+      hidden={pathname !== '/'}
+      className='fixed bottom-[65px] left-[calc(50%-4px)] z-20 mx-1 h-[60px] w-[calc(100%-8px)] max-w-[504px] -translate-x-1/2 gap-2
         max-md:bottom-[20px]'
     >
       <TabsContent customId='menu' className='rounded-full backdrop-blur-md nth-[2]:w-full'>

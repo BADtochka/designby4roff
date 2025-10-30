@@ -27,7 +27,9 @@ export const routeData = {
   localization: T({
     ru: {
       caseTitle: 'Название игрового кейса',
-      caseDescription: 'Описание кейса',
+      caseShortDescription: 'Короткое описание кейса',
+      caseDescription:
+        'С другой стороны дальнейшее развитие различных форм деятельности позволяет оценить значение направлений прогрессивного развития. Повседневная практика показывает, что сложившаяся структура организации требуют определения и уточнения позиций, занимаемых участниками в отношении поставленных задач. Идейные соображения высшего порядка, а также реализация намеченных плановых заданий представляет собой интересный эксперимент проверки систем массового участия. Равным образом постоянный количественный рост и сфера нашей активности позволяет оценить значение новых предложений. ',
       hello: 'Привет',
       name: 'Никита',
       info1Title: 'Пункт 1',
@@ -41,6 +43,7 @@ export const routeData = {
     },
     en: {
       caseTitle: 'Game case title',
+      caseShortDescription: 'Short case description',
       caseDescription: 'Case description',
       hello: 'Hello',
       name: 'Nikita',
@@ -88,7 +91,7 @@ function RouteComponent() {
         <CaseImage src='/cases/card.png' />
         <CaseImage src='/cases/card.png' />
       </CaseImages>
-      <CaseVideo src='https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_2mb.mp4' />
+      <CaseVideo src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' />
     </>
   );
 }

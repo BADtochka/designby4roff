@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 
 export type CaseTextProps = {
   title: string;
-  noBorder: boolean;
+  noBorder?: boolean;
   description?: string;
   direction?: 'row' | 'column';
   className?: string;
@@ -25,7 +25,7 @@ export default function CaseText({
     <Block
       borderColor={caseOption.borderColor}
       className={cn(
-        'flex flex-wrap gap-4 max-md:p-8',
+        'flex flex-wrap gap-4 px-[150px] max-md:p-8',
         {
           'border-black/10': caseOption.scheme === 'light',
           'justify-center text-center': !description,

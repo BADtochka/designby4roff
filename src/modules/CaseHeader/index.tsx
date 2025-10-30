@@ -19,7 +19,8 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
   const caseOptions = useCasesStore((state) => state.caseOptions);
   const { isMobile } = useDevice();
   const { L } = useLocalization(currentCase?.localization);
-  const [scrolled, setScrolled] = useState(false);
+  const [showBackground, setShowBackground] = useState(false);
+  const [showIcon, setShowIcon] = useState(false);
 
   const onCloseCase = () => {
     navigate({ to: '/' });
@@ -28,14 +29,15 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
   useEffect(() => {
     if (!containerRef.current) return;
     containerRef.current.addEventListener('scroll', () => {
-      setScrolled(containerRef.current!.scrollTop > 100);
+      setShowBackground(containerRef.current!.scrollTop > 100);
+      setShowIcon(containerRef.current!.scrollTop > 300);
     });
   }, []);
 
   return (
     <div
-      className='sticky top-0 left-0 z-100 mb-10 flex w-full transition-colors duration-300'
-      style={{ background: scrolled ? caseOptions.background : 'transparent' }}
+      className='sticky top-0 left-0 z-100 mb-5 flex w-full transition-colors duration-300'
+      style={{ background: showBackground ? caseOptions.background : 'transparent' }}
     >
       <div className='flex w-full items-center justify-between py-5 max-md:mb-5'>
         <Icon
@@ -44,7 +46,13 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
           className='size-10 min-w-10 transition-transform hover:scale-110 max-md:size-8'
         />
         <div className='mx-4 flex items-center gap-2'>
-          <Image src={caseOptions.logo} className='size-7 min-w-7 max-md:hidden' />
+          <Image
+            src={caseOptions.logo}
+            className='size-7 min-w-7 opacity-0'
+            parentClassName={cn('opacity-0 transition-opacity duration-300 ease-in-out', {
+              'opacity-100': showIcon,
+            })}
+          />
           <h1 className='font-extrabold break-all uppercase max-sm:line-clamp-1'>{L.caseTitle as string}</h1>
         </div>
         <Button

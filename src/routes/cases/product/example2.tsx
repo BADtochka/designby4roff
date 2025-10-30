@@ -88,7 +88,7 @@ function RouteComponent() {
         <CaseImage src='/cases/card.png' />
         <CaseImage src='/cases/card.png' />
       </CaseImages>
-      <CaseVideo src='https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_2mb.mp4' />
+      <CaseVideo src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' />
     </>
   );
 }

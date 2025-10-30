@@ -1,8 +1,10 @@
 import { cn } from '@/utils/cn';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { Children, HTMLAttributes, PropsWithChildren, ReactElement } from 'react';
 
-type TabsProps = HTMLAttributes<HTMLDivElement>;
+interface TabsProps extends HTMLMotionProps<'div'> {
+  hidden?: boolean;
+}
 
 interface TabsContentProps extends HTMLAttributes<HTMLDivElement> {
   customId: string;
@@ -13,11 +15,29 @@ interface TabsTabProps extends HTMLAttributes<HTMLDivElement> {
   active?: boolean;
 }
 
-export const Tabs = ({ className, children, ...props }: TabsProps) => {
+export const Tabs = ({ className, children, hidden, ...props }: TabsProps) => {
+  const variants: Variants = {
+    hidden: {
+      opacity: 0,
+      transitionEnd: {
+        display: 'none',
+      },
+    },
+    default: {
+      opacity: 1,
+      display: 'flex',
+    },
+  };
+
   return (
-    <div className={cn('flex items-center select-none', className)} {...props}>
+    <motion.div
+      variants={variants}
+      animate={hidden ? 'hidden' : 'default'}
+      className={cn('flex items-center select-none', className)}
+      {...props}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 };
 

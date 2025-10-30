@@ -17,7 +17,7 @@ export default function AboutCaseInfo({ title, description, url }: AboutCaseInfo
   };
 
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='flex w-fit flex-col gap-3'>
       <p
         className={cn('whitespace-nowrap text-white/30 max-md:text-xs', {
           'text-black/30': caseOption.scheme === 'light',
@@ -26,7 +26,7 @@ export default function AboutCaseInfo({ title, description, url }: AboutCaseInfo
         {title}
       </p>
       <div
-        className='relative flex items-center gap-2 max-2xl:justify-center'
+        className='relative flex w-fit items-center gap-2 max-2xl:justify-center'
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
         onClick={onOpenUrl}

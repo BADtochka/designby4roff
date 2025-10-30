@@ -19,9 +19,9 @@ export const routeData = {
     image: 'card.png',
     startDate: '11.2011',
     endDate: 'now',
-    scheme: 'dark',
-    background: '#424242',
-    borderColor: '#ffffff',
+    scheme: 'light',
+    background: '#FFFFFF',
+    borderColor: '#000',
     gap: 64,
   } as CaseData,
   localization: T({
@@ -61,34 +61,22 @@ function RouteComponent() {
 
   return (
     <>
-      <AboutCase title={L.caseTitle} description={L.caseDescription} noBorder>
+      <AboutCase title={L.caseTitle} description={L.caseDescription}>
         <AboutCaseInfo title={L.hello} description={L.name} />
         <AboutCaseInfo title={L.info1Title} description={L.info1Description} />
         <AboutCaseInfo title={L.info2Title} description={L.info2Description} url='https://google.com' />
       </AboutCase>
       <CaseImage src='/cases/card.png' />
-      <CaseText title={L.heading} description={L.textDescription} noBorder />
-      <CaseText title={L.bigHeading} uppercase noBorder />
-      <CaseTextImage
-        title={L.heading}
-        description={L.textDescription}
-        direction='column'
-        src='/cases/card.png'
-        noBorder
-      />
-      <CaseTextImage
-        title={L.heading}
-        description={L.textDescription}
-        direction='column'
-        src='/cases/card.png'
-        noBorder
-      />
+      <CaseText title={L.heading} description={L.textDescription} />
+      <CaseText title={L.bigHeading} uppercase />
+      <CaseTextImage title={L.heading} description={L.textDescription} direction='column' src='/cases/card.png' />
+      <CaseTextImage title={L.heading} description={L.textDescription} direction='column' src='/cases/card.png' />
       <CaseImages layout='gallery'>
         <CaseImage src='/cases/card.png' />
         <CaseImage src='/cases/card.png' />
         <CaseImage src='/cases/card.png' />
       </CaseImages>
-      <CaseVideo src='https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_2mb.mp4' />
+      <CaseVideo src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' noBorder />
     </>
   );
 }
