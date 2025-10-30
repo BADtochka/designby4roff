@@ -17,7 +17,6 @@ import { Route as CasesIndexRouteImport } from './routes/cases/index'
 import { Route as CasesProductWalltimeRouteImport } from './routes/cases/product/walltime'
 import { Route as CasesProductRicsRouteImport } from './routes/cases/product/rics'
 import { Route as CasesProductAthayogaRouteImport } from './routes/cases/product/athayoga'
-import { Route as CasesGameExample2RouteImport } from './routes/cases/game/example2'
 import { Route as CasesGameExampleRouteImport } from './routes/cases/game/example'
 
 const CasesRouteRoute = CasesRouteRouteImport.update({
@@ -50,11 +49,6 @@ const CasesProductAthayogaRoute = CasesProductAthayogaRouteImport.update({
   path: '/product/athayoga',
   getParentRoute: () => CasesRouteRoute,
 } as any)
-const CasesGameExample2Route = CasesGameExample2RouteImport.update({
-  id: '/game/example2',
-  path: '/game/example2',
-  getParentRoute: () => CasesRouteRoute,
-} as any)
 const CasesGameExampleRoute = CasesGameExampleRouteImport.update({
   id: '/game/example',
   path: '/game/example',
@@ -66,7 +60,6 @@ export interface FileRoutesByFullPath {
   '/cases': typeof CasesRouteRouteWithChildren
   '/cases/': typeof CasesIndexRoute
   '/cases/game/example': typeof CasesGameExampleRoute
-  '/cases/game/example2': typeof CasesGameExample2Route
   '/cases/product/athayoga': typeof CasesProductAthayogaRoute
   '/cases/product/rics': typeof CasesProductRicsRoute
   '/cases/product/walltime': typeof CasesProductWalltimeRoute
@@ -75,7 +68,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cases': typeof CasesIndexRoute
   '/cases/game/example': typeof CasesGameExampleRoute
-  '/cases/game/example2': typeof CasesGameExample2Route
   '/cases/product/athayoga': typeof CasesProductAthayogaRoute
   '/cases/product/rics': typeof CasesProductRicsRoute
   '/cases/product/walltime': typeof CasesProductWalltimeRoute
@@ -86,7 +78,6 @@ export interface FileRoutesById {
   '/cases': typeof CasesRouteRouteWithChildren
   '/cases/': typeof CasesIndexRoute
   '/cases/game/example': typeof CasesGameExampleRoute
-  '/cases/game/example2': typeof CasesGameExample2Route
   '/cases/product/athayoga': typeof CasesProductAthayogaRoute
   '/cases/product/rics': typeof CasesProductRicsRoute
   '/cases/product/walltime': typeof CasesProductWalltimeRoute
@@ -98,7 +89,6 @@ export interface FileRouteTypes {
     | '/cases'
     | '/cases/'
     | '/cases/game/example'
-    | '/cases/game/example2'
     | '/cases/product/athayoga'
     | '/cases/product/rics'
     | '/cases/product/walltime'
@@ -107,7 +97,6 @@ export interface FileRouteTypes {
     | '/'
     | '/cases'
     | '/cases/game/example'
-    | '/cases/game/example2'
     | '/cases/product/athayoga'
     | '/cases/product/rics'
     | '/cases/product/walltime'
@@ -117,7 +106,6 @@ export interface FileRouteTypes {
     | '/cases'
     | '/cases/'
     | '/cases/game/example'
-    | '/cases/game/example2'
     | '/cases/product/athayoga'
     | '/cases/product/rics'
     | '/cases/product/walltime'
@@ -130,18 +118,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/cases': {
-      id: '/cases'
-      path: '/cases'
-      fullPath: '/cases'
-      preLoaderRoute: typeof CasesRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases': {
+      id: '/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cases/': {
@@ -151,18 +139,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesIndexRouteImport
       parentRoute: typeof CasesRouteRoute
     }
-    '/cases/product/walltime': {
-      id: '/cases/product/walltime'
-      path: '/product/walltime'
-      fullPath: '/cases/product/walltime'
-      preLoaderRoute: typeof CasesProductWalltimeRouteImport
-      parentRoute: typeof CasesRouteRoute
-    }
-    '/cases/product/rics': {
-      id: '/cases/product/rics'
-      path: '/product/rics'
-      fullPath: '/cases/product/rics'
-      preLoaderRoute: typeof CasesProductRicsRouteImport
+    '/cases/game/example': {
+      id: '/cases/game/example'
+      path: '/game/example'
+      fullPath: '/cases/game/example'
+      preLoaderRoute: typeof CasesGameExampleRouteImport
       parentRoute: typeof CasesRouteRoute
     }
     '/cases/product/athayoga': {
@@ -172,18 +153,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesProductAthayogaRouteImport
       parentRoute: typeof CasesRouteRoute
     }
-    '/cases/game/example2': {
-      id: '/cases/game/example2'
-      path: '/game/example2'
-      fullPath: '/cases/game/example2'
-      preLoaderRoute: typeof CasesGameExample2RouteImport
+    '/cases/product/rics': {
+      id: '/cases/product/rics'
+      path: '/product/rics'
+      fullPath: '/cases/product/rics'
+      preLoaderRoute: typeof CasesProductRicsRouteImport
       parentRoute: typeof CasesRouteRoute
     }
-    '/cases/game/example': {
-      id: '/cases/game/example'
-      path: '/game/example'
-      fullPath: '/cases/game/example'
-      preLoaderRoute: typeof CasesGameExampleRouteImport
+    '/cases/product/walltime': {
+      id: '/cases/product/walltime'
+      path: '/product/walltime'
+      fullPath: '/cases/product/walltime'
+      preLoaderRoute: typeof CasesProductWalltimeRouteImport
       parentRoute: typeof CasesRouteRoute
     }
   }
@@ -225,15 +206,6 @@ declare module './routes/cases/game/example' {
     FileRoutesByPath['/cases/game/example']['fullPath']
   >
 }
-declare module './routes/cases/game/example2' {
-  const createFileRoute: CreateFileRoute<
-    '/cases/game/example2',
-    FileRoutesByPath['/cases/game/example2']['parentRoute'],
-    FileRoutesByPath['/cases/game/example2']['id'],
-    FileRoutesByPath['/cases/game/example2']['path'],
-    FileRoutesByPath['/cases/game/example2']['fullPath']
-  >
-}
 declare module './routes/cases/product/athayoga' {
   const createFileRoute: CreateFileRoute<
     '/cases/product/athayoga',
@@ -265,7 +237,6 @@ declare module './routes/cases/product/walltime' {
 interface CasesRouteRouteChildren {
   CasesIndexRoute: typeof CasesIndexRoute
   CasesGameExampleRoute: typeof CasesGameExampleRoute
-  CasesGameExample2Route: typeof CasesGameExample2Route
   CasesProductAthayogaRoute: typeof CasesProductAthayogaRoute
   CasesProductRicsRoute: typeof CasesProductRicsRoute
   CasesProductWalltimeRoute: typeof CasesProductWalltimeRoute
@@ -274,7 +245,6 @@ interface CasesRouteRouteChildren {
 const CasesRouteRouteChildren: CasesRouteRouteChildren = {
   CasesIndexRoute: CasesIndexRoute,
   CasesGameExampleRoute: CasesGameExampleRoute,
-  CasesGameExample2Route: CasesGameExample2Route,
   CasesProductAthayogaRoute: CasesProductAthayogaRoute,
   CasesProductRicsRoute: CasesProductRicsRoute,
   CasesProductWalltimeRoute: CasesProductWalltimeRoute,
