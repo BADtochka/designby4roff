@@ -22,7 +22,7 @@ export default function AboutCase({
     <Block
       borderColor={caseOption.borderColor}
       className={cn(
-        `flex items-end justify-between gap-8 px-[150px] py-[164px] max-2xl:flex-col max-2xl:items-center max-2xl:text-center
+        `flex items-end justify-between gap-8 px-[150px] max-2xl:flex-col max-2xl:items-center max-2xl:text-center
         2xl:gap-[188px]`,
         {
           '!border-transparent': noBorder,
