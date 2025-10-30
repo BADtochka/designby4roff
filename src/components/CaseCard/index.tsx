@@ -97,29 +97,16 @@ export default function CaseCard({
           className={cn(
             `flex w-full flex-col gap-7 p-[50px] max-md:gap-4 max-md:bg-[#141414]/0 max-md:p-8 md:pointer-events-none md:absolute
             md:bottom-0`,
-            {
-              'max-md:bg-[#F2F2F2]/0': scheme === 'light',
-            },
           )}
           variants={cardTextVariants}
           animate={isHovered || !isDesktop ? 'hovered' : 'default'}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <div className='flex flex-col max-md:gap-2.5'>
-            <h1 className='text-[40px] font-bold max-md:text-2xl'>{L.caseTitle as string}</h1>
-            <DateRange
-              className={scheme === 'light' ? 'text-black/65' : 'text-white/65'}
-              startDate={startDate}
-              endDate={endDate}
-            />
+            <h1 className='text-[40px] font-bold text-white max-md:text-2xl'>{L.caseTitle as string}</h1>
+            <DateRange startDate={startDate} endDate={endDate} />
           </div>
-          <p
-            className={cn('text-xl text-white/65 max-md:text-base', {
-              'text-black/65': scheme === 'light',
-            })}
-          >
-            {L.caseDescription as string}
-          </p>
+          <p className={cn('text-xl text-white/65 max-md:text-base', {})}>{L.caseShortDescription as string}</p>
         </motion.div>
       </motion.div>
     </Link>

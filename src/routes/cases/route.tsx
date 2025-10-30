@@ -4,6 +4,7 @@ import { CaseHeader } from '@/modules/CaseHeader';
 import Footer from '@/modules/Footer';
 import OtherCases from '@/modules/OtherCases';
 import { useCasesStore } from '@/stores/cases';
+import { CasesCategory } from '@/types/Cases';
 import { cn } from '@/utils/cn';
 import { Outlet, useLocation } from '@tanstack/react-router';
 import { useEffect, useRef } from 'react';
@@ -14,6 +15,7 @@ export const Route = createFileRoute({
 
 function RouteComponent() {
   const setCaseOptions = useCasesStore((state) => state.setCaseOptions);
+  const setSelectedCategory = useCasesStore((state) => state.setSelectedCategory);
   const { isMobile } = useDevice();
   const caseOptions = useCasesStore((state) => state.caseOptions);
   const { currentCase } = useCaseRoutes();
@@ -29,10 +31,12 @@ function RouteComponent() {
       logo: currentCase.config.logo ?? '/cases/exampleLogo.png',
       gap: currentCase.config.gap ?? 64,
     });
+
+    setSelectedCategory(pathname.split('/')[2] as CasesCategory);
   }, [currentCase]);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || pathname === '/') return;
     containerRef.current.scroll(0, 0);
   }, [pathname]);
 
@@ -43,7 +47,7 @@ function RouteComponent() {
         background: caseOptions.background,
         color: caseOptions.scheme === 'dark' ? 'white' : 'black',
       }}
-      className={cn('fixed top-0 left-0 z-20 h-full w-full overflow-auto px-20 pb-10 max-md:px-4', {
+      className={cn('fixed top-0 left-0 z-20 h-full w-full overflow-auto px-[150px] pb-10 max-md:px-4', {
         'overflow-hidden max-md:!pr-6': pathname === '/',
       })}
       data-lenis-prevent

@@ -12,7 +12,7 @@ export default function OtherCases() {
     .slice(0, 2);
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div className='mt-8 flex flex-col gap-14'>
       <h1 className='px-2.5 text-center text-[32px] font-extrabold'>ДРУГИЕ РАБОТЫ</h1>
       <div
         className={cn(
