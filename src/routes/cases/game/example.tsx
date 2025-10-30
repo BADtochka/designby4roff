@@ -21,7 +21,7 @@ export const routeData = {
     endDate: 'now',
     scheme: 'dark',
     background: '#424242',
-    borderColor: '#ffffff',
+    borderColor: '#EEFF00',
     gap: 64,
   } as CaseData,
   localization: T({
