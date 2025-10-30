@@ -7,7 +7,7 @@ import { useLocalization } from '@/hooks/useLocalization';
 import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
 import { useNavigate } from '@tanstack/react-router';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { RefObject, useEffect, useState } from 'react';
 
 type CaseHeaderProps = {
@@ -35,6 +35,11 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
     });
   }, []);
 
+  const variants: Variants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div
       className='sticky top-0 left-0 z-100 mb-5 flex w-full transition-colors duration-300'
@@ -46,7 +51,12 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
           name='logo'
           className='size-10 min-w-10 transition-transform hover:scale-110 max-md:size-8'
         />
-        <motion.div animate={{ opacity: Number(showHeaderInfo) }} className='mx-4 flex items-center gap-2'>
+        <motion.div
+          variants={variants}
+          animate={showHeaderInfo ? 'visible' : 'hidden'}
+          transition={{ duration: 0.3, ease: 'circInOut' }}
+          className='mx-4 flex items-center gap-2'
+        >
           <Image
             src={caseOptions.logo}
             className='size-7 min-w-7 opacity-0'
