@@ -7,6 +7,7 @@ import { useLocalization } from '@/hooks/useLocalization';
 import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
 import { useNavigate } from '@tanstack/react-router';
+import { motion } from 'framer-motion';
 import { RefObject, useEffect, useState } from 'react';
 
 type CaseHeaderProps = {
@@ -20,7 +21,7 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
   const { isMobile } = useDevice();
   const { L } = useLocalization(currentCase?.localization);
   const [showBackground, setShowBackground] = useState(false);
-  const [showIcon, setShowIcon] = useState(false);
+  const [showHeaderInfo, setShowHeaderInfo] = useState(false);
 
   const onCloseCase = () => {
     navigate({ to: '/' });
@@ -30,7 +31,7 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
     if (!containerRef.current) return;
     containerRef.current.addEventListener('scroll', () => {
       setShowBackground(containerRef.current!.scrollTop > 100);
-      setShowIcon(containerRef.current!.scrollTop > 300);
+      setShowHeaderInfo(containerRef.current!.scrollTop > 300);
     });
   }, []);
 
@@ -45,16 +46,14 @@ export const CaseHeader = ({ containerRef }: CaseHeaderProps) => {
           name='logo'
           className='size-10 min-w-10 transition-transform hover:scale-110 max-md:size-8'
         />
-        <div className='mx-4 flex items-center gap-2'>
+        <motion.div animate={{ opacity: Number(showHeaderInfo) }} className='mx-4 flex items-center gap-2'>
           <Image
             src={caseOptions.logo}
             className='size-7 min-w-7 opacity-0'
-            parentClassName={cn('opacity-0 transition-opacity duration-300 ease-in-out', {
-              'opacity-100': showIcon,
-            })}
+            parentClassName='transition-opacity duration-300 ease-in-out'
           />
           <h1 className='font-extrabold break-all uppercase max-sm:line-clamp-1'>{L.caseTitle as string}</h1>
-        </div>
+        </motion.div>
         <Button
           iconLeft='close'
           animation={false}

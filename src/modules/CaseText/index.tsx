@@ -25,7 +25,7 @@ export default function CaseText({
     <Block
       borderColor={caseOption.borderColor}
       className={cn(
-        'flex flex-wrap gap-4 px-[150px] max-md:p-8',
+        'flex gap-4 px-[150px] max-md:p-8',
         {
           'border-black/10': caseOption.scheme === 'light',
           'justify-center text-center': !description,
@@ -37,7 +37,9 @@ export default function CaseText({
       )}
       style={{ flexDirection: direction }}
     >
-      <h1 className={cn('h-fit text-xl font-extrabold max-md:text-xl', { 'text-[64px]': !description })}>{title}</h1>
+      <h1 className={cn('h-fit min-w-[300px] text-xl font-extrabold max-md:text-xl', { 'text-[64px]': !description })}>
+        {title}
+      </h1>
       {description && (
         <p
           className={cn('max-w-[900px] shrink text-xl whitespace-pre-wrap text-white/50 max-md:text-base', {
