@@ -21,12 +21,13 @@ export const routeData = {
     endDate: '01.2023',
     scheme: 'dark',
     background: '#000',
-    borderColor: '#141414',
+    borderColor: '#161616',
     gap: 64,
   } as CaseData,
   localization: T({
     ru: {
       caseTitle: 'walltime',
+      caseShortDescription:"Установите живые обои в формате timelapse и создавайте собственные подборки, меняйте время, делитесь с друзьями и настраивайте экран под себя.",
       caseDescription: 'Приложение walltime позволит установить на экран смартфона уникальные динамические обои в timelapse и не только. Вы можете создать свои коллекции или использовать готовые – выбрать есть из чего! Меняйте время, добавляйте новые коллекции, обменивайтесь ими с друзьями - персонализируйте экран как пожелаете!',
       hello: 'Участие в разработке',
       name: 'Ноябрь 2020 - Январь 2023',
@@ -81,6 +82,7 @@ export const routeData = {
     },
     en: {
       caseTitle: 'walltime',
+      caseShortDescription:"Set dynamic timelapse wallpapers, build custom collections, adjust the time, share with friends, and make your screen truly personal.",
       caseDescription: 'The walltime app will allow you to install unique dynamic timelapse wallpapers on your smartphone screen and more. You can create your own collections or use ready–made ones - there is plenty to choose from! Change the time, add new collections, share them with friends - personalize the screen as you wish!',
       hello: 'Involvement in development',
       name: 'November 2020 - January 2023',

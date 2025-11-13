@@ -21,7 +21,7 @@ export const routeData = {
     endDate: '02.2025',
     scheme: 'light',
     background: '#ffffff',
-    borderColor: '#000',
+    borderColor: '#D6D6D6',
     gap: 64,
   } as CaseData,
 
@@ -29,6 +29,7 @@ export const routeData = {
   localization: T({
     ru: {
       caseTitle: 'РИКС',
+      caseShortDescription:'Сервис на базе ИИ анализирует кредитную историю, находит слабые места и предлагает пути их улучшения. Решения формируются быстрее и точнее, чем при ручной проверке.',
       caseDescription: 'Основанный на искусственном интеллекте сервис РИКС анализирует кредитную историю, выявляет слабые места и предлагает персональные шаги для их устранения. ИИ-алгоритмы обрабатывают отчёты из трёх бюро за считанные секунды, обеспечивая решения быстрее, точнее и надёжнее ручной проверки.',
       hello: 'Участие в разработке',
       name: 'Июль 2024 - Февраль 2025',
@@ -72,6 +73,7 @@ export const routeData = {
 
     en: {
       caseTitle: 'RICS',
+      caseShortDescription:'AI-powered service analyzes your credit history, detects weak points, and suggests ways to improve. Results are delivered faster and more accurately than manual review.',
       caseDescription: 'The RICS service, based on artificial intelligence, analyzes credit history, identifies weaknesses and suggests personal steps to eliminate them. AI algorithms process reports from three bureaus in a matter of seconds, providing solutions faster, more accurate and more reliable than manual verification.',
       hello: 'Involvement in development',
       name: 'July 2024 - February 2025',
@@ -122,76 +124,76 @@ function RouteComponent() {
         <AboutCaseInfo title={L.info2Title} description={L.info2Description} url='https://landing.ricsfix.ru' />
       </AboutCase>
 
-      <CaseImage src='/cases/rics/slide1.jpg' />
+      <CaseImage src='/cases/rics/slide1.jpg' noBorder/>
 
-      <CaseText title={L.heading} description={L.textDescription} noBorder />
+      <CaseText title={L.heading} description={L.textDescription} noBorder/>
 
       <CaseImages layout='gallery'>
-      <CaseImage src='/cases/rics/phone-icon.jpg' />
-      <CaseImage src='/cases/rics/doc-icon.jpg' />
+      <CaseImage src='/cases/rics/phone-icon.jpg' noBorder/>
+      <CaseImage src='/cases/rics/doc-icon.jpg' noBorder/>
       </CaseImages>
 
       <CaseText title={L.headingAuth} description={L.textDescriptionAuth} noBorder/>
 
-      <CaseImage src='/cases/rics/auth-1.jpg' />
+      <CaseImage src='/cases/rics/auth-1.jpg' noBorder />
 
       <CaseImages layout='gallery'>
-      <CaseImage src='/cases/rics/auth-2.jpg' />
-      <CaseImage src='/cases/rics/auth-3.jpg' />
+      <CaseImage src='/cases/rics/auth-2.jpg' noBorder/>
+      <CaseImage src='/cases/rics/auth-3.jpg' noBorder/>
       </CaseImages>
 
-      <CaseImage src='/cases/rics/auth-4.jpg' />
+      <CaseImage src='/cases/rics/auth-4.jpg' noBorder/>
 
       <CaseText title={L.headingOrders} description={L.textDescriptionOrders} noBorder/>
 
-      <CaseImage src='/cases/rics/order-1.jpg' />
+      <CaseImage src='/cases/rics/order-1.jpg' noBorder/>
 
       <CaseTextImage
       title={L.headingOrder1}
       description={L.textDescriptionOrder1}
       direction='column'
-      src='/cases/rics/order-2.jpg'
+      src='/cases/rics/order-2.jpg' noImageBorder
       noBorder reverse/>
 
       <CaseTextImage
       title={L.headingOrder2}
       description={L.textDescriptionOrder2}
       direction='column'
-      src='/cases/rics/order-3.jpg' noBorder/>
+      src='/cases/rics/order-3.jpg' noBorder noImageBorder/>
 
       <CaseTextImage
       title={L.headingOrder3}
       description={L.textDescriptionOrder3}
       direction='column'
-      src='/cases/rics/order-4.jpg' noBorder reverse/>
+      src='/cases/rics/order-4.jpg' noBorder reverse noImageBorder/>
      
-      <CaseImage src='/cases/rics/order-5.jpg' />
+      <CaseImage src='/cases/rics/order-5.jpg' noBorder />
 
       <CaseText title={L.headingProfile} description={L.textDescriptionProfile} noBorder/>
 
       <CaseImages layout='gallery'>
-      <CaseImage src='/cases/rics/profile-1.jpg' />
-      <CaseImage src='/cases/rics/profile-2.jpg' />
+      <CaseImage src='/cases/rics/profile-1.jpg' noBorder/>
+      <CaseImage src='/cases/rics/profile-2.jpg' noBorder/>
       </CaseImages>
 
-      <CaseImage src='/cases/rics/profile-3.jpg' />
+      <CaseImage src='/cases/rics/profile-3.jpg' noBorder/>
 
       <CaseText title={L.headingBranding} description={L.textDescriptionBranding} noBorder/>
 
-      <CaseImage src='/cases/rics/branding-1.jpg' />
+      <CaseImage src='/cases/rics/branding-1.jpg' noBorder/>
 
       <CaseImages layout='gallery'>
-      <CaseImage src='/cases/rics/branding-2.jpg' />
-      <CaseImage src='/cases/rics/branding-3.jpg' />
+      <CaseImage src='/cases/rics/branding-2.jpg' noBorder/>
+      <CaseImage src='/cases/rics/branding-3.jpg' noBorder/>
       </CaseImages>
 
-      <CaseImage src='/cases/rics/branding-4.jpg' />
+      <CaseImage src='/cases/rics/branding-4.jpg' noBorder/>
 
-      <CaseVideo src='/cases/rics/rics-teaser.webm' />
+      <CaseVideo src='/cases/rics/rics-teaser.webm' noBorder/>
 
       <CaseText title={L.headingResult} description={L.textDescriptionResult} noBorder/>
 
-      <CaseImage src='/cases/rics/result-1.jpg' />    
+      <CaseImage src='/cases/rics/result-1.jpg' noBorder/>    
 
       </>
       
