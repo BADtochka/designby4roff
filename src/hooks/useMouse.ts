@@ -1,4 +1,5 @@
 import { useCursorStore } from '@/stores/cursor';
+import { useDebouncedCallback, useThrottledCallback } from '@mantine/hooks';
 import { cancelFrame, frame } from 'framer-motion';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useDevice } from './useDevice';
@@ -16,6 +17,8 @@ export const useMouse = () => {
   const { isDesktop } = useDevice();
   const options = useCursorStore((state) => state.options);
   const setCursorOptions = useCursorStore((state) => state.setOptions);
+  const throttledSetCursorOptions = useThrottledCallback(setCursorOptions, 300);
+  const deboundedSetCursorOptions = useDebouncedCallback(setCursorOptions, 200);
   const lastHoveredElement = useRef<HTMLElement>(null);
   const [state, setState] = useState<MouseState>({
     x: -100,
@@ -38,16 +41,18 @@ export const useMouse = () => {
       if (!hoveredElement) return;
       const elementAttributes = Array.from(hoveredElement.attributes).map((attr) => attr.name);
 
-      if (elementAttributes.includes('cursor-content')) {
+      if (elementAttributes.includes('cursor-content') && !options.expanded) {
         const attrContent = hoveredElement.getAttribute('cursor-content') as string;
-        setCursorOptions({ expanded: true, content: attrContent });
+        deboundedSetCursorOptions.cancel();
+        throttledSetCursorOptions({ expanded: true, content: attrContent });
       } else if (elementAttributes.includes('cursor-invert')) {
         const attrValue = hoveredElement.getAttribute('cursor-invert') as string;
         if (attrValue !== 'true') return;
-        setCursorOptions({ invert: true });
+        throttledSetCursorOptions({ invert: true });
       } else if (elementAttributes.includes('cursor-scale')) {
         const attrValue = hoveredElement.getAttribute('cursor-scale') as string;
-        setCursorOptions({ scale: Number(attrValue) });
+        if (options.scale === Number(attrValue)) return;
+        throttledSetCursorOptions({ scale: Number(attrValue) });
       }
 
       lastHoveredElement.current = hoveredElement;
@@ -62,8 +67,7 @@ export const useMouse = () => {
         lastHoveredElement.current.contains(target) &&
         (!relatedTarget || !lastHoveredElement.current.contains(relatedTarget as HTMLElement))
       ) {
-        setCursorOptions({ expanded: false, invert: false, scale: 1 });
-
+        deboundedSetCursorOptions({ expanded: false, invert: false, scale: 1 });
         lastHoveredElement.current = null;
       }
     };

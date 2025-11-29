@@ -154,7 +154,8 @@ function RouteComponent() {
 
       <CaseMedia layout='gallery'>
         <CaseImage src='/cases/rics/auth-2.jpg' noBorder />
-        <CaseImage src='/cases/rics/auth-3.jpg' noBorder />
+        <CaseVideo src='/cases/rics/rics-teaser.webm' noBorder />
+        <CaseImage src='/cases/rics/profile-1.jpg' noBorder />
       </CaseMedia>
 
       <CaseImage src='/cases/rics/auth-4.jpg' noBorder />
@@ -193,31 +194,21 @@ function RouteComponent() {
       />
 
       <CaseImage src='/cases/rics/order-5.jpg' noBorder />
-
       <CaseText title={L.headingProfile} description={L.textDescriptionProfile} noBorder />
-
       <CaseMedia layout='gallery'>
         <CaseImage src='/cases/rics/profile-1.jpg' noBorder />
         <CaseImage src='/cases/rics/profile-2.jpg' noBorder />
       </CaseMedia>
-
       <CaseImage src='/cases/rics/profile-3.jpg' noBorder />
-
       <CaseText title={L.headingBranding} description={L.textDescriptionBranding} noBorder />
-
       <CaseImage src='/cases/rics/branding-1.jpg' noBorder />
-
       <CaseMedia layout='gallery'>
         <CaseImage src='/cases/rics/branding-2.jpg' noBorder />
         <CaseImage src='/cases/rics/branding-3.jpg' noBorder />
       </CaseMedia>
-
-      <CaseImage src='/cases/rics/branding-4.jpg' noBorder />
-
-      <CaseVideo src='/cases/rics/rics-teaser.webm' noBorder />
-
+      <CaseImage src='/cases/rics/branding-4.jpg' maxHeight={300} noBorder />
+      <CaseVideo src='/cases/rics/rics-teaser.webm' maxHeight={300} noBorder />
       <CaseText title={L.headingResult} description={L.textDescriptionResult} noBorder />
-
       <CaseImage src='/cases/rics/result-1.jpg' noBorder />
     </>
   );

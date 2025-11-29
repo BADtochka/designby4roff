@@ -31,7 +31,9 @@ export default function AboutCase({
     >
       <div className='flex flex-col gap-5'>
         <Image src={caseOption.logo} className='mb-5 h-[70px] w-[70px]' parentClassName='max-2xl:justify-center' />
-        <h1 className='text-[132px] font-extrabold uppercase max-[1832px]:text-7xl max-md:text-[32px]'>{title}</h1>
+        <h1 className='text-[132px] font-extrabold max-[1832px]:text-7xl max-md:text-[32px] min-[1832px]:leading-32'>
+          {title}
+        </h1>
         <p
           className={cn('text-xl text-white/50 max-md:text-base 2xl:max-w-[1000px]', {
             'text-black/50': caseOption.scheme === 'light',

@@ -50,6 +50,7 @@ export default function Cursor() {
       : cursorOptions.scale !== 1
         ? 'scale'
         : 'default';
+
   if (!isDesktop) return;
 
   return (

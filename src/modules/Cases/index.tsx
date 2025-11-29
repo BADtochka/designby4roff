@@ -9,6 +9,7 @@ import { useCasesStore } from '@/stores/cases';
 import { cn } from '@/utils/cn';
 import { T } from '@/utils/defineLocalization';
 import { isOdd } from '@/utils/isOdd';
+import { useMemo } from 'react';
 
 const localization = T({
   ru: {
@@ -31,11 +32,16 @@ export default function Cases() {
   const { L } = useLocalization(localization);
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
 
-  const categoryCases = Object.entries(cases).filter(([key]) => key.includes(`/cases/${selectedCategory}/`));
-  const secondGroupIndex = categoryCases.length < 2 ? 1 : categoryCases.length - 3;
-  const isCountOdd = isOdd(categoryCases.length);
-  const firstGridCases = categoryCases.filter((_, index) => index < secondGroupIndex);
-  const secondGridCases = categoryCases.filter((_, index) => index >= secondGroupIndex);
+  const categoryCases = useMemo(
+    () => Object.entries(cases).filter(([key]) => key.includes(`/cases/${selectedCategory}/`)),
+    [selectedCategory, cases],
+  );
+  const secondGroupIndex = useMemo(() => (categoryCases.length < 2 ? 1 : categoryCases.length - 3), [categoryCases]);
+  const isCountOdd = useMemo(() => isOdd(categoryCases.length), [categoryCases]);
+  const firstGridCases = useMemo(() => categoryCases.filter((_, index) => index < secondGroupIndex), [categoryCases]);
+  const secondGridCases = useMemo(() => categoryCases.filter((_, index) => index >= secondGroupIndex), [categoryCases]);
+
+  console.log('rerender');
 
   return (
     <div ref={ref} id='cases' className='flex flex-col gap-[50px] max-md:gap-5'>

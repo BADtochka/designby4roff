@@ -5,7 +5,7 @@ import { CaseOptions, useCasesStore } from '@/stores/cases';
 import { CaseData } from '@/types/Cases';
 import { Localization } from '@/types/Localization';
 import { cn } from '@/utils/cn';
-import { Link } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { useState } from 'react';
 import DateRange from '../DateRange';
@@ -37,6 +37,7 @@ export default function CaseCard({
   const { isDesktop } = useDevice();
   const setCaseOptions = useCasesStore((state) => state.setCaseOptions);
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
+  const navigate = useNavigate();
 
   const cardTextVariants: Variants = {
     default: {
@@ -60,8 +61,7 @@ export default function CaseCard({
   };
 
   return (
-    <Link
-      to={link}
+    <div
       className={cn(
         'relative flex overflow-hidden rounded-[40px] border border-white/15 max-md:flex-col max-md:rounded-4xl',
         className,
@@ -69,7 +69,12 @@ export default function CaseCard({
           'border-black/15': scheme === 'light',
         },
       )}
-      from='/'
+      onClick={() => navigate({ to: link, from: '/' })}
+      onMouseDown={(e) => {
+        e.preventDefault();
+        if (e.button !== 1) return;
+        window.open(link, '_blank');
+      }}
     >
       <motion.div
         className='h-full w-full'
@@ -109,6 +114,6 @@ export default function CaseCard({
           <p className={cn('text-xl text-white/65 max-md:text-base', {})}>{L.caseShortDescription as string}</p>
         </motion.div>
       </motion.div>
-    </Link>
+    </div>
   );
 }

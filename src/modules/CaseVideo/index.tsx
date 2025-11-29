@@ -8,9 +8,10 @@ import { useInView } from 'react-intersection-observer';
 
 interface CaseVideoProps extends HTMLMotionProps<'video'> {
   noBorder?: boolean;
+  maxHeight?: number;
 }
 
-export default function CaseVideo({ src, className, noBorder, ...props }: CaseVideoProps) {
+export default function CaseVideo({ src, className, noBorder, maxHeight, ...props }: CaseVideoProps) {
   const [paused, setPaused] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const caseOption = useCasesStore((state) => state.caseOptions);
@@ -33,16 +34,16 @@ export default function CaseVideo({ src, className, noBorder, ...props }: CaseVi
       ref={ref}
       className={cn(
         className,
-        'relative max-h-[900px] overflow-hidden rounded-[40px] border border-[#383838]/25 object-cover max-md:rounded-4xl',
+        'relative max-h-[900px] overflow-hidden rounded-[40px] border border-[#383838]/25 max-md:rounded-4xl',
         {
           '!border-transparent': noBorder,
         },
       )}
-      style={{ borderColor: caseOption.borderColor }}
+      style={{ borderColor: caseOption.borderColor, maxHeight }}
     >
       <motion.video
         ref={videoRef}
-        className='w-full bg-black'
+        className='size-full bg-black object-cover'
         muted
         loop
         playsInline

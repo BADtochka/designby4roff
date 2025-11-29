@@ -2,10 +2,6 @@ import { useLocalization } from '@/hooks/useLocalization';
 import AboutCase from '@/modules/AboutCase';
 import AboutCaseInfo from '@/modules/AboutCaseInfo';
 import CaseImage from '@/modules/CaseImage';
-import CaseImages from '@/modules/CaseImages';
-import CaseText from '@/modules/CaseText';
-import CaseTextImage from '@/modules/CaseTextImage';
-import CaseVideo from '@/modules/CaseVideo';
 import { CaseData } from '@/types/Cases';
 import { T } from '@/utils/defineLocalization';
 
@@ -27,7 +23,8 @@ export const routeData = {
   localization: T({
     ru: {
       caseTitle: 'ATOM COMMUNITY Vol.2',
-      caseShortDescription: 'Игровой проект на платформе RAGE:MP, объединяющий игроков как в виртуальном мире, так и за его пределами. В нём сотни сюжетных линий, авторский автопарк и тщательно проработанные интерфейсы, создающие цельный игровой опыт.',
+      caseShortDescription:
+        'Игровой проект на платформе RAGE:MP, объединяющий игроков как в виртуальном мире, так и за его пределами. В нём сотни сюжетных линий, авторский автопарк и тщательно проработанные интерфейсы, создающие цельный игровой опыт.',
       caseDescription:
         'Игровой проект на платформе RAGE:MP, объединяющий игроков как в виртуальном мире, так и за его пределами. В нём сотни сюжетных линий, авторский автопарк и тщательно проработанные интерфейсы, создающие цельный игровой опыт.',
       hello: 'Участие в разработке',

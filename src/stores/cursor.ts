@@ -9,7 +9,7 @@ type CursorAction = {
   setOptions: (options: Partial<CursorOptions>) => void;
 };
 
-const DEFAULT_CURSOR_OPTIONS: CursorOptions = { expanded: false, invert: false, hide: false };
+const DEFAULT_CURSOR_OPTIONS: CursorOptions = { expanded: true, invert: false, hide: false };
 
 export const useCursorStore = createCustomStore({
   name: 'cursor',

@@ -2,7 +2,7 @@ import { useLocalization } from '@/hooks/useLocalization';
 import AboutCase from '@/modules/AboutCase';
 import AboutCaseInfo from '@/modules/AboutCaseInfo';
 import CaseImage from '@/modules/CaseImage';
-import CaseImages from '@/modules/CaseImages';
+import CaseMedia from '@/modules/CaseImages';
 import CaseText from '@/modules/CaseText';
 import CaseTextImage from '@/modules/CaseTextImage';
 import CaseVideo from '@/modules/CaseVideo';
@@ -83,11 +83,11 @@ function RouteComponent() {
         src='/cases/card.png'
         noBorder
       />
-      <CaseImages layout='gallery'>
+      <CaseMedia layout='gallery'>
         <CaseImage src='/cases/card.png' />
         <CaseImage src='/cases/card.png' />
         <CaseImage src='/cases/card.png' />
-      </CaseImages>
+      </CaseMedia>
       <CaseVideo src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' />
     </>
   );

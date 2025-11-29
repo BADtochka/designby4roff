@@ -2,9 +2,6 @@ import { useLocalization } from '@/hooks/useLocalization';
 import AboutCase from '@/modules/AboutCase';
 import AboutCaseInfo from '@/modules/AboutCaseInfo';
 import CaseImage from '@/modules/CaseImage';
-import CaseImages from '@/modules/CaseImages';
-import CaseText from '@/modules/CaseText';
-import CaseTextImage from '@/modules/CaseTextImage';
 import CaseVideo from '@/modules/CaseVideo';
 import { CaseData } from '@/types/Cases';
 import { T } from '@/utils/defineLocalization';
@@ -27,7 +24,8 @@ export const routeData = {
   localization: T({
     ru: {
       caseTitle: 'ATOM COMMUNITY Vol.1',
-      caseShortDescription: 'Игровой проект на платформе RAGE:MP, объединяющий игроков как в виртуальном мире, так и за его пределами. В нём сотни сюжетных линий, авторский автопарк и тщательно проработанные интерфейсы, создающие цельный игровой опыт.',
+      caseShortDescription:
+        'Игровой проект на платформе RAGE:MP, объединяющий игроков как в виртуальном мире, так и за его пределами. В нём сотни сюжетных линий, авторский автопарк и тщательно проработанные интерфейсы, создающие цельный игровой опыт.',
       caseDescription:
         'Игровой проект на платформе RAGE:MP, объединяющий игроков как в виртуальном мире, так и за его пределами. В нём сотни сюжетных линий, авторский автопарк и тщательно проработанные интерфейсы, создающие цельный игровой опыт.',
       hello: 'Участие в разработке',
@@ -99,12 +97,12 @@ function RouteComponent() {
       <CaseImage src='/cases/atom/block-14.jpg' />
 
       <CaseImage src='/cases/atom/block-15.jpg' noBorder />
-      
+
       <CaseImage src='/cases/atom/block-16.jpg' noBorder />
 
       <CaseImage src='/cases/atom/block-17.jpg' noBorder />
 
-      <CaseVideo src='/cases/atom/fr.webm'/>
+      <CaseVideo src='/cases/atom/fr.webm' />
 
       <CaseImage src='/cases/atom/block-19.jpg' noBorder />
 
@@ -121,7 +119,7 @@ function RouteComponent() {
       <CaseImage src='/cases/atom/block-25.jpg' noBorder />
 
       <CaseImage src='/cases/atom/block-26.jpg' noBorder />
-      
+
       <CaseImage src='/cases/atom/block-27.jpg' noBorder />
 
       <CaseImage src='/cases/atom/block-28.jpg' noBorder />
@@ -157,8 +155,6 @@ function RouteComponent() {
       <CaseImage src='/cases/atom/block-43.jpg' noBorder />
 
       <CaseImage src='/cases/atom/block-44.jpg' />
-      
-      
     </>
   );
 }
