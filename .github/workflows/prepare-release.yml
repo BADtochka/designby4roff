@@ -1,0 +1,41 @@
+# This workflow creates a new Git tag and GitHub Release for the website
+
+name: "Prepare Website Release"
+
+on:
+  # Allows manual triggering from the Actions tab
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. v1.0.0 or v2026.01.10)'
+        required: true
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # Checkout the main branch to tag the latest stable version
+      - name: Checkout main branch
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Create and push a Git tag for the release
+      - name: Create and push Git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${{ github.event.inputs.version }}"
+          git push origin "${{ github.event.inputs.version }}"
+
+      # Create a GitHub Release associated with the new tag
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "${{ github.event.inputs.version }}"
+          name: "${{ github.event.inputs.version }}"
+          generateReleaseNotes: true
