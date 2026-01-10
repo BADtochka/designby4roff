@@ -22,6 +22,14 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      # Create and push a Git tag for the release
+      - name: Create and push Git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${{ github.event.inputs.version }}"
+          git push origin "${{ github.event.inputs.version }}"
+
       # Setup Bun runtime
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -58,15 +66,6 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           script: |
             ln -sfn /var/www/site/releases/${{ github.event.inputs.version }} /var/www/site/current
-            sudo nginx -s reload
-
-      # Create and push a Git tag for the release
-      - name: Create and push Git tag
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "${{ github.event.inputs.version }}"
-          git push origin "${{ github.event.inputs.version }}"
 
       # Create a GitHub Release associated with the new tag
       - name: Create GitHub Release
