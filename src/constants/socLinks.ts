@@ -13,4 +13,12 @@ export const socLinks: SocLink[] = [
     name: 'Dribbble',
     url: 'https://dribbble.com/designby4roff',
   },
+  {
+    name: 'Telegram',
+    url: 'https://t.me/offoroff',
+  },
+  {
+    name: 'Telegram Blog',
+    url: 'https://t.me/by4roff',
+  }
 ];

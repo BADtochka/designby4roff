@@ -5,14 +5,18 @@ import { useState } from 'react';
 type AnimatedLinkProps = {
   name: string;
   showDot?: boolean;
+  href: string;
 };
 
-export const AnimatedLink = ({ showDot, name }: AnimatedLinkProps) => {
+export const AnimatedLink = ({ showDot, name, href }: AnimatedLinkProps) => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
+    <a
       key={name}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className='flex items-center gap-2.5'
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -37,6 +41,6 @@ export const AnimatedLink = ({ showDot, name }: AnimatedLinkProps) => {
           {name}
         </motion.div>
       </div>
-    </div>
+    </a>
   );
 };

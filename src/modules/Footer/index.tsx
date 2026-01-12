@@ -6,6 +6,7 @@ import SocLinks from '@/components/SocLinks';
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
 import { useLocalization } from '@/hooks/useLocalization';
 import { CaseOptions } from '@/stores/cases';
+import { socLinks } from '@/constants/socLinks';
 import { cn } from '@/utils/cn';
 import { T } from '@/utils/defineLocalization';
 import { format } from 'date-fns';
@@ -54,10 +55,12 @@ export default function Footer({ mode = 'dark', inCase = false, borderColor }: F
         </div>
         <div className='flex flex-col gap-5'>
           <Button
-            className={cn('h-[54px] border-0 bg-[#08C] hover:bg-[#006DA3]', {
+            className={cn('h-[54px] border-0 bg-[#08C] hover:bg-[#006DA3] w-full', {
               'text-white': mode === 'light',
             })}
             iconRight='telegram'
+            link={socLinks.find(link => link.name === 'Telegram')?.url}
+            target='_blank'
           >
             {GL.buttons.contact}
           </Button>

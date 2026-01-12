@@ -1,7 +1,9 @@
 import { Block } from '@/components/Block';
 import Button from '@/components/Button';
+import { IconName } from '@/components/Icon';
 import Image from '@/components/Image';
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
+import { socLinks } from '@/constants/socLinks';
 import { useHashSetter } from '@/hooks/useHashSetter';
 import { useLocalization } from '@/hooks/useLocalization';
 import { T } from '@/utils/defineLocalization';
@@ -25,11 +27,19 @@ export const localization = T({
   },
 });
 
+const socIconMap: Record<string, IconName> = {
+  Behance: 'behance',
+  DProfile: 'dprofile',
+  Dribbble: 'dribbble',
+  Telegram: 'telegram',
+  'Telegram Blog': 'telegram',
+};
+
 export default function About() {
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
   const { L } = useLocalization(localization);
   const { ref } = useHashSetter({ hash: 'about' });
-
+  const telegramBlog = socLinks.find(link => link.name === 'Telegram Blog');
   return (
     <div ref={ref} id='about' className='flex flex-col gap-[50px] max-md:gap-5'>
       <Block className='flex h-[720px] flex-col items-center justify-center gap-5 max-md:h-[370px]'>
@@ -58,13 +68,21 @@ export default function About() {
             {L.personalInfo2}
           </Block>
           <div className='col-start-2 row-start-3 flex w-full items-center gap-2.5 max-xl:flex-col'>
-            <Button className='w-full gap-4 border-0 bg-[#08C] hover:bg-[#006DA3]' iconLeft='telegram' animation>
+            <Button className='w-full gap-4 border-0 bg-[#08C] hover:bg-[#006DA3]' iconLeft='telegram' link={telegramBlog?.url} target='_blank' animation>
               {L.blogButton}
             </Button>
             <div className='flex items-center gap-2.5'>
-              <Button className='shrink-0' iconLeft='behance' />
-              <Button className='shrink-0' iconLeft='dprofile' />
-              <Button className='shrink-0' iconLeft='dribbble' />
+              {socLinks
+                .filter(link => ['Behance', 'DProfile', 'Dribbble'].includes(link.name))
+                .map(link => (
+                  <Button
+                    key={link.name}
+                    className='shrink-0'
+                    iconLeft={socIconMap[link.name]}
+                    link={link.url}
+                    target='_blank'
+                  />
+                ))}
             </div>
           </div>
         </div>
