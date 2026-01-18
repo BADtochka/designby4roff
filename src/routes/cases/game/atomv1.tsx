@@ -94,7 +94,7 @@ function RouteComponent() {
 
       <CaseImage src='/cases/atom/block-13.jpg' noBorder />
 
-      <CaseImage src='/cases/atom/block-14.jpg' />
+      <CaseImage src='/cases/atom/block-14.jpg' noBorder />
 
       <CaseImage src='/cases/atom/block-15.jpg' noBorder />
 
@@ -130,7 +130,7 @@ function RouteComponent() {
 
       <CaseImage src='/cases/atom/block-31.jpg' noBorder />
 
-      <CaseImage src='/cases/atom/block-32.jpg' />
+      <CaseImage src='/cases/atom/block-32.jpg' noBorder />
 
       <CaseImage src='/cases/atom/block-33.jpg' noBorder />
 

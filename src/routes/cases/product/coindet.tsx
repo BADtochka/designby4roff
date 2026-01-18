@@ -105,28 +105,28 @@ function RouteComponent() {
         <AboutCaseInfo title={L.info1Title} description={L.info1Description} />
       </AboutCase>
 
-      <CaseImage src='/cases/coindet/block-1.jpg' noBorder />
+      <CaseImage src='/cases/coindet/block-1.jpg' />
 
       <CaseText title={L.headingProduct} description={L.textDescriptionProduct} noBorder />
 
       <CaseMedia layout='gallery'>
         <CaseImage src='/cases/coindet/block-2.jpg' />
-        <CaseImage src='/cases/coindet/block-3.jpg' noBorder />
+        <CaseImage src='/cases/coindet/block-3.jpg' />
       </CaseMedia>
 
       <CaseText title={L.headingStructure} description={L.textDescriptionStructure} noBorder />
 
-      <CaseImage src='/cases/coindet/block-4.jpg' noBorder />
+      <CaseImage src='/cases/coindet/block-4.jpg'/>
 
       <CaseText title={L.headingSearchPhoto} description={L.textDescriptionSearchPhoto} noBorder />
 
       <CaseMedia layout='gallery'>
-        <CaseImage src='/cases/coindet/block-5.jpg' noBorder />
+        <CaseImage src='/cases/coindet/block-5.jpg' />
         <CaseImage src='/cases/coindet/block-6.jpg' />
       </CaseMedia>
 
       <CaseMedia layout='gallery'>
-        <CaseImage src='/cases/coindet/block-7.jpg' noBorder />
+        <CaseImage src='/cases/coindet/block-7.jpg' />
         <CaseImage src='/cases/coindet/block-8.jpg' />
       </CaseMedia>
 
@@ -134,15 +134,15 @@ function RouteComponent() {
 
       <CaseMedia layout='row'>
         <CaseImage src='/cases/coindet/block-9.jpg' />
-        <CaseImage src='/cases/coindet/block-10.jpg' noBorder />
+        <CaseImage src='/cases/coindet/block-10.jpg' />
         <CaseImage src='/cases/coindet/block-11.jpg' />
       </CaseMedia>
 
-      <CaseVideo src='/cases/coindet/cndt.webm' noBorder />
+      <CaseVideo src='/cases/coindet/cndt.webm' />
 
       <CaseText title={L.headingResult} description={L.textDescriptionResult} noBorder />
 
-      <CaseImage src='/cases/coindet/block-12.jpg' noBorder />
+      <CaseImage src='/cases/coindet/block-12.jpg' />
     </>
   );
 }
