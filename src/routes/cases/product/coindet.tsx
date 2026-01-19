@@ -14,8 +14,8 @@ export const Route = createFileRoute({
 
 export const routeData = {
   config: {
-    logo: 'cases/coindet/coindet-logo.png',
-    image: 'coindet/preview.jpg',
+    logo: '/cases/coindet/coindet-logo.png',
+    image: '/coindet/preview.jpg',
     startDate: '05.2022',
     endDate: '08.2022',
     scheme: 'light',
@@ -105,44 +105,44 @@ function RouteComponent() {
         <AboutCaseInfo title={L.info1Title} description={L.info1Description} />
       </AboutCase>
 
-      <CaseImage src='cases/coindet/sb-1.jpg' />
+      <CaseImage src='/cases/coindet/sb-1.jpg' />
 
       <CaseText title={L.headingProduct} description={L.textDescriptionProduct} noBorder />
 
       <CaseMedia layout='gallery'>
-        <CaseImage src='cases/coindet/sb-2.jpg' />
-        <CaseImage src='cases/coindet/sb-3.jpg' />
+        <CaseImage src='/cases/coindet/sb-2.jpg' />
+        <CaseImage src='/cases/coindet/sb-3.jpg' />
       </CaseMedia>
 
       <CaseText title={L.headingStructure} description={L.textDescriptionStructure} noBorder />
 
-      <CaseImage src='cases/coindet/sb-4.jpg'/>
+      <CaseImage src='/cases/coindet/sb-4.jpg'/>
 
       <CaseText title={L.headingSearchPhoto} description={L.textDescriptionSearchPhoto} noBorder />
 
       <CaseMedia layout='gallery'>
-        <CaseImage src='cases/coindet/sb-5.jpg' />
-        <CaseImage src='cases/coindet/sb-6.jpg' />
+        <CaseImage src='/cases/coindet/sb-5.jpg' />
+        <CaseImage src='/cases/coindet/sb-6.jpg' />
       </CaseMedia>
 
       <CaseMedia layout='gallery'>
-        <CaseImage src='cases/coindet/sb-7.jpg' />
-        <CaseImage src='cases/coindet/sb-8.jpg' />
+        <CaseImage src='/cases/coindet/sb-7.jpg' />
+        <CaseImage src='/cases/coindet/sb-8.jpg' />
       </CaseMedia>
 
       <CaseText title={L.headingCatalog} description={L.textDescriptionCatalog} noBorder />
 
       <CaseMedia layout='row'>
-        <CaseImage src='cases/coindet/sb-9.jpg' />
-        <CaseImage src='cases/coindet/sb-10.jpg' />
-        <CaseImage src='cases/coindet/sb-11.jpg' />
+        <CaseImage src='/cases/coindet/sb-9.jpg' />
+        <CaseImage src='/cases/coindet/sb-10.jpg' />
+        <CaseImage src='/cases/coindet/sb-11.jpg' />
       </CaseMedia>
 
-      <CaseVideo src='cases/coindet/cndt.webm' />
+      <CaseVideo src='/cases/coindet/cndt.webm' />
 
       <CaseText title={L.headingResult} description={L.textDescriptionResult} noBorder />
 
-      <CaseImage src='cases/coindet/sb-12.jpg' />
+      <CaseImage src='/cases/coindet/sb-12.jpg' />
     </>
   );
 }
