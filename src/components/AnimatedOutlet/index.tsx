@@ -1,7 +1,7 @@
 import { getRouterContext, Outlet, useMatches } from '@tanstack/react-router';
 import { easeInOut, motion, useIsPresent, type Direction, type MotionProps, type Variants } from 'framer-motion';
 import { cloneDeep } from 'lodash';
-import { forwardRef, useContext, useRef } from 'react';
+import { forwardRef, useContext, useEffect, useRef, useState } from 'react';
 
 type AnimatedOutletProps = MotionProps & {
   direction?: Direction;
@@ -31,6 +31,14 @@ const AnimatedOutlet = forwardRef<HTMLDivElement, AnimatedOutletProps>(({ direct
     ];
   }
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isPresent) {
+      setIsOpen(false);
+    }
+  }, [isPresent]);
+
   const caseVariants: Variants = {
     closed: {
       y: '100%',
@@ -47,15 +55,20 @@ const AnimatedOutlet = forwardRef<HTMLDivElement, AnimatedOutletProps>(({ direct
     },
   };
 
+  const pointerEventsValue = isOpen && isPresent ? 'auto' : 'none';
+
   return (
     <motion.div
       ref={ref}
       className='fixed top-0 left-0 h-screen w-full overflow-auto'
       initial='closed'
-      animate='open'
+      animate={isPresent ? 'open' : 'closed'}
       exit='close'
       variants={caseVariants}
       transition={{ bounce: 0, duration: 0.7, ease: easeInOut }}
+      onAnimationStart={(definition)=>{if(definition==='open')setIsOpen(true);else if(definition==='close'||definition==='closed')setIsOpen(false);}}
+      onAnimationComplete={(definition)=>{if(definition==='close'||definition==='closed')setIsOpen(false);else if(definition==='open')setIsOpen(true);}}
+      style={{ pointerEvents: pointerEventsValue, ...props.style }}
       {...props}
     >
       <RouterContext.Provider value={renderedContext}>

@@ -8,6 +8,7 @@ import Package from '@/components/Package';
 import SocLinks from '@/components/SocLinks';
 import Time from '@/components/Time';
 import { GLOBAL_LOCALIZATION } from '@/constants/globalLocalization';
+import { socLinks } from '@/constants/socLinks';
 import { useDevice } from '@/hooks/useDevice';
 import { useHashSetter } from '@/hooks/useHashSetter';
 import { useLocalization } from '@/hooks/useLocalization';
@@ -32,7 +33,9 @@ export function Main() {
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
   const { isDesktop } = useDevice();
   const { ref } = useHashSetter({ hash: 'main' });
-
+  const telegramLink = socLinks.find(
+    link => link.name === 'Telegram',
+  )?.url;
   return (
     <Block ref={ref} id='main' className='relative flex h-[calc(100vh-60px)] flex-col justify-between max-md:pb-8'>
       <div className='flex w-full items-center justify-between'>
@@ -45,6 +48,8 @@ export function Main() {
             iconSize={!isDesktop ? '24' : undefined}
             className='h-[54px] border-0 bg-[#08C] hover:bg-[#006DA3] max-md:h-[50px] max-md:w-[50px]'
             iconRight='telegram'
+            link={telegramLink}
+            target="_blank"
           >
             {isDesktop && GL.buttons.contact}
           </Button>

@@ -11,7 +11,7 @@ import { Main } from '@/modules/Main';
 import OneMoreThing from '@/modules/OneMoreThing';
 import { useSystemStore } from '@/stores/system';
 import { cn } from '@/utils/cn';
-import { createRootRoute, useMatch, useMatches } from '@tanstack/react-router';
+import { createRootRoute, useMatch, useMatches, useLocation } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { setDefaultOptions } from 'date-fns';
 import { enUS, ru } from 'date-fns/locale';
@@ -21,6 +21,7 @@ import ReactLenis from 'lenis/react';
 export const Route = createRootRoute({
   component: () => {
     const language = useSystemStore((state) => state.language);
+    const { pathname } = useLocation();
     setDefaultOptions({
       locale: language === 'ru' ? ru : enUS,
     });
@@ -31,6 +32,7 @@ export const Route = createRootRoute({
     const match = useMatch({ strict: false });
     const nextMatchIndex = matches.findIndex((d) => d.id === match.id) + 1;
     const nextMatch = matches[nextMatchIndex];
+    const shouldRenderAnimatedOutlet = nextMatch && nextMatch.id !== '/' && pathname !== '/';
 
     return (
       <>
@@ -45,7 +47,7 @@ export const Route = createRootRoute({
             <Menu />
           </div>
           <AnimatePresence>
-            <AnimatePresence>{nextMatch.id !== '/' && <AnimatedOutlet key={nextMatch.id} />}</AnimatePresence>
+            <AnimatePresence>{shouldRenderAnimatedOutlet && <AnimatedOutlet key={nextMatch.id} />}</AnimatePresence>
           </AnimatePresence>
           <Cursor />
         </ReactLenis>

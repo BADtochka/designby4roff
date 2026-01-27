@@ -19,7 +19,7 @@ const Time = () => {
 
   return (
     <div className='flex items-center gap-2.5 opacity-30'>
-      <p>{GL.moscow} (GMT +3)</p>
+      <p>{GL.moscow} (GMT+3)</p>
       <span>•</span>
       <p>{tzTime}</p>
     </div>

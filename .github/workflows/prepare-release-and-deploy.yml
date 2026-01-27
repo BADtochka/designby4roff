@@ -1,0 +1,76 @@
+# This workflow builds and deploys the website to the VPS & creates a new Git tag and GitHub Release for the website
+
+name: "Prepare Release and Deploy"
+
+on:
+  # Allows manual triggering from the Actions tab
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. v1.0.0 or v2026.01.10)'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the main branch to tag the latest stable version
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Create and push a Git tag for the release
+      - name: Create and push Git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${{ github.event.inputs.version }}"
+          git push origin "${{ github.event.inputs.version }}"
+
+      # Setup Bun runtime
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # Install dependencies using the lockfile
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # Build the production bundle
+      - name: Build website
+        run: bun run build
+
+      # Upload built files to the VPS
+      - name: Deploy to VPS via rsync
+        uses: burnett01/rsync-deployments@v8
+        with:
+          switches: -avz --delete
+          path: dist/
+          remote_path: /var/www/site/releases/${{ github.event.inputs.version }}
+          remote_host: ${{ secrets.VPS_HOST }}
+          remote_port: ${{ secrets.VPS_PORT }}
+          remote_user: ${{ secrets.VPS_USER }}
+          remote_key: ${{ secrets.VPS_SSH_KEY }}
+
+      # Reload Nginx to apply the new version
+      - name: Reload Nginx
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          username: ${{ secrets.VPS_USER }}
+          script: |
+            ln -sfn /var/www/site/releases/${{ github.event.inputs.version }} /var/www/site/current
+
+      # Create a GitHub Release associated with the new tag
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "${{ github.event.inputs.version }}"
+          name: "${{ github.event.inputs.version }}"
+          generateReleaseNotes: true

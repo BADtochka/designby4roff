@@ -1,0 +1,32 @@
+# This workflow installs dependencies and builds the project on every push and pull request to the main branch
+
+name: "Build and Test"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out the repository so the workflow can access the source code
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # Sets up Bun runtime for installing dependencies and building the project
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # Installs project dependencies
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # Runs TypeScript type-checking and builds the production bundle using Vite
+      - name: Typecheck and build
+        run: bun run build

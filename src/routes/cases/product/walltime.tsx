@@ -173,7 +173,7 @@ function RouteComponent() {
       <AboutCase title={L.caseTitle} description={L.caseDescription} noBorder>
         <AboutCaseInfo title={L.hello} description={L.name} />
         <AboutCaseInfo title={L.info1Title} description={L.info1Description} />
-        <AboutCaseInfo title={L.info2Title} description={L.info2Description} url='https://google.com' />
+        <AboutCaseInfo title={L.info2Title} description={L.info2Description} url='https://play.google.com/store/apps/details?id=com.eddention.walltime' />
       </AboutCase>
 
       <CaseImage src='/cases/walltime/hello-walltime.jpg' />
