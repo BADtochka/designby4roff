@@ -69,7 +69,7 @@ export default function About() {
           </Block>
           <div className='col-start-2 row-start-3 flex w-full items-center gap-2.5 max-xl:flex-col'>
             <Button
-              className='w-full gap-4 border-0 bg-[#08C] hover:bg-[#006DA3]'
+              className='w-full gap-4 border-0 bg-[#08C] whitespace-nowrap hover:bg-[#006DA3]'
               iconLeft='telegram'
               link={telegramBlog?.url}
               target='_blank'
