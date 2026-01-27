@@ -25,13 +25,13 @@ export default function CaseText({
     <Block
       borderColor={caseOption.borderColor}
       className={cn(
-        'flex gap-4 px-[150px] max-md:p-8',
+        'flex gap-4 px-[150px] max-xl:flex-col! max-md:p-8',
         {
           'border-black/10': caseOption.scheme === 'light',
           'justify-center text-center': !description,
           'justify-between': description && direction === 'row',
           uppercase: uppercase,
-          '!border-transparent': noBorder,
+          'border-transparent!': noBorder,
         },
         className,
       )}

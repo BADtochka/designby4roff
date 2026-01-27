@@ -49,7 +49,7 @@ export default function Experience() {
     <div ref={ref} id='experience' className='flex flex-col gap-[50px] max-md:gap-5'>
       <Block className='flex h-[720px] flex-col items-center justify-center gap-5 max-md:h-[370px]'>
         <h1 className='text-[80px] font-extrabold uppercase max-md:text-[40px]'>{L.title}</h1>
-        <p className='text-base text-white/30'>{L.description}</p>
+        <p className='text-center text-base text-white/30'>{L.description}</p>
       </Block>
       <Block className='p-0 *:last:border-0 max-md:p-0'>
         {experienceKeys.map((key) => {

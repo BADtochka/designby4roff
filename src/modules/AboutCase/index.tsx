@@ -22,8 +22,8 @@ export default function AboutCase({
     <Block
       borderColor={caseOption.borderColor}
       className={cn(
-        `flex items-end justify-between gap-8 px-[150px] max-2xl:flex-col max-2xl:items-center max-2xl:text-center
-        2xl:gap-[188px]`,
+        `flex items-end justify-between gap-8 px-8 max-2xl:flex-col max-2xl:items-center max-2xl:text-center max-md:items-start
+        max-md:text-left 2xl:gap-[188px] 2xl:px-[150px]`,
         {
           '!border-transparent': noBorder,
         },
@@ -42,7 +42,7 @@ export default function AboutCase({
           {description}
         </p>
       </div>
-      <div className='flex flex-col flex-wrap gap-10 whitespace-nowrap max-2xl:items-center max-md:flex-col max-md:gap-4'>
+      <div className='flex flex-col flex-wrap gap-10 whitespace-nowrap max-2xl:items-center max-md:flex-col max-md:items-start max-md:gap-4'>
         {children}
       </div>
     </Block>

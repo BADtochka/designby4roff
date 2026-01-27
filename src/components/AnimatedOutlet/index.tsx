@@ -1,5 +1,13 @@
 import { getRouterContext, Outlet, useMatches } from '@tanstack/react-router';
-import { easeInOut, motion, useIsPresent, type Direction, type MotionProps, type Variants } from 'framer-motion';
+import {
+  AnimationDefinition,
+  easeInOut,
+  motion,
+  useIsPresent,
+  type Direction,
+  type MotionProps,
+  type Variants,
+} from 'framer-motion';
 import { cloneDeep } from 'lodash';
 import { forwardRef, useContext, useEffect, useRef, useState } from 'react';
 
@@ -57,6 +65,16 @@ const AnimatedOutlet = forwardRef<HTMLDivElement, AnimatedOutletProps>(({ direct
 
   const pointerEventsValue = isOpen && isPresent ? 'auto' : 'none';
 
+  const onAnimationStart = (definition: AnimationDefinition) => {
+    if (definition === 'open') setIsOpen(true);
+    else if (definition === 'close' || definition === 'closed') setIsOpen(false);
+  };
+
+  const onAnimationComplete = (definition: AnimationDefinition) => {
+    if (definition === 'close' || definition === 'closed') setIsOpen(false);
+    else if (definition === 'open') setIsOpen(true);
+  };
+
   return (
     <motion.div
       ref={ref}
@@ -66,8 +84,8 @@ const AnimatedOutlet = forwardRef<HTMLDivElement, AnimatedOutletProps>(({ direct
       exit='close'
       variants={caseVariants}
       transition={{ bounce: 0, duration: 0.7, ease: easeInOut }}
-      onAnimationStart={(definition)=>{if(definition==='open')setIsOpen(true);else if(definition==='close'||definition==='closed')setIsOpen(false);}}
-      onAnimationComplete={(definition)=>{if(definition==='close'||definition==='closed')setIsOpen(false);else if(definition==='open')setIsOpen(true);}}
+      onAnimationStart={onAnimationStart}
+      onAnimationComplete={onAnimationComplete}
       style={{ pointerEvents: pointerEventsValue, ...props.style }}
       {...props}
     >

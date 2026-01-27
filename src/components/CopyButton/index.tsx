@@ -8,7 +8,7 @@ import { delay } from '@/utils/delay';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { memo } from 'react';
 
-interface CopyButtonProps extends ButtonProps {
+export interface CopyButtonProps extends ButtonProps {
   content?: string;
   mode?: CaseOptions['scheme'];
 }

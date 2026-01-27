@@ -17,8 +17,6 @@ import { Route as CasesIndexRouteImport } from './routes/cases/index'
 import { Route as CasesProductWalltimeRouteImport } from './routes/cases/product/walltime'
 import { Route as CasesProductRicsRouteImport } from './routes/cases/product/rics'
 import { Route as CasesProductCoindetRouteImport } from './routes/cases/product/coindet'
-import { Route as CasesProductAthayogaRouteImport } from './routes/cases/product/athayoga'
-import { Route as CasesGameAtomv2RouteImport } from './routes/cases/game/atomv2'
 import { Route as CasesGameAtomv1RouteImport } from './routes/cases/game/atomv1'
 
 const CasesRouteRoute = CasesRouteRouteImport.update({
@@ -51,16 +49,6 @@ const CasesProductCoindetRoute = CasesProductCoindetRouteImport.update({
   path: '/product/coindet',
   getParentRoute: () => CasesRouteRoute,
 } as any)
-const CasesProductAthayogaRoute = CasesProductAthayogaRouteImport.update({
-  id: '/product/athayoga',
-  path: '/product/athayoga',
-  getParentRoute: () => CasesRouteRoute,
-} as any)
-const CasesGameAtomv2Route = CasesGameAtomv2RouteImport.update({
-  id: '/game/atomv2',
-  path: '/game/atomv2',
-  getParentRoute: () => CasesRouteRoute,
-} as any)
 const CasesGameAtomv1Route = CasesGameAtomv1RouteImport.update({
   id: '/game/atomv1',
   path: '/game/atomv1',
@@ -72,8 +60,6 @@ export interface FileRoutesByFullPath {
   '/cases': typeof CasesRouteRouteWithChildren
   '/cases/': typeof CasesIndexRoute
   '/cases/game/atomv1': typeof CasesGameAtomv1Route
-  '/cases/game/atomv2': typeof CasesGameAtomv2Route
-  '/cases/product/athayoga': typeof CasesProductAthayogaRoute
   '/cases/product/coindet': typeof CasesProductCoindetRoute
   '/cases/product/rics': typeof CasesProductRicsRoute
   '/cases/product/walltime': typeof CasesProductWalltimeRoute
@@ -82,8 +68,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cases': typeof CasesIndexRoute
   '/cases/game/atomv1': typeof CasesGameAtomv1Route
-  '/cases/game/atomv2': typeof CasesGameAtomv2Route
-  '/cases/product/athayoga': typeof CasesProductAthayogaRoute
   '/cases/product/coindet': typeof CasesProductCoindetRoute
   '/cases/product/rics': typeof CasesProductRicsRoute
   '/cases/product/walltime': typeof CasesProductWalltimeRoute
@@ -94,8 +78,6 @@ export interface FileRoutesById {
   '/cases': typeof CasesRouteRouteWithChildren
   '/cases/': typeof CasesIndexRoute
   '/cases/game/atomv1': typeof CasesGameAtomv1Route
-  '/cases/game/atomv2': typeof CasesGameAtomv2Route
-  '/cases/product/athayoga': typeof CasesProductAthayogaRoute
   '/cases/product/coindet': typeof CasesProductCoindetRoute
   '/cases/product/rics': typeof CasesProductRicsRoute
   '/cases/product/walltime': typeof CasesProductWalltimeRoute
@@ -107,8 +89,6 @@ export interface FileRouteTypes {
     | '/cases'
     | '/cases/'
     | '/cases/game/atomv1'
-    | '/cases/game/atomv2'
-    | '/cases/product/athayoga'
     | '/cases/product/coindet'
     | '/cases/product/rics'
     | '/cases/product/walltime'
@@ -117,8 +97,6 @@ export interface FileRouteTypes {
     | '/'
     | '/cases'
     | '/cases/game/atomv1'
-    | '/cases/game/atomv2'
-    | '/cases/product/athayoga'
     | '/cases/product/coindet'
     | '/cases/product/rics'
     | '/cases/product/walltime'
@@ -128,8 +106,6 @@ export interface FileRouteTypes {
     | '/cases'
     | '/cases/'
     | '/cases/game/atomv1'
-    | '/cases/game/atomv2'
-    | '/cases/product/athayoga'
     | '/cases/product/coindet'
     | '/cases/product/rics'
     | '/cases/product/walltime'
@@ -184,20 +160,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesProductCoindetRouteImport
       parentRoute: typeof CasesRouteRoute
     }
-    '/cases/product/athayoga': {
-      id: '/cases/product/athayoga'
-      path: '/product/athayoga'
-      fullPath: '/cases/product/athayoga'
-      preLoaderRoute: typeof CasesProductAthayogaRouteImport
-      parentRoute: typeof CasesRouteRoute
-    }
-    '/cases/game/atomv2': {
-      id: '/cases/game/atomv2'
-      path: '/game/atomv2'
-      fullPath: '/cases/game/atomv2'
-      preLoaderRoute: typeof CasesGameAtomv2RouteImport
-      parentRoute: typeof CasesRouteRoute
-    }
     '/cases/game/atomv1': {
       id: '/cases/game/atomv1'
       path: '/game/atomv1'
@@ -244,24 +206,6 @@ declare module './routes/cases/game/atomv1' {
     FileRoutesByPath['/cases/game/atomv1']['fullPath']
   >
 }
-declare module './routes/cases/game/atomv2' {
-  const createFileRoute: CreateFileRoute<
-    '/cases/game/atomv2',
-    FileRoutesByPath['/cases/game/atomv2']['parentRoute'],
-    FileRoutesByPath['/cases/game/atomv2']['id'],
-    FileRoutesByPath['/cases/game/atomv2']['path'],
-    FileRoutesByPath['/cases/game/atomv2']['fullPath']
-  >
-}
-declare module './routes/cases/product/athayoga' {
-  const createFileRoute: CreateFileRoute<
-    '/cases/product/athayoga',
-    FileRoutesByPath['/cases/product/athayoga']['parentRoute'],
-    FileRoutesByPath['/cases/product/athayoga']['id'],
-    FileRoutesByPath['/cases/product/athayoga']['path'],
-    FileRoutesByPath['/cases/product/athayoga']['fullPath']
-  >
-}
 declare module './routes/cases/product/coindet' {
   const createFileRoute: CreateFileRoute<
     '/cases/product/coindet',
@@ -293,8 +237,6 @@ declare module './routes/cases/product/walltime' {
 interface CasesRouteRouteChildren {
   CasesIndexRoute: typeof CasesIndexRoute
   CasesGameAtomv1Route: typeof CasesGameAtomv1Route
-  CasesGameAtomv2Route: typeof CasesGameAtomv2Route
-  CasesProductAthayogaRoute: typeof CasesProductAthayogaRoute
   CasesProductCoindetRoute: typeof CasesProductCoindetRoute
   CasesProductRicsRoute: typeof CasesProductRicsRoute
   CasesProductWalltimeRoute: typeof CasesProductWalltimeRoute
@@ -303,8 +245,6 @@ interface CasesRouteRouteChildren {
 const CasesRouteRouteChildren: CasesRouteRouteChildren = {
   CasesIndexRoute: CasesIndexRoute,
   CasesGameAtomv1Route: CasesGameAtomv1Route,
-  CasesGameAtomv2Route: CasesGameAtomv2Route,
-  CasesProductAthayogaRoute: CasesProductAthayogaRoute,
   CasesProductCoindetRoute: CasesProductCoindetRoute,
   CasesProductRicsRoute: CasesProductRicsRoute,
   CasesProductWalltimeRoute: CasesProductWalltimeRoute,

@@ -28,7 +28,7 @@ export default function ThingCard({ title, description, category, meta, type, st
 
   return (
     <div className='flex flex-col gap-9 overflow-hidden rounded-[20px] border border-[#ffffff1e] p-[50px]'>
-      <div className='flex justify-between'>
+      <div className='flex justify-between max-sm:flex-col max-sm:gap-8'>
         <div className='flex flex-col gap-6'>
           <h1 className='text-[28px] font-bold whitespace-pre-wrap'>{title}</h1>
           <div className='flex flex-col gap-2.5'>
@@ -36,9 +36,9 @@ export default function ThingCard({ title, description, category, meta, type, st
             <DateRange startDate={startDate} endDate={endDate} />
           </div>
         </div>
-        <div className='relative size-[100px]'>
+        <div className='relative size-[100px] max-sm:-order-1'>
           <Image src={`/${type}.png`} className='z-10 rounded-full' />
-          <Image src={`/${type}.png`} className='absolute -top-2/3 -right-2/3 min-h-60 min-w-60 opacity-50 blur-3xl' />
+          <Image src={`/${type}.png`} className='absolute -top-2/3 -right-2/3 min-h-60 min-w-60 opacity-30! blur-3xl' />
         </div>
       </div>
       <div className='flex flex-col gap-6'>

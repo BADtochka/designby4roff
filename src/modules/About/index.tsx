@@ -39,7 +39,7 @@ export default function About() {
   const { L: GL } = useLocalization(GLOBAL_LOCALIZATION);
   const { L } = useLocalization(localization);
   const { ref } = useHashSetter({ hash: 'about' });
-  const telegramBlog = socLinks.find(link => link.name === 'Telegram Blog');
+  const telegramBlog = socLinks.find((link) => link.name === 'Telegram Blog');
   return (
     <div ref={ref} id='about' className='flex flex-col gap-[50px] max-md:gap-5'>
       <Block className='flex h-[720px] flex-col items-center justify-center gap-5 max-md:h-[370px]'>
@@ -54,7 +54,7 @@ export default function About() {
             </Block>
             <Image
               src='/portrait.jpg'
-              className='aspect-square rounded-[20px] object-cover max-lg:w-full md:max-w-64'
+              className='aspect-square rounded-[20px] object-cover max-lg:w-full lg:max-h-64 lg:max-w-64'
             />
           </div>
         </div>
@@ -68,13 +68,19 @@ export default function About() {
             {L.personalInfo2}
           </Block>
           <div className='col-start-2 row-start-3 flex w-full items-center gap-2.5 max-xl:flex-col'>
-            <Button className='w-full gap-4 border-0 bg-[#08C] hover:bg-[#006DA3]' iconLeft='telegram' link={telegramBlog?.url} target='_blank' animation>
+            <Button
+              className='w-full gap-4 border-0 bg-[#08C] hover:bg-[#006DA3]'
+              iconLeft='telegram'
+              link={telegramBlog?.url}
+              target='_blank'
+              animation
+            >
               {L.blogButton}
             </Button>
             <div className='flex items-center gap-2.5'>
               {socLinks
-                .filter(link => ['Behance', 'DProfile', 'Dribbble'].includes(link.name))
-                .map(link => (
+                .filter((link) => ['Behance', 'DProfile', 'Dribbble'].includes(link.name))
+                .map((link) => (
                   <Button
                     key={link.name}
                     className='shrink-0'
