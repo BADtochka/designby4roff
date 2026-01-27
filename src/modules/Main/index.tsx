@@ -41,7 +41,9 @@ export function Main() {
         <Icon name='logo' className='size-10 transition-transform hover:scale-110 max-md:size-8' />
         <div className='flex items-center gap-4'>
           {isDesktop ? (
-            <CopyButton iconRight='copy'>4roffdesign@gmail.com</CopyButton>
+            <CopyButton iconRight='copy' className='h-13.5'>
+              4roffdesign@gmail.com
+            </CopyButton>
           ) : (
             <MobileCopyButton className='size-12.5 shrink-0' iconSize={!isDesktop ? '24px' : undefined}>
               4roffdesign@gmail.com

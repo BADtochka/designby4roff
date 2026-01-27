@@ -113,7 +113,7 @@ const Button = ({
   const [hovered, setHovered] = useState(false);
   const [width, setWidth] = useState(100);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const { browser } = useDevice();
+  const { browser, isDesktop } = useDevice();
   const animationEnabled = browser !== 'firefox' && animation;
 
   const getHorizontalPadding = () => {
@@ -137,7 +137,13 @@ const Button = ({
   return (
     <>
       {link ? (
-        <Link className='block w-full' to={link} from='/' onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}>
+        <Link
+          className='block w-full'
+          to={link}
+          from='/'
+          onPointerEnter={() => setHovered(true)}
+          onPointerLeave={() => setHovered(false)}
+        >
           <button
             ref={buttonRef}
             data-active={active}
@@ -153,7 +159,7 @@ const Button = ({
             {...props}
           >
             <ButtonContent
-              animation={!!animationEnabled}
+              animation={animationEnabled && isDesktop}
               iconLeft={iconLeft}
               iconRight={iconRight}
               iconSize={iconSize}
@@ -182,11 +188,11 @@ const Button = ({
           {...props}
         >
           <ButtonContent
-            animation={!!animationEnabled}
+            animation={animationEnabled && isDesktop}
             iconLeft={iconLeft}
             iconRight={iconRight}
             iconSize={iconSize}
-            isHovered={!!animationEnabled && hovered}
+            isHovered={animationEnabled && hovered}
             onChangeWidth={changeWidth}
           >
             {children}
