@@ -146,11 +146,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesProductWalltimeRouteImport
       parentRoute: typeof CasesRouteRoute
     }
-    '/cases/product/athayoga': {
-      id: '/cases/product/athayoga'
-      path: '/product/athayoga'
-      fullPath: '/cases/product/athayoga'
-      preLoaderRoute: typeof CasesProductAthayogaRouteImport
+    '/cases/product/rics': {
+      id: '/cases/product/rics'
+      path: '/product/rics'
+      fullPath: '/cases/product/rics'
+      preLoaderRoute: typeof CasesProductRicsRouteImport
       parentRoute: typeof CasesRouteRoute
     }
     '/cases/product/coindet': {

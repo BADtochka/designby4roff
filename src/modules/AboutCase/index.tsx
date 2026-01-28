@@ -30,7 +30,11 @@ export default function AboutCase({
       )}
     >
       <div className='flex flex-col gap-5'>
-        <Image src={caseOption.logo} className='mb-5 h-[70px] w-[70px]' parentClassName='max-2xl:justify-center' />
+        <Image
+          src={caseOption.logo}
+          className='mb-5 h-[70px] w-[70px]'
+          parentClassName='max-2xl:justify-center max-md:justify-start'
+        />
         <h1 className='text-[132px] font-extrabold max-[1832px]:text-7xl max-md:text-[32px] min-[1832px]:leading-32'>
           {title}
         </h1>
